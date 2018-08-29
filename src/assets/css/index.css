@@ -1,0 +1,113 @@
+body .content1 {
+	background: url(../../assets/img/index/home_pic_background.png);
+	background-size: 100% 100%;
+}
+
+.user {
+	display: block;
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	left: 30px;
+	top: 14px;
+}
+
+.introduce {
+	display: block;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: 50px;
+	top: 134px;
+}
+
+.dio {
+	position: absolute;
+	left: 220px;
+	top: 29px;
+	width: 480px;
+	height: 56px;
+	background: rgba(67, 55, 106, 1);
+	border-radius: 28px;
+	line-height: 56px;
+	text-align: left;
+}
+
+.dio img {
+	width: 56px;
+	height: 56px;
+	float: left;
+	margin: 0px 5px;
+}
+.dio .energyIcon{
+	width: 25px;
+	height: 36px;
+	margin: 10px 10px;
+}
+.dio span {
+	float: left;
+	height: 56px;
+	line-height: 56px;
+	font-size: 24px;
+	font-family: PingFang-SC-Regular;
+	font-weight: 400;
+	color: rgba(254, 254, 254, 1);
+	overflow: hidden;
+}
+
+.dioIcon {
+	width: 36px;
+}
+
+.dioText {
+	width: 210px;
+}
+
+.energyIcon {
+	width: 25px;
+}
+
+.energyText {
+	width: 108px;
+}
+
+.energy,
+.share {
+	width: 140px;
+	height: 100px;
+	position: absolute;
+	right: 0;
+	top: 138px;
+}
+
+.energy {
+	width: 140px;
+	height: 100px;
+	position: absolute;
+	right: 0;
+	top: 138px;
+	overflow: hidden;
+}
+
+.energy img,
+.share img {
+	width: 50px;
+	height: 50px;
+	display: block;
+	margin-left: 20px;
+}
+
+.energy span,
+.share span {
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 24px;
+	font-family: PingFang-SC-Medium;
+	color: rgba(255, 255, 255, 1);
+	text-align: left;
+}
+
+.share {
+	top: 256px;
+}

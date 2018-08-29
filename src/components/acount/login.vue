@@ -1,0 +1,157 @@
+<template>
+	<div class="content2">
+		<headerNav :pageTitle="pageTitle" :goBackShow="goBackShow" ></headerNav>
+		<img src="../../assets/img/acount/logo.png" class="logLogo" />
+
+		<div class="inputBox">
+			<div>
+				<img src="../../assets/img/acount/reg_reg_phone@2x.png" class="icon" />
+				<input type="text" placeholder="请输入您的手机号" v-model="loginData.mobile" @blur="mobileBlur" />
+			</div>
+			<p v-show="tipList.mobile">手机号格式错误</p>
+		</div>
+		<div class="inputBox lastInputBox">
+			<div>
+				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
+				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" />
+				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @click="changePasswordType" />
+			</div>
+			<p v-show="tipList.password">密码格式错误</p>
+		</div>
+		<div class="logBtn" :class="{logBtnActive:isLogBtnActive}" @click="goLogin(isLogBtnActive)">
+			登录
+		</div>
+		<div class="restAcount">
+			<span @click="goPasswordBack">忘记密码</span>
+			<span @click="goRegister">手机号快速注册</span>
+		</div>
+	</div>
+</template>
+<script>
+	import "../../assets/css/acount.css"
+	import HeaderNav from '../base/headerNav'
+	import { Toast } from 'mint-ui'
+	let base_url = '';
+	export default {
+		data() {
+			return {
+				pageTitle:"登录",
+				goBackShow:false,
+				passwordType: "password",
+				isLogBtnActive: false,
+				loginData: {
+					mobile: "",
+					password: "",
+				},
+				tipList: {
+					mobile: false,
+					password: false,
+				}
+			}
+		},
+		components: {
+			HeaderNav,
+		},
+		created() {
+			base_url = this.$store.state.base_url;
+		},
+		methods: {
+			changePasswordType() {
+				if(this.passwordType == "password") {
+					this.passwordType = "text"
+				} else {
+					this.passwordType = "password"
+				}
+			},
+			mobileBlur() {
+				if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.loginData.mobile)) {
+					this.tipList.mobile = true;
+				}
+			},
+			passwordBlur() {
+				if(this.loginData.password.length < 6) {
+					this.tipList.password = true;
+				}
+			},
+			goRegister() {
+				this.$router.push({
+					path: "/acount/register"
+				})
+			},
+			goPasswordBack(){
+				this.$router.push({
+					path: "/acount/passwordBack"
+				})
+			},
+			goLogin(isLogBtnActive) {
+				var that = this;
+				if(isLogBtnActive) {
+					this.$http({
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded'
+							},
+							url: base_url + '/user/login',
+							data: that.$qs.stringify(that.loginData),
+							responseType: 'json'
+						})
+						.then((result) => {
+							if(result.data.code == "1") {
+								that.loginData.password = "";
+								Toast({
+									message: result.data.info,
+									position: 'top',
+									duration: 1500,
+									className: "toastName"
+								});
+							} else if(result.data.code == "0") {
+								window.localStorage.setItem("jiazhuoToken", result.data.data.token);
+								Toast({
+									message: result.data.info,
+									position: 'top',
+									duration: 1000,
+									className: "toastName"
+								});
+								that.$store.commit({
+									type: 'addToken',
+									tokenCode: result.data.data.token
+								})
+								setTimeout(() => {
+									that.$router.push({
+										path: "/"
+									})
+								}, 1000)
+
+							}
+						});
+				} else {
+				
+				}
+			}
+		},
+		watch: {
+			loginData: {
+				handler(curVal, oldVal) {
+					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile)) {
+						this.tipList.mobile = false;
+					}
+					if(curVal.password.length >= 6) {
+						this.tipList.password = false;
+					}
+					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6) {
+						this.isLogBtnActive = true;
+
+					} else {
+						this.isLogBtnActive = false;
+					}
+				},
+				deep: true,
+			},
+		},
+
+	}
+</script>
+
+<style>
+	
+</style>
