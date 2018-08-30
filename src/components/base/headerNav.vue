@@ -41,6 +41,7 @@
 		top: 0;
 		left: 0;
 		background: #F7F7F7;
+    z-index: 1999;
 	}
 	#header .back{
 		width: 42px;

@@ -1,0 +1,7 @@
+.mint-spinner-snake {
+  width: 40px !important;
+  height: 40px !important;
+  background: url("../../assets/img/base/icon_refresh@2x.png");
+  background-size: 100% 100%;
+  border: none !important;
+}

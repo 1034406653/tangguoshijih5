@@ -137,7 +137,7 @@
     <mt-loadmore :top-method="loadTop" @translate-change="translateChange"
                  @top-status-change="handleTopChange" :auto-fill="false"
                  :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :bottom-all-loaded="allLoaded"
-                 ref="loadmore" :style="{ height: height + 'px' }" class="loadmore-content">
+                 ref="loadmore" class="loadmore-content">
 
       <ul class="page-loadmore-list">
         <li v-for="item in dioDataList" class="page-loadmore-listitem">
