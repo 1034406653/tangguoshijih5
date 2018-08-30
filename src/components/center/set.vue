@@ -68,8 +68,7 @@
 		font-size: 28px;
 		font-family: PingFang-SC-Medium;
 		color: rgba(51, 51, 51, 1);
-		border-bottom: 1px solid rgba(239, 239, 239, 1);
-		/*px*/
+		border-bottom: 1px solid rgba(239, 239, 239, 1);/*px*/
 	}
 	
 	.setList li:last-child {
