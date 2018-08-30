@@ -1,7 +1,7 @@
 <template>
 	<div class="content1">
 		<div class="user-name">
-			<img src="../../../build/logo.png" alt="用户头像" />
+			<img src="../../assets/img/index/home_pic_avatar.png" alt="用户头像" />
 			<div>黑化肥黑化肥黑化</div>
 		</div>
 		<div class="nav-box">
@@ -64,7 +64,8 @@
 
 <style>
 	.content1 {
-		background: #5A5A5A;
+		background: url(../../assets/img/index/me_pic_background.png);
+		background-size: 100% 100%;
 	}
 	
 	.user-name {

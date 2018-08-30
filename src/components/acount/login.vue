@@ -1,6 +1,6 @@
 <template>
 	<div class="content2">
-		<headerNav :pageTitle="pageTitle" :goBackShow="goBackShow" ></headerNav>
+		<headerNav :pageTitle="pageTitle" :goBackShow="goBackShow"></headerNav>
 		<img src="../../assets/img/acount/logo.png" class="logLogo" />
 
 		<div class="inputBox">
@@ -35,8 +35,8 @@
 	export default {
 		data() {
 			return {
-				pageTitle:"登录",
-				goBackShow:false,
+				pageTitle: "登录",
+				goBackShow: false,
 				passwordType: "password",
 				isLogBtnActive: false,
 				loginData: {
@@ -78,7 +78,7 @@
 					path: "/acount/register"
 				})
 			},
-			goPasswordBack(){
+			goPasswordBack() {
 				this.$router.push({
 					path: "/acount/passwordBack"
 				})
@@ -86,46 +86,37 @@
 			goLogin(isLogBtnActive) {
 				var that = this;
 				if(isLogBtnActive) {
-					this.$http({
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: base_url + '/user/login',
-							data: that.$qs.stringify(that.loginData),
-							responseType: 'json'
-						})
-						.then((result) => {
-							if(result.data.code == "1") {
-								that.loginData.password = "";
-								Toast({
-									message: result.data.info,
-									position: 'top',
-									duration: 1500,
-									className: "toastName"
-								});
-							} else if(result.data.code == "0") {
-								window.localStorage.setItem("jiazhuoToken", result.data.data.token);
-								Toast({
-									message: result.data.info,
-									position: 'top',
-									duration: 1000,
-									className: "toastName"
-								});
-								that.$store.commit({
-									type: 'addToken',
-									tokenCode: result.data.data.token
+					this.$http.post('/user/login', that.loginData).then((result) => {
+						if(result.data.code == "1") {
+							that.loginData.password = "";
+							Toast({
+								message: result.data.info,
+								position: 'top',
+								duration: 1500,
+								className: "toastName"
+							});
+						} else if(result.data.code == "0") {
+							
+							window.localStorage.setItem("jiazhuoToken", result.data.data.token);
+							window.localStorage.setItem("nickname", result.data.data.user_info.nickname);
+							window.localStorage.setItem("head_pic", result.data.data.user_info.head_pic);
+							Toast({
+								message: result.data.info,
+								position: 'top',
+								duration: 1000,
+								className: "toastName"
+							});
+							that.$store.commit({
+								type: 'addToken',
+								tokenCode: result.data.data.token
+							})
+							setTimeout(() => {
+								that.$router.push({
+									path: "/"
 								})
-								setTimeout(() => {
-									that.$router.push({
-										path: "/"
-									})
-								}, 1000)
-
-							}
-						});
-				} else {
-				
+							}, 1000)
+						}
+					});
 				}
 			}
 		},
@@ -153,5 +144,5 @@
 </script>
 
 <style>
-	
+
 </style>

@@ -88,17 +88,9 @@
 					that.tipMobileText = "手机号格式错误";
 					this.tipList.mobile = true;
 				} else {
-					this.$http({
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: base_url + '/user/mobile_registered',
-							data: that.$qs.stringify({
+					this.$http.post('/user/mobile_registered', {
 								mobile: that.registerData.mobile
-							}),
-							responseType: 'json'
-						})
+							})
 						.then((result) => {
 							if(result.data.code === 1) {
 								that.tipMobileText = '该号码已被注册';
@@ -127,17 +119,10 @@
 			getVerify() {
 				let that = this;
 				if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.registerData.mobile)) {
-					that.$http({
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded'
-						},
-						url: base_url + '/user/sendCode',
-						data: that.$qs.stringify({
+					this.$http.post('/user/sendCode', {
 							mobile: that.registerData.mobile
-						}),
-						responseType: 'json'
-					}).then((result) => {
+						})
+					.then((result) => {
 						if(result.data.code == "0") {
 							that.verifyBtnShow = false;
 							let timer = setInterval(() => {
@@ -159,15 +144,7 @@
 			goRegister() {
 				let that = this
 				if(this.isLogBtnActive) {
-					this.$http({
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: base_url + '/user/register',
-							data: that.$qs.stringify(that.registerData),
-							responseType: 'json'
-						})
+					this.$http.post('/user/register', that.registerData)
 						.then((result) => {
 							if(result.data.code === 1) {
 								Toast({

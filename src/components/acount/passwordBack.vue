@@ -55,7 +55,7 @@
 					mobile: "",
 					verify_code: "",
 					password: "",
-					repassword:""
+					repassword: ""
 				},
 				tipList: {
 					mobile: false,
@@ -79,16 +79,8 @@
 					that.tipMobileText = "手机号格式错误";
 					this.tipList.mobile = true;
 				} else {
-					this.$http({
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: base_url + '/user/mobile_registered',
-							data: that.$qs.stringify({
-								mobile: that.resetPassword.mobile
-							}),
-							responseType: 'json'
+					this.$http.post('/user/mobile_registered', {
+							mobile: that.resetPassword.mobile
 						})
 						.then((result) => {
 							if(result.data.code === 1) {
@@ -118,30 +110,23 @@
 			getVerify() {
 				let that = this;
 				if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.resetPassword.mobile)) {
-					that.$http({
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded'
-						},
-						url: base_url + '/user/sendCode',
-						data: that.$qs.stringify({
+					this.$http.post('/user/sendCode', {
 							mobile: that.resetPassword.mobile
-						}),
-						responseType: 'json'
-					}).then((result) => {
-						if(result.data.code == "0") {
-							that.verifyBtnShow = false;
-							let timer = setInterval(() => {
-								if(that.verifyCountNum > 0) {
-									that.verifyCountNum -= 1;
-								} else {
-									clearInterval(timer);
-									that.verifyBtnShow = true;
-								}
-							}, 1000)
-						}
+						})
+						.then((result) => {
+							if(result.data.code == "0") {
+								that.verifyBtnShow = false;
+								let timer = setInterval(() => {
+									if(that.verifyCountNum > 0) {
+										that.verifyCountNum -= 1;
+									} else {
+										clearInterval(timer);
+										that.verifyBtnShow = true;
+									}
+								}, 1000)
+							}
 
-					})
+						})
 				} else {
 					that.tipMobileText = "手机号格式错误";
 					this.tipList.mobile = true;
@@ -150,17 +135,8 @@
 			goPasswordBack() {
 				let that = this
 				if(this.isLogBtnActive) {
-					this.$http({
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-							url: base_url + '/user/reSetPassword',
-							data: that.$qs.stringify(that.resetPassword),
-							responseType: 'json'
-						})
+					this.$http.post('/user/reSetPassword', that.resetPassword)
 						.then((result) => {
-							console.log(result);
 							if(result.data.code === 1) {
 								Toast({
 									message: result.data.info,
@@ -183,7 +159,6 @@
 							}
 						});
 				}
-
 			}
 		},
 		watch: {
@@ -212,5 +187,5 @@
 </script>
 
 <style scoped>
-	
+
 </style>
