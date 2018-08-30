@@ -8,7 +8,6 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import qs from 'qs'
-import 'lib-flexible/flexible.js'
 Vue.prototype.$http= axios
 Vue.prototype.$qs= qs
 Vue.use(MintUI)
