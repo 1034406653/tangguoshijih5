@@ -1,6 +1,6 @@
 <template>
 	<div class="content2">
-		<headerNav :pageTitle="pageTitle"></headerNav>
+		<headerNav :pageTitle="pageTitle" :isRightShow="headRightShow" :rightValue="headRightValue" @headRightClick="goLogin"></headerNav>
 		<div class="inputBox firstInputBox">
 			<div>
 				<img src="../../assets/img/acount/reg_reg_phone@2x.png" class="icon" />
@@ -56,6 +56,8 @@
 		data() {
 			return {
 				pageTitle: "注册账号",
+				headRightShow:true,
+				headRightValue:"登录",
 				tipMobileText: "手机号格式错误",
 				verifyBtnShow: true,
 				verifyCountNum: 59,
@@ -173,6 +175,11 @@
 			goAgreement() {
 				this.$router.push({
 					path:"/acount/agreement"
+				})
+			},
+			goLogin(){
+				this.$router.push({
+					path:"/acount/login"
 				})
 			}
 		},

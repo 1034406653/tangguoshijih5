@@ -32,6 +32,7 @@ axios.interceptors.request.use(
 			let params = config.data || {}
 			if(userInfo) {
 				params['token'] = userInfo;
+
 			}
 			config.data = qs.stringify(params);
 			config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -42,19 +43,18 @@ axios.interceptors.request.use(
 		return Promise.reject(error)
 	}
 );
-axios.interceptors.response.use(data => {
-    if (data.data.code === 1002) {
-    	console.log("aaa")
-//      window.localStorage.removeItem('jiazhuoToken')
+//axios.interceptors.response.use(data => {
+//  if (data.data.code === 1002) {
+//      localStorage.removeItem('jiazhuoToken')
+//      window.localStorage.setItem(userInfo);
 //      router.push({
 //      	path:"/acount/login"
 //      })
-    }
-
-    return data;
-}, error => {
-    return Promise.reject(error)
-})
+//  }
+//  return data;
+//}, error => {
+//  return Promise.reject(error)
+//})
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',

@@ -219,19 +219,11 @@
           console.log(1)
           this_.dioDataList = []
           this_.pageIndex = 1
-          this.$http({
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            url: this.base_url + '/power/power_bill',
-
-            data: this_.$qs.stringify({
-              token: window.localStorage.getItem("jiazhuoToken"),
+          this.$http.post('/power/power_bill', {
               page: 1,
               pagesize: this_.pagesize
-            }),
-
-            responseType: 'json'
-          }).then((result) => {
+            })
+          .then((result) => {
             console.log(result.data.data);
             if (result.data.data.count < this_.pagesize) {
               this_.allLoaded = true
@@ -242,21 +234,10 @@
             this.$refs.loadmore.onTopLoaded()
           })
         } else {
-          console.log(2)
-
-          this.$http({
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            url: this.base_url + '/power/power_bill',
-
-            data: this_.$qs.stringify({
-              token: window.localStorage.getItem("jiazhuoToken"),
+					this.$http.post('/power/power_bill', {
               page: this_.pageIndex,
               pagesize: this_.pagesize
-            }),
-
-            responseType: 'json'
-          }).then((result) => {
+            }).then((result) => {
             console.log(result.data.data);
             if (result.data.data.count < this_.pagesize) {
               this_.allLoaded = true

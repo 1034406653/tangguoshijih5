@@ -4,37 +4,35 @@
 			<img src="../../assets/img/index/home_pic_avatar.png" alt="用户头像" />
 			<div>黑化肥黑化肥黑化</div>
 		</div>
-		<div class="nav-box">
-			<div class="text">
-				<span>邀请好友</span>
-				<span>邀请好友即可+55DIO，+5算力</span>
-			</div>
-			<img src="../../../build/logo.png" />
+		<div class="nav-box" @click="goShare">
+			<img src="../../assets/img/center/me_pic_banner1.png"/>
 		</div>
-		<div class="nav-box">
-			<div class="text">
-				糖果盒子
-			</div>
-			<img src="../../../build/logo.png" />
+		<div class="nav-box" @click="goCandybox">
+			<img src="../../assets/img/center/me_pic_banner2.png"/>
 		</div>
 		<div class="account-box">
 			<div class="title">
 				我的信息
 			</div>
 			<div class="account-li">
-				<img src="../../../build/logo.png" />
+				<img src="../../assets/img/center/me_icon_account@2x.png" />
 				<span>当前账户</span>
 				<b>13781868557</b>
 			</div>
 			<div class="account-li">
-				<img src="../../../build/logo.png" />
+				<img src="../../assets/img/center/me_icon_adress@2x.png" />
+				<span>提币地址</span>
+				<img src="../../assets/img/center/me_icon_right@2x.png"  class="nextGo" />
+			</div>
+			<div class="account-li" >
+				<img src="../../assets/img/center/me_icon_modify@2x.png" />
 				<span>修改密码</span>
-				<img src="../../../build/logo.png"  class="nextGo" />
+				<img src="../../assets/img/center/me_icon_right@2x.png"  class="nextGo" />
 			</div>
 			<div class="account-li" @click="goSet">
-				<img src="../../../build/logo.png"/>
+				<img src="../../assets/img/center/me_icon_setup@2x.png"/>
 				<span>设置</span>
-				<img src="../../../build/logo.png" class="nextGo" />
+				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" />
 			</div>
 		</div>
 		<FooterNav :footerNav="footerNav"></FooterNav>
@@ -58,6 +56,16 @@
 					path:"/center/set"
 				})
 			},
+			goShare(){
+				this.$router.push({
+					path:"/index/share"
+				})
+			},
+			goCandybox(){
+				this.$router.push({
+					path:"/center/candyBox"
+				})
+			}
 		}
 	}
 </script>
@@ -71,9 +79,9 @@
 	.user-name {
 		width: 100%;
 		height: 150px;
-		margin-top: 90px;
+		margin-top: 60px;
 		padding-left: 40px;
-		margin-bottom: 80px;
+		margin-bottom: 50px;
 	}
 	
 	.user-name img {
@@ -97,15 +105,16 @@
 	
 	.nav-box {
 		width: 670px;
-		height: 160px;
-		background: linear-gradient(140deg, rgba(229, 118, 236, 1), rgba(116, 65, 163, 1));
-		opacity: 0.8;
+		height: 180px;
 		margin: 0 auto;
 		margin-bottom: 40px;
-		padding-left: 50px;
 		position: relative;
 	}
-	
+	.nav-box>img{
+		width: 100%;
+		height: 100%;
+	}
+/*	/*
 	.nav-box .text {
 		display: block;
 		width: auto;
@@ -142,11 +151,11 @@
 		position: absolute;
 		right: 100px;
 		top: 40px;
-	}
+	}*/
 	
 	.account-box {
 		width: 670px;
-		height: 381px;
+		height: auto;
 		background: rgba(255, 255, 255, 1);
 		border-radius: 20px;
 		margin: 0 auto;

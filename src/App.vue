@@ -54,4 +54,48 @@
 		font-size: 26px;
 		line-height: 40px;
 	}
+	
+	body .v-modal {
+		opacity: 0.4;
+	}
+	
+	body .mint-msgbox {
+		width: 600px;
+		height: auto;
+		background: rgba(255, 255, 255, 1);
+		border-radius: 10px;
+		overflow: hidden;
+	}
+	
+	body .mint-msgbox-message {
+		height: 200px;
+		line-height: 200px;
+		text-align: center;
+		color: rgba(51, 51, 51, 1);
+		font-size: 30px;
+	}
+	
+	body .mint-msgbox-content {
+		border-bottom: 1px solid rgba(239, 239, 239, 1);/*px*/
+	}
+	
+	body .mint-msgbox-btns {
+		height: 80px;
+	}
+	
+	body .mint-msgbox-btn {
+		font-size: 30px;
+		font-family: PingFang-SC-Medium;
+		font-weight: 500;
+		color: rgba(51, 51, 51, 1);
+	}
+	
+	body .mint-msgbox-confirm {
+		color: rgba(226, 104, 220, 1);
+	}
+	
+	body .mint-msgbox-cancel {
+		width: 50%;
+		border-right: 1px solid rgba(239, 239, 239, 1);/*px*/
+	}
 </style>

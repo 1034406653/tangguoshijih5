@@ -4,11 +4,11 @@
 		<ul class="setList">
 			<li @click="goContact">
 				<span>联系我们</span>
-				<img src="../../../build/logo.png" />
+				<img src="../../assets/img/center/me_icon_right@2x.png" />
 			</li>
 			<li @click="goFeedback">
 				<span>说明中心</span>
-				<img src="../../../build/logo.png" />
+				<img src="../../assets/img/center/me_icon_right@2x.png" />
 			</li>
 		</ul>
 		<div class="logoutBtn" @click="goOut">
@@ -20,6 +20,7 @@
 
 <script>
 	import HeaderNav from '../base/headerNav'
+	import { MessageBox } from 'mint-ui';
 	export default {
 		data() {
 			return {
@@ -41,17 +42,24 @@
 				})
 			},
 			goOut() {
-
+				MessageBox({
+					title: '',
+					message: '您确定要退出当前账户吗?',
+					showCancelButton: true
+				});
+				//				this.$http.post('/user/logout').then(res=>{
+				//					if(res.data.code=="0"){
+				//						this.$router.push({
+				//							path:"/acount/login"
+				//						})
+				//					}
+				//				})
 			}
 		}
 	}
 </script>
 
 <style scoped>
-	.content2 {
-		background: gray;
-	}
-	
 	.setList {
 		width: 100%;
 		height: auto;
@@ -68,7 +76,8 @@
 		font-size: 28px;
 		font-family: PingFang-SC-Medium;
 		color: rgba(51, 51, 51, 1);
-		border-bottom: 1px solid rgba(239, 239, 239, 1);/*px*/
+		border-bottom: 1px solid rgba(239, 239, 239, 1);
+		/*px*/
 	}
 	
 	.setList li:last-child {
@@ -91,11 +100,11 @@
 		width: 670px;
 		height: 80px;
 		background: linear-gradient(140deg, rgba(229, 118, 236, 1), rgba(116, 65, 163, 1));
-		opacity: 0.5;
 		border-radius: 40px;
 		margin: 80px auto;
-		color:rgba(255,255,255,1);
+		color: rgba(255, 255, 255, 1);
 		font-size: 30px;
 		line-height: 80px;
+		opacity: 0.8;
 	}
 </style>
