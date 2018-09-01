@@ -216,6 +216,7 @@
       getDioData(page) {
         let this_ = this
         if (page === 'update') {
+          this_.allLoaded = false
           console.log(1)
           this_.dioDataList = []
           this_.pageIndex = 1

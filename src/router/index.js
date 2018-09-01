@@ -15,6 +15,8 @@ import CandyBox from '@/components/center/candyBox'
 import Contact from '@/components/center/contact'
 import Set from '@/components/center/set'
 import FeedBack from '@/components/center/feedback'
+import Draw from '@/components/center/draw'
+import Draw_address from '@/components/center/draw_address'
 import Login from '@/components/acount/login'
 import Register from '@/components/acount/register'
 import Agreement from '@/components/acount/agreement'
@@ -110,6 +112,18 @@ export default new Router({
     	path: '/center/feedBack',
       name: 'FeedBack',
       component: FeedBack,
+      meta: { keepAlive: false }
+    },
+    {
+      path: '/center/draw',
+      name: 'Draw',
+      component: Draw,
+      meta: { keepAlive: false }
+    },
+    {
+      path: '/center/draw_address',
+      name: 'Draw_address',
+      component: Draw_address,
       meta: { keepAlive: false }
     },
     {

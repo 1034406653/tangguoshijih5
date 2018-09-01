@@ -285,6 +285,7 @@
         let this_ = this
         if (page === 'update') {
           console.log(1)
+          this_.allLoaded = false
           this_.dioDataList = []
           this_.pageIndex = 1
           this.$http({
