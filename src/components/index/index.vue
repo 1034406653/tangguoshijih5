@@ -34,7 +34,7 @@
 				</div>
 			</li>
 		</ul>
-		<ul class="candyList2">
+		<ul class="candyList2" v-if="candyList.length<1&&candyList2.length<1">
 			<li class="candy2">
 				<div class="candyBox">
 					<img src="../../assets/img/index/home_dio@2x.png" alt="糖果" />
@@ -105,7 +105,7 @@
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
-						that.dioNum += candy_count;
+						that.dioNum += parseFloat(candy_count);
 					}
 				});
 			},

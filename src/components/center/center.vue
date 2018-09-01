@@ -1,14 +1,15 @@
 <template>
 	<div class="content1">
 		<div class="user-name">
-			<img src="../../assets/img/index/home_pic_avatar.png" alt="用户头像" />
-			<div>黑化肥黑化肥黑化</div>
+			<img :src="head_pic" alt="用户头像" />
+			<input class="headInput" ref="inputer" type="file" accept="image/png, image/gif, image/jpg, image/jpeg" @change="handleFileChange($event)" />
+			<div>{{nickname}}</div>
 		</div>
 		<div class="nav-box" @click="goShare">
-			<img src="../../assets/img/center/me_pic_banner1.png"/>
+			<img src="../../assets/img/center/me_pic_banner1.png" />
 		</div>
 		<div class="nav-box" @click="goCandybox">
-			<img src="../../assets/img/center/me_pic_banner2.png"/>
+			<img src="../../assets/img/center/me_pic_banner2.png" />
 		</div>
 		<div class="account-box">
 			<div class="title">
@@ -22,15 +23,15 @@
 			<div class="account-li">
 				<img src="../../assets/img/center/me_icon_adress@2x.png" />
 				<span>提币地址</span>
-				<img src="../../assets/img/center/me_icon_right@2x.png"  class="nextGo" />
+				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" />
 			</div>
-			<div class="account-li" >
+			<div class="account-li">
 				<img src="../../assets/img/center/me_icon_modify@2x.png" />
 				<span>修改密码</span>
-				<img src="../../assets/img/center/me_icon_right@2x.png"  class="nextGo" />
+				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" />
 			</div>
 			<div class="account-li" @click="goSet">
-				<img src="../../assets/img/center/me_icon_setup@2x.png"/>
+				<img src="../../assets/img/center/me_icon_setup@2x.png" />
 				<span>设置</span>
 				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" />
 			</div>
@@ -44,28 +45,42 @@
 	export default {
 		data() {
 			return {
-				footerNav: ["", "", "active"]
+				footerNav: ["", "", "active"],
+				head_pic: require("../../assets/img/index/home_pic_avatar.png"),
+				nickname: "",
 			}
 		},
 		components: {
 			FooterNav,
 		},
-		methods:{
-			goSet(){
+		created() {
+			this.init();
+		},
+		methods: {
+			init() {
+				if(window.localStorage.getItem('head_pic') != 'null') {
+					this.head_pic = window.localStorage.getItem('head_pic');
+				}
+				this.nickname = window.localStorage.getItem('nickname') || "";
+			},
+			handleFileChange(event){
+				console.log(event)
+			},
+			goSet() {
 				this.$router.push({
-					path:"/center/set"
+					path: "/center/set"
 				})
 			},
-			goShare(){
+			goShare() {
 				this.$router.push({
-					path:"/index/share"
+					path: "/index/share"
 				})
 			},
-			goCandybox(){
+			goCandybox() {
 				this.$router.push({
-					path:"/center/candyBox"
+					path: "/center/candyBox"
 				})
-			}
+			},
 		}
 	}
 </script>
@@ -77,11 +92,12 @@
 	}
 	
 	.user-name {
-		width: 100%;
+		width: 670px;
 		height: 150px;
+		margin: 0 auto;
 		margin-top: 60px;
-		padding-left: 40px;
 		margin-bottom: 50px;
+		position: relative;
 	}
 	
 	.user-name img {
@@ -89,8 +105,21 @@
 		width: 150px;
 		height: 150px;
 		margin-right: 52px;
+		border-radius: 50%;
 	}
-	
+	.headInput{
+		position: absolute;
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		left: 0;
+		top: 0;
+		background: #000066;
+		line-height: 150px;
+		font-size: 50px;
+		overflow: hidden;
+		opacity: 0.1;
+	}
 	.user-name div {
 		float: left;
 		width: auto;
@@ -110,49 +139,11 @@
 		margin-bottom: 40px;
 		position: relative;
 	}
-	.nav-box>img{
+	
+	.nav-box>img {
 		width: 100%;
 		height: 100%;
 	}
-/*	/*
-	.nav-box .text {
-		display: block;
-		width: auto;
-		padding-top: 30px;
-		padding-bottom: 30px;
-		font-size: 48px;
-		font-family: PingFang-SC-Bold;
-		font-weight: bold;
-		color: rgba(255, 255, 255, 1);
-		line-height: 48px;
-		text-align: left;
-	}
-	
-	.nav-box .text span:first-child {
-		display: block;
-		width: auto;
-		padding-bottom: 30px;
-		height: 78px;
-	}
-	
-	.nav-box .text span:last-child {
-		display: block;
-		width: auto;
-		height: 24px;
-		font-size: 24px;
-		font-weight: 500;
-		line-height: 24px;
-	}
-	
-	.nav-box img {
-		display: block;
-		width: 80px;
-		height: 80px;
-		position: absolute;
-		right: 100px;
-		top: 40px;
-	}*/
-	
 	.account-box {
 		width: 670px;
 		height: auto;
@@ -218,6 +209,7 @@
 		color: rgba(51, 51, 51, 1);
 		font-weight: normal;
 	}
+	
 	.account-box .account-li .nextGo {
 		float: right;
 		width: 10px;

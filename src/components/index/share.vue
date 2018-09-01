@@ -4,9 +4,7 @@
 		<div class="card">
 			<div class="card_code">{{card_code}}</div>
 			<img :src="card_url" class="card_img"/>
-			<div class="shareBtn">
-
-			</div>
+			<div class="shareBtn"></div>
 		</div>
 	</div>
 </template>
@@ -31,7 +29,6 @@
 			init(){
 				let that=this;
 				this.$http.post('/user/invitationInfo').then(res=>{
-					console.log(res);
 					if(res.data.code=="0"){
 						that.card_code=res.data.data.inv_code;
 						
