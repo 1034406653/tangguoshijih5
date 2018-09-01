@@ -1,7 +1,12 @@
 <template>
-	<div class="content">
-		<headerNav></headerNav>
-		<div>用户反馈</div>
+	<div class="content2">
+		<headerNav :pageTitle="pageTitle"></headerNav>
+		<div class="navBox">
+			基本信息反馈
+		</div>
+		<div class="navBox">
+			未来信息展示
+		</div>
 	</div>
 
 </template>
@@ -11,7 +16,7 @@
 	export default {
 		data() {
 			return {
-
+				pageTitle:"说明中心",
 			}
 		},
 		components: {
@@ -20,6 +25,12 @@
 	}
 </script>
 
-<style>
-
+<style scoped>
+	.navBox{
+		width:670px;
+		height:260px;
+		opacity:0.8;
+		border-radius:20px;
+		margin: 20px auto;
+	}
 </style>
