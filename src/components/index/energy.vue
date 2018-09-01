@@ -168,7 +168,7 @@
     font-weight: 500;
     color: rgba(51, 51, 51, 1);
     display: block;
-    top: 100px;
+    top: 60px;
     left: 42px;
   }
 

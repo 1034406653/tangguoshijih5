@@ -1,6 +1,6 @@
 <style scoped>
   .draw-list {
-    width: 750px;
+    width: 100%;
     background: rgba(255, 255, 255, 1);
   }
 
@@ -32,9 +32,10 @@
     right: 0;
   }
 </style>
+
 <template>
   <div class="content2">
-    <headerNav :pageTitle="title" @headRightClick="url" :isRightShow="show" :rightValue="title_"></headerNav>
+    <headerNav :pageTitle="title" @headRightClick="url" :isRightShow="show" :rightValue="title_" :rightColor="rightColor"></headerNav>
 
     <ul class="draw-list">
       <li class="draw-list-items" v-for="item in datas">
@@ -53,10 +54,11 @@
   export default {
     data() {
       return {
+        rightColor: 'color:#666666; font-size:0.32rem;',
         title: '提币地址',
         currencyList: [],
         show: true,
-        title_: 'blabla',
+        title_: '添加地址',
         datas: [
           {
             id: 2,
@@ -83,17 +85,10 @@
     methods: {
       get_currency() {
         let this_ = this
-        this.$http({
-          method: 'POST',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          url: this.base_url + '/currency/get_currency_address',
-
-          data: this_.$qs.stringify({
+        this.$http.post('/currency/get_currency_address',{
             token: window.localStorage.getItem("jiazhuoToken"),
-          }),
-
-          responseType: 'json'
-        }).then((result) => {
+          }
+        ).then((result) => {
           console.log(result.data.data);
           this_.currencyList = this_.currencyList.concat(result.data.data);
         })

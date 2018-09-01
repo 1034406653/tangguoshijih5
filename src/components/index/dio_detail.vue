@@ -4,6 +4,10 @@
     transition: .2s linear
   }
 
+  .mint-loadmore {
+    margin-top: -80px;
+  }
+
   .mint-loadmore-top span {
     display: inline-block;
     vertical-align: middle
@@ -129,11 +133,17 @@
     font-weight:500;
     color:rgba(153,153,153,1);
   }
+
+  .drop-down-updata {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: rgba(153, 153, 153, .8);
+  }
 </style>
 
 <template>
   <div class="content2">
-    <headerNav></headerNav>
+    <headerNav :pageTitle="title"></headerNav>
     <mt-loadmore :top-method="loadTop" @translate-change="translateChange"
                  @top-status-change="handleTopChange" :auto-fill="false"
                  :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :bottom-all-loaded="allLoaded"
@@ -163,6 +173,15 @@
       </div>
 
 
+      <div slot="top" class="mint-loadmore-top topStatus">
+        <span v-show="topStatus !== 'loading'" class="drop-down-updata">
+          下拉刷新
+        </span>
+        <span v-show="topStatus === 'loading'">
+            <mt-spinner type="snake"></mt-spinner>
+          </span>
+      </div>
+
       <div slot="bottom" class="mint-loadmore-bottom topStatus">
         <span v-show="bottomStatus !== 'loading'" :class="{ 'is-rotate': bottomStatus === 'drop' }">
 
@@ -191,6 +210,7 @@
   export default {
     data() {
       return {
+        title: '算力记录',
         noMoreData: false,
         pageIndex: 1,
         pagesize: 10,
