@@ -2,13 +2,17 @@
 	<div class="content1">
 		<img src="../../assets/img/index/home_pic_avatar.png" class="user" @click="goUser" />
 		<img src="../../assets/img/index/home_icon_question@3x.png" class="introduce" @click="goIntroduce" />
-		<div class="dio" @click="goDio">
-			<img src="../../assets/img/index/home_icon_dio.png" class="dioIcon" />
-			<span class="dioText">DIO {{dioNum}}</span>
-			<img src="../../assets/img/index/home_icon_hashrate.png" class="energyIcon" />
-			<span class="energyText">算力 {{energyNum}}</span>
+		<div class="dio">
+			<div  @click="goDio">
+				<img src="../../assets/img/index/home_icon_dio.png" class="dioIcon" />
+				<span class="dioText">DIO {{dioNum}}</span>
+			</div>
+			<div @click="goEnergy">
+				<img src="../../assets/img/index/home_icon_hashrate.png" class="energyIcon" />
+				<span class="energyText">算力 {{energyNum}}</span>
+			</div>
 		</div>
-		<div class="energy" @click="goEnergy">
+		<div class="energy" @click="goLab">
 			<img src="../../assets/img/index/home_icon_promote.png" />
 			<span>提升算力</span>
 		</div>
@@ -105,7 +109,7 @@
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
-						that.dioNum += parseFloat(candy_count);
+						that.dioNum = (parseFloat(candy_count)+parseFloat(that.dioNum)).toFixed(6);
 					}
 				});
 			},
@@ -116,7 +120,7 @@
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
-						that.dioNum += candy_count;
+						that.dioNum = (parseFloat(candy_count)+parseFloat(that.dioNum)).toFixed(6);
 					}
 				});
 			},
@@ -144,7 +148,12 @@
 				this.$router.push({
 					path: "/index/share"
 				})
-			}
+			},
+			goLab(){
+				this.$router.push({
+					path: "/lab/lab"
+				})
+			},
 		}
 	}
 </script>
@@ -185,6 +194,12 @@
 		line-height: 56px;
 		text-align: left;
 		z-index: 10;
+	}
+	.dio div{
+		width: auto;
+		float: left;
+		height: auto;
+		overflow: hidden;
 	}
 	
 	.dio img {
