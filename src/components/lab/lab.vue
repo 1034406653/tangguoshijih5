@@ -176,21 +176,14 @@
 		float: left;
 		width: 160px;
 		height: 160px;
-		background: rgba(30, 18, 38, 1);
 		border-radius: 20px 20px 20px 30px;
 		margin: 20px 42px;
 	}
 	
-	.gameList li a {
-		display: block;
+	.gameList li img {
 		width: 100%;
 		height: 100%;
-	}
-	
-	.gameList li img {
-		width: 67px;
-		height: 92px;
-		margin: 39px auto;
+		border-radius: 20px 20px 20px 30px;
 		display: block;
 	}
 	
