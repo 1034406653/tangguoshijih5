@@ -288,23 +288,13 @@
           this_.allLoaded = false
           this_.dioDataList = []
           this_.pageIndex = 1
-          this.$http({
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            url: this.base_url + '/web/candy_bill',
-
-            data: this_.$qs.stringify({
+          this.$http.post('/web/candy_bill',{
               token: window.localStorage.getItem("jiazhuoToken"),
               candy_id: 1,
               page: 1,
               pagesize: this_.pagesize
-            }),
-
-            responseType: 'json'
-          }).then((result) => {
-            console.log(result)
+            }).then((result) => {
             if (result.data.code === 0) {
-              console.log(result.data.data);
               if (result.data.data.bill.length < this_.pagesize) {
                 this_.allLoaded = true
               } else {
@@ -315,29 +305,17 @@
               this_.dioTotal = result.data.data.gold_coin;
               this_.$refs.loadmore.onTopLoaded()
             } else {
-              console.log(result.data.info)
             }
 
           })
         } else {
-          console.log(2)
-
-          this.$http({
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            url: this.base_url + '/web/candy_bill',
-
-            data: this_.$qs.stringify({
+          this.$http.post('/web/candy_bill',{
               token: window.localStorage.getItem("jiazhuoToken"),
               candy_id: 1,
               page: this_.pageIndex,
               pagesize: this_.pagesize
-            }),
-
-            responseType: 'json'
-          }).then((result) => {
+            }).then((result) => {
             if (result.data.code === 0) {
-              console.log(result.data.data);
               if (result.data.data.bill.length < this_.pagesize) {
                 this_.allLoaded = true
               } else {
@@ -348,7 +326,7 @@
               this_.dioTotal = result.data.data.gold_coin;
               this.$refs.loadmore.onBottomLoaded()
             } else {
-              console.log(result.data.info)
+
             }
 
 

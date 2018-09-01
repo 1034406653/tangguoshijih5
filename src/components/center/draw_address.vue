@@ -59,7 +59,7 @@
       },
       add_currency() {
         let this_ = this
-        this.$http({
+        this.$http.post({
           method: 'POST',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           url: this.base_url + '/currency/add_currency',
