@@ -13,48 +13,55 @@ Vue.prototype.$http = axios
 Vue.prototype.$qs = qs
 Vue.use(MintUI)
 Vue.config.productionTip = false
-let userInfo = window.localStorage.getItem("jiazhuoToken"); //获取浏览器缓存的用户信息
+let userInfo = '';
 router.beforeEach((to, from, next) => {
+	userInfo = window.localStorage.getItem("jiazhuoToken");
 	if(userInfo) {
 		next();
 	} else {
-		if(to.path == '/acount/login' || to.path == '/acount/register') { //如果是登录页面路径，就直接next()
+		let reg=/^\/acount/;
+		if(reg.test(to.path)) { //如果是登录页面路径，就直接next()
 			next();
 		} else { //不然就跳转到登录；
 			next('/acount/login');
+			
 		}
 	}
 })
-axios.defaults.baseURL = 'https://a.hzjiazhuo.com/api';
-axios.interceptors.request.use(
-	config => {
-		if(config.method === 'post') {
-			let params = config.data || {}
-			if(userInfo) {
-				params['token'] = userInfo;
+promise.polyfill();
 
-			}
-			config.data = qs.stringify(params);
-			config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+// 全局配置
+axios.defaults.baseURL = 'https://a.hzjiazhuo.com/api';
+// 请求前
+axios.interceptors.request.use(config => {
+	userInfo = window.localStorage.getItem("jiazhuoToken");
+	config.timeout = '10000';
+	if(config.method === 'post') {
+		let params = config.data || {}
+		if(userInfo) {
+			params['token'] = userInfo;
 		}
-		return config
-	},
-	error => {
-		return Promise.reject(error)
+		config.data = qs.stringify(params);
+		config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 	}
-);
-//axios.interceptors.response.use(data => {
-//  if (data.data.code === 1002) {
-//      localStorage.removeItem('jiazhuoToken')
-//      window.localStorage.setItem(userInfo);
-//      router.push({
-//      	path:"/acount/login"
-//      })
-//  }
-//  return data;
-//}, error => {
-//  return Promise.reject(error)
-//})
+	return config;
+}, error => {
+	return Promise.reject(error);
+});
+// 响应拦截器
+axios.interceptors.response.use(data => {
+	if(data.data.code === 1002) {
+		window.localStorage.removeItem('jiazhuoToken')
+		window.localStorage.removeItem('head_pic')
+		window.localStorage.removeItem('nickname')
+		router.push({
+			path:"/acount/login"
+		})
+	}
+	return data;
+}, error => {
+	return Promise.reject(error)
+})
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',

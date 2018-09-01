@@ -48,8 +48,6 @@
 
 <script>
 	import FooterNav from '../base/footerNav'
-	let jiazhuoToken = "";
-	let base_url = "";
 	let arr = new Set([]);
 	export default {
 		data() {
@@ -77,7 +75,6 @@
 				}
 				arr = Array.from(arr);
 				this.$http.post('/candy/get_coin_list').then(res => {
-					console.log(res)
 					that.dioNum = res.data.data.DIO;
 				    that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
 					res.data.data.list.forEach((x, i) => {

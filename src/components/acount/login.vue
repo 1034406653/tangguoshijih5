@@ -2,7 +2,6 @@
 	<div class="content2">
 		<headerNav :pageTitle="pageTitle" :goBackShow="goBackShow"></headerNav>
 		<img src="../../assets/img/acount/logo.png" class="logLogo" />
-
 		<div class="inputBox">
 			<div>
 				<img src="../../assets/img/acount/reg_reg_phone@2x.png" class="icon" />
