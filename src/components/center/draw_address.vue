@@ -203,9 +203,7 @@
 <script>
   import HeaderNav from '../base/headerNav'
   import ColorBtn from '../base/colorBtn'
-  import {Picker} from 'mint-ui'
-  import {MessageBox} from 'mint-ui'
-  import {Popup} from 'mint-ui';
+  import {MessageBox,Popup,Picker,Toast} from 'mint-ui'
 
   export default {
     data() {
@@ -250,16 +248,30 @@
       Picker,
       MessageBox,
       Popup,
-      ColorBtn
+      ColorBtn,
+      Toast
     },
     created() {
       this.getQueryData()
     },
     methods: {
       getQueryData() {
-        this.slots[0].values = this.slots[0].values.concat(this.$route.query.coinList);
-        console.log(this.slots[0].values)
-        if (this.$route.query.item) {
+        console.log(this.$route.query)
+        let this_ = this
+        if (this.$route.query.coinList[0] === "[object Object]") {
+          this.$http.post('/currency/get_currency', {
+            token: window.localStorage.getItem("jiazhuoToken"),
+          }).then((result) => {
+            console.log(result)
+            if (result.data.code === 0) {
+              this_.slots[0].values = this_.slots[0].values.concat(result.data.data);
+            }
+          })
+        } else {
+          this.slots[0].values = this.slots[0].values.concat(this.$route.query.coinList);
+        }
+
+        if (this.$route.query.item !== "[object Object]" && this.$route.query.item) {
           this.queryData.id = this.$route.query.item.id
           this.queryData.currency_id = this.$route.query.item.currency_id
           this.queryData.value = this.$route.query.item.value
@@ -267,45 +279,53 @@
           this.slots[0].defaultIndex = this.$route.query.item.index
           this.resetShow = true
           this.isRightShow = true
+        } else {
+          this.resetShow = false
+          this.isRightShow = false
+          this.buttonDis = false
         }
       },
       onValuesChange(picker, values) {
-        console.log(1)
-        console.log(values[0]);
+        console.log(values)
         this.queryData.name = values[0].name;
         this.queryData.currency_id = values[0].id;
-        console.log(this.queryData)
       },
       add_currency() {
         let this_ = this
         this.$http.post('/currency/add_currency', {
           token: window.localStorage.getItem("jiazhuoToken"),
           currency_id: this.queryData.currency_id,
-          value: this.queryData.item.value,
+          value: this.queryData.value,
           id: this.queryData.id
         }).then((result) => {
           if (result.data.code === 0) {
-            MessageBox.confirm(result.data.info, '操作成功').then(action => {
-              this.$router.back(-1);
-            })
+            let instance = Toast(result.data.info);
+            setTimeout(() => {
+              instance.close()
+              this.$router.back(-1)
+            }, 2000);
           } else {
-            MessageBox.alert(result.data.info, '操作成功')
+            MessageBox.alert(result.data.info,'')
           }
         })
       },
       deleteAddress() {
         let this_ = this
-        this.$http.post('/currency/del_currency', {
-          token: window.localStorage.getItem("jiazhuoToken"),
-          id: this.queryData.id
-        }).then((result) => {
-          if (result.data.code === 0) {
-            MessageBox.confirm(result.data.info, '操作成功').then(action => {
-              this.$router.back(-1);
-            })
-          } else {
-            MessageBox.alert(result.data.info, '操作成功')
-          }
+        MessageBox.confirm('确认删除该地址','').then(action => {
+          this.$http.post('/currency/del_currency', {
+            token: window.localStorage.getItem("jiazhuoToken"),
+            id: this.queryData.id
+          }).then((result) => {
+            if (result.data.code === 0) {
+              let instance = Toast(result.data.info);
+              setTimeout(() => {
+                instance.close()
+                this.$router.back(-1)
+              }, 2000);
+            } else {
+              MessageBox.alert(result.data.info,'')
+            }
+          })
         })
       },
       reset() {

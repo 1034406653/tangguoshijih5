@@ -38,8 +38,8 @@
     position: relative;
     width: 90%;
     height: 120px;
-    border-radius:20px;
-    background:rgba(255,255,255,1);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 1);
     margin: 0 auto;
 
   }
@@ -57,27 +57,27 @@
     position: absolute;
     top: 50px;
     left: 112px;
-    font-size:28px;
-    font-weight:500;
-    color:rgba(51,51,51,1);
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
   }
 
   .candy-count {
     position: absolute;
     top: 30px;
     right: 30px;
-    font-size:28px;
-    font-weight:500;
-    color:rgba(51,51,51,1);
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
   }
 
   .candy-price {
     position: absolute;
     top: 65px;
     right: 30px;
-    font-size:28px;
-    font-weight:500;
-    color:rgba(51,51,51,1);
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
   }
 
   .mint-loadmore-bottom span {
@@ -138,7 +138,7 @@
     top: 100px;
     left: 0;
     text-align: center;
-    font-size:30px;
+    font-size: 30px;
     font-weight: bold;
     color: rgba(255, 255, 255, 1);
   }
@@ -180,8 +180,8 @@
 
 </style>
 <template>
-	<div class="content2">
-		<headerNav :pageTitle="title"></headerNav>
+  <div class="content2">
+    <headerNav :pageTitle="title"></headerNav>
 
     <mt-loadmore :top-method="loadTop" @translate-change="translateChange"
                  @top-status-change="handleTopChange" :auto-fill="false"
@@ -231,8 +231,8 @@
       </div>
     </mt-loadmore>
 
-		<!--<router-link :to="{ path: '/index/dio', query: {}}">dio</router-link>-->
-	</div>
+    <!--<router-link :to="{ path: '/index/dio', query: {}}">dio</router-link>-->
+  </div>
 </template>
 
 <script>
@@ -240,9 +240,9 @@
   import {Loadmore} from 'mint-ui'
   import '../../assets/css/dio_detail.css'
 
-	export default {
-		data() {
-			return {
+  export default {
+    data() {
+      return {
         title: '糖果盒子',
         noMoreData: false,
         pageIndex: 1,
@@ -256,14 +256,13 @@
         moveTranslate: 0,
         base_url: '',
         height: ''
-			}
-		},
+      }
+    },
     components: {
       HeaderNav,
       Loadmore
     },
     created() {
-      this.base_url = this.$store.state.base_url;
       this.getDioData()
     },
     methods: {
@@ -274,19 +273,12 @@
           this_.allLoaded = false
           this_.candyList = []
           this_.pageIndex = 1
-          this.$http({
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            url: this.base_url + '/web/get_candy',
-
-            data: this_.$qs.stringify({
+          this.$http('/web/get_candy', {
               token: window.localStorage.getItem("jiazhuoToken"),
               page: 1,
               pagesize: this_.pagesize
-            }),
-
-            responseType: 'json'
-          }).then((result) => {
+            }
+          ).then((result) => {
             console.log(result)
             if (result.data.code === 0) {
               console.log(result.data.data);
@@ -307,19 +299,12 @@
         } else {
           console.log(2)
 
-          this.$http({
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            url: this.base_url + '/web/get_candy',
-
-            data: this_.$qs.stringify({
+          this.$http('/web/get_candy', {
               token: window.localStorage.getItem("jiazhuoToken"),
               page: this_.pageIndex,
               pagesize: this_.pagesize
-            }),
-
-            responseType: 'json'
-          }).then((result) => {
+            }
+          ).then((result) => {
             if (result.data.code === 0) {
               console.log(result.data.data);
               if (result.data.data.candy.length < this_.pagesize) {
@@ -334,11 +319,8 @@
             } else {
               console.log(result.data.info)
             }
-
-
           })
         }
-
       },
       getDioDataDemo() {
         setTimeout(() => {
@@ -381,6 +363,6 @@
       console.log(this.height);
       console.log(document.documentElement.clientHeight);
     }
-	}
+  }
 </script>
 
