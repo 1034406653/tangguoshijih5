@@ -17,9 +17,7 @@
 			</div>
 			<p v-show="tipList.password">密码格式错误</p>
 		</div>
-		<div class="logBtn" :class="{logBtnActive:isLogBtnActive}" @click="goLogin(isLogBtnActive)">
-			登录
-		</div>
+		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goLogin"></colorBtn>
 		<div class="restAcount">
 			<span @click="goPasswordBack">忘记密码</span>
 			<span @click="goRegister">手机号快速注册</span>
@@ -29,6 +27,7 @@
 <script>
 	import "../../assets/css/acount.css"
 	import HeaderNav from '../base/headerNav'
+	import ColorBtn from '../base/colorBtn'
 	import { Toast } from 'mint-ui'
 	let base_url = '';
 	export default {
@@ -49,7 +48,7 @@
 			}
 		},
 		components: {
-			HeaderNav,
+			HeaderNav,ColorBtn
 		},
 		created() {
 			base_url = this.$store.state.base_url;
@@ -82,9 +81,9 @@
 					path: "/acount/passwordBack"
 				})
 			},
-			goLogin(isLogBtnActive) {
+			goLogin() {
 				var that = this;
-				if(isLogBtnActive) {
+				if(this.isLogBtnActive) {
 					this.$http.post('/user/login', that.loginData).then((result) => {
 						if(result.data.code == "1") {
 							that.loginData.password = "";
@@ -98,6 +97,8 @@
 							window.localStorage.setItem("jiazhuoToken", result.data.data.token);
 							window.localStorage.setItem("nickname", result.data.data.user_info.nickname);
 							window.localStorage.setItem("head_pic", result.data.data.user_info.head_pic);
+							this.$store.state.head_pic=result.data.data.user_info.head_pic;
+							this.$store.state.nickname=result.data.data.user_info.nickname;
 							Toast({
 								message: result.data.info,
 								position: 'top',

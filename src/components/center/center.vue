@@ -3,7 +3,7 @@
 		<div class="user-name">
 			<img :src="head_pic" alt="用户头像" />
 			<input class="headInput" ref="inputer" type="file" accept="image/png, image/gif, image/jpg, image/jpeg" @change="handleFileChange($event)" />
-			<div>{{nickname}}</div>
+			<div @click="changeNickname">{{nickname}}</div>
 		</div>
 		<div class="nav-box" @click="goShare">
 			<img src="../../assets/img/center/me_pic_banner1.png" />
@@ -20,12 +20,12 @@
 				<span>当前账户</span>
 				<b>13781868557</b>
 			</div>
-			<div class="account-li">
+			<div class="account-li" @click="goDraw">
 				<img src="../../assets/img/center/me_icon_adress@2x.png" />
 				<span>提币地址</span>
 				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" />
 			</div>
-			<div class="account-li">
+			<div class="account-li" @click="goChangePassword">
 				<img src="../../assets/img/center/me_icon_modify@2x.png" />
 				<span>修改密码</span>
 				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" />
@@ -42,6 +42,7 @@
 
 <script>
 	import FooterNav from '../base/footerNav'
+	import { MessageBox, Toast } from 'mint-ui';
 	export default {
 		data() {
 			return {
@@ -63,8 +64,92 @@
 				}
 				this.nickname = window.localStorage.getItem('nickname') || "";
 			},
-			handleFileChange(event){
-				console.log(event)
+			handleFileChange(event) {
+				let that = this;
+				let imgFile = event.currentTarget.files[0];
+				if(/image\/\w+/.test(imgFile.type)) {
+					let reader = new FileReader();
+					reader.readAsDataURL(imgFile);
+					reader.onload = function(e) {
+						let base64 = this.result;
+						that.head_pic = this.result;
+					}
+					let file = event.currentTarget.files[0];
+					let param = new FormData() // 创建form对象
+					param.append('image', file, file.name) // 通过append向form对象添加数据
+					param.append('token', window.localStorage.getItem('jiazhuoToken')) // 添加form表单中其他数据
+					let config = {
+						headers: {
+							'Content-Type': 'multipart/form-data'
+						}
+					}
+					// 添加请求头
+					this.$http.post('https://a.hzjiazhuo.com/api//upload/upload_img', param, config)
+						.then(res => {
+							
+							if(res.data.code == '0') {
+								that.$http.post('/user/updateUserinfo', {
+									head_pic: res.data.data
+								}).then(result => {
+									console.log(result);
+									if(result.data.code == '0') {
+										window.localStorage.setItem('head_pic', res.data.data);
+										Toast({
+											message: result.data.info,
+											position: 'middle',
+											duration: 1000,
+											className: "toastName"
+										});
+									} else {
+										Toast({
+											message: result.data.info,
+											position: 'middle',
+											duration: 1000,
+											className: "toastName"
+										});
+									}
+
+								})
+								window.localStorage.setItem('head_pic', res.data.data);
+							}
+						})
+
+				}
+
+			},
+			changeNickname() {
+				let that = this;
+				MessageBox.prompt(' ', '修改昵称', {
+					inputValue: that.nickname,
+				}).then(({
+					value,
+					action
+				}) => {
+					that.$http.post('/user/updateUserinfo', {
+						nickname: value
+					}).then(res => {
+						if(res.data.code == '0') {
+							that.nickname = value;
+							window.localStorage.setItem('nickname', value);
+							Toast({
+								message: res.data.info,
+								position: 'middle',
+								duration: 1000,
+								className: "toastName"
+							});
+						} else {
+							Toast({
+								message: res.data.info,
+								position: 'middle',
+								duration: 1000,
+								className: "toastName"
+							});
+						}
+
+					})
+				}).catch(err => {
+					console.log(err)
+				});
 			},
 			goSet() {
 				this.$router.push({
@@ -74,6 +159,16 @@
 			goShare() {
 				this.$router.push({
 					path: "/index/share"
+				})
+			},
+			goDraw() {
+				this.$router.push({
+					path: "/center/draw"
+				})
+			},
+			goChangePassword() {
+				this.$router.push({
+					path: "/acount/changePassword"
 				})
 			},
 			goCandybox() {
@@ -86,6 +181,41 @@
 </script>
 
 <style>
+	.mint-msgbox-header {
+		padding-top: 40px;
+	}
+	
+	.mint-msgbox-title {
+		width: 100%;
+		height: 34px;
+		font-size: 36px;
+		font-weight: 500;
+		color: rgba(51, 51, 51, 1);
+		line-height: 32px;
+	}
+	
+	.mint-msgbox-input {
+		width: 480px;
+		height: auto;
+		margin: 0 auto;
+		overflow: hidden;
+		padding: 29px 0 30px 0;
+	}
+	
+	.mint-msgbox-input input {
+		width: 100%;
+		height: 60px;
+		border: 1px solid rgba(153, 153, 153, 1);
+		/*px*/
+		border-radius: 10px;
+		font-size: 30px;
+		font-family: PingFang-SC-Medium;
+		font-weight: 500;
+		color: rgba(51, 51, 51, 1);
+		line-height: 60px;
+		text-align: center;
+	}
+	
 	.content1 {
 		background: url(../../assets/img/index/me_pic_background.png);
 		background-size: 100% 100%;
@@ -107,7 +237,8 @@
 		margin-right: 52px;
 		border-radius: 50%;
 	}
-	.headInput{
+	
+	.headInput {
 		position: absolute;
 		width: 150px;
 		height: 150px;
@@ -118,8 +249,9 @@
 		line-height: 150px;
 		font-size: 50px;
 		overflow: hidden;
-		opacity: 0.1;
+		opacity: 0;
 	}
+	
 	.user-name div {
 		float: left;
 		width: auto;
@@ -144,6 +276,7 @@
 		width: 100%;
 		height: 100%;
 	}
+	
 	.account-box {
 		width: 670px;
 		height: auto;

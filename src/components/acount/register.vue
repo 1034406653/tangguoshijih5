@@ -38,9 +38,7 @@
 			</div>
 
 		</div>
-		<div class="logBtn" :class="{logBtnActive:isLogBtnActive}" @click="goRegister">
-			注册
-		</div>
+		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goRegister" :cBtnValue="cBtnValue"></colorBtn>
 		<div class="agreement">
 			注册即表示您同意<span @click="goAgreement">《用户注册协议》</span>
 		</div>
@@ -51,6 +49,7 @@
 	import "../../assets/css/acount.css"
 	import HeaderNav from '../base/headerNav'
 	import { Toast } from 'mint-ui'
+	import ColorBtn from '../base/colorBtn'
 	let base_url = ""
 	export default {
 		data() {
@@ -75,10 +74,11 @@
 					nickname: false,
 				},
 				isLogBtnActive: false,
+				cBtnValue:"注册",
 			}
 		},
 		components: {
-			HeaderNav,
+			HeaderNav,ColorBtn
 		},
 		created() {
 			base_url = this.$store.state.base_url;

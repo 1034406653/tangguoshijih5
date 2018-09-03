@@ -11,24 +11,26 @@
 				<img src="../../assets/img/center/me_icon_right@2x.png" />
 			</li>
 		</ul>
-		<div class="logoutBtn" @click="goOut">
-			退出登录
-		</div>
+		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goOut" :cBtnValue="cBtnValue"></colorBtn>
 	</div>
 
 </template>
 
 <script>
 	import HeaderNav from '../base/headerNav'
+	import ColorBtn from '../base/colorBtn'
 	import { MessageBox } from 'mint-ui';
 	export default {
 		data() {
 			return {
+				isLogBtnActive: true,
 				pageTitle: "设置",
+				cBtnValue: "退出登录"
 			}
 		},
 		components: {
 			HeaderNav,
+			ColorBtn
 		},
 		methods: {
 			goContact() {
@@ -42,18 +44,23 @@
 				})
 			},
 			goOut() {
-				MessageBox({
-					title: '',
+				MessageBox.confirm('', {
 					message: '您确定要退出当前账户吗?',
-					showCancelButton: true
-				});
-				//				this.$http.post('/user/logout').then(res=>{
-				//					if(res.data.code=="0"){
-				//						this.$router.push({
-				//							path:"/acount/login"
-				//						})
-				//					}
-				//				})
+					title: '',
+				}).then(action => {
+					if(action == 'confirm') { //确认的回调
+						this.$http.post('/user/logout').then(res => {
+							if(res.data.code == "0") {
+								window.localStorage.removeItem('jiazhuoToken')
+								window.localStorage.removeItem('head_pic')
+								window.localStorage.removeItem('nickname')
+								this.$router.push({
+									path: "/acount/login"
+								})
+							}
+						})
+					}
+				}).catch(err => {});
 			}
 		}
 	}
@@ -66,6 +73,7 @@
 		overflow: hidden;
 		background: rgba(255, 255, 255, 1);
 		padding: 0 40px;
+		margin-bottom: 80px;
 	}
 	
 	.setList li {
@@ -94,17 +102,5 @@
 		height: 20px;
 		float: right;
 		margin: 40px 0 0 0;
-	}
-	
-	.logoutBtn {
-		width: 670px;
-		height: 80px;
-		background: linear-gradient(140deg, rgba(229, 118, 236, 1), rgba(116, 65, 163, 1));
-		border-radius: 40px;
-		margin: 80px auto;
-		color: rgba(255, 255, 255, 1);
-		font-size: 30px;
-		line-height: 80px;
-		opacity: 0.8;
 	}
 </style>

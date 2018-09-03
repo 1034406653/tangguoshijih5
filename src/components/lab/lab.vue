@@ -95,11 +95,12 @@
 				})
 			},
 			goSign() {
+				console.log("");
 				let that=this;
-				if(!this.singed) {
+				if(!this.signed) {
 					this.$http.post('/power/receive_power').then(res => {
 						if(res.data.code == "0") {
-							that.singed = true;
+							that.signed = true;
 						}
 					})
 				}

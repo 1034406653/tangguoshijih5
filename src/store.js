@@ -3,9 +3,10 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 /*状态对象*/
 const state ={
-  base_url: 'https://api.hzjiazhuo.com/api',
+  base_url: 'https://a.hzjiazhuo.com/api',
 	token:"",
-	baseUrl:"",
+	head_pic:"../../assets/img/index/home_pic_avatar.png",
+	nickname:"",
 }
 /*触发状态*/
 const mutations={

@@ -1,6 +1,6 @@
 <template>
 	<div class="content1">
-		<img src="../../assets/img/index/home_pic_avatar.png" class="user" @click="goUser" />
+		<img :src="head_pic" class="user" @click="goUser" />
 		<img src="../../assets/img/index/home_icon_question@3x.png" class="introduce" @click="goIntroduce" />
 		<div class="dio">
 			<div  @click="goDio">
@@ -38,7 +38,7 @@
 				</div>
 			</li>
 		</ul>
-		<ul class="candyList2" v-if="candyList.length<1&&candyList2.length<1">
+		<ul class="candyList2" v-show="candyList.length<1 && candyList2.length<1">
 			<li class="candy2">
 				<div class="candyBox">
 					<img src="../../assets/img/index/home_dio@2x.png" alt="糖果" />
@@ -56,10 +56,10 @@
 	export default {
 		data() {
 			return {
-				count: this.$store.state.count,
+				head_pic:require('../../assets/img/index/home_pic_avatar.png'),
 				footerNav: ["active", "", ""],
-				dioNum: 100000000,
-				energyNum: 999,
+				dioNum: 0,
+				energyNum: 0,
 				candyList: [],
 				candyList2: [],
 				candyListDom: [],
@@ -70,6 +70,9 @@
 		},
 		created() {
 			this.init();
+			if(window.localStorage.getItem('head_pic')!='null'){
+				this.head_pic=window.localStorage.getItem('head_pic');
+			}
 		},
 		methods: {
 			init() {

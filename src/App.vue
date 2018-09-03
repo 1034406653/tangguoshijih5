@@ -68,7 +68,7 @@
 	}
 	
 	body .mint-msgbox-message {
-		height: 200px;
+		height: auto;
 		line-height: 200px;
 		text-align: center;
 		color: rgba(51, 51, 51, 1);
@@ -76,7 +76,8 @@
 	}
 	
 	body .mint-msgbox-content {
-		border-bottom: 1px solid rgba(239, 239, 239, 1);/*px*/
+		border-bottom: 1px solid rgba(239, 239, 239, 1);
+		/*px*/
 	}
 	
 	body .mint-msgbox-btns {
@@ -96,6 +97,8 @@
 	
 	body .mint-msgbox-cancel {
 		width: 50%;
-		border-right: 1px solid rgba(239, 239, 239, 1);/*px*/
+		border-right: 1px solid rgba(239, 239, 239, 1);
+		/*px*/
 	}
+	
 </style>

@@ -21,6 +21,7 @@ import Login from '@/components/acount/login'
 import Register from '@/components/acount/register'
 import Agreement from '@/components/acount/agreement'
 import PasswordBack from '@/components/acount/passwordBack'
+import ChangePassword from '@/components/acount/changePassword'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -148,6 +149,12 @@ export default new Router({
       path: '/acount/passwordBack',
       name: 'PasswordBack',
       component: PasswordBack,
+      meta: { keepAlive: false }
+    },
+    {
+      path: '/acount/changePassword',
+      name: 'ChangePassword',
+      component: ChangePassword,
       meta: { keepAlive: false }
     }
   ]

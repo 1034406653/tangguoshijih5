@@ -58,21 +58,7 @@
 	margin: 20px 40px 0 0;
 }
 
-.logBtn {
-	width: 670px;
-	height: 80px;
-	background: rgba(204, 204, 204, 1);
-	border-radius: 40px;
-	margin: 0 auto;
-	line-height: 80px;
-	font-size: 30px;
-	font-weight: 400;
-	color: rgba(255, 255, 255, 1);
-}
 
-.logBtnActive {
-	background: linear-gradient(90deg, rgba(226, 104, 220, 1) 0%, rgba(116, 56, 163, 1) 100%);
-}
 
 .restAcount {
 	width: 100%;

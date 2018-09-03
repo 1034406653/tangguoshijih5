@@ -31,11 +31,7 @@
 			</div>
 			<p v-show="tipList.repassword">两次输入密码不同</p>
 		</div>
-
-		<div class="logBtn" :class="{logBtnActive:isLogBtnActive}" @click="goPasswordBack">
-			确认
-		</div>
-
+		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goPasswordBack"></colorBtn>
 	</div>
 </template>
 
@@ -43,6 +39,7 @@
 	import "../../assets/css/acount.css"
 	import HeaderNav from '../base/headerNav'
 	import { Toast } from 'mint-ui'
+	import ColorBtn from '../base/colorBtn'
 	let base_url = ""
 	export default {
 		data() {
@@ -67,7 +64,7 @@
 			}
 		},
 		components: {
-			HeaderNav,
+			HeaderNav,ColorBtn
 		},
 		created() {
 			base_url = this.$store.state.base_url;
