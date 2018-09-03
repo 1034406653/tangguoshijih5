@@ -15,6 +15,7 @@
 
 <style>
 	@import url("../static/css/common.css");
+  @import url('assets/css/my_mint_draw.css');
 	#app {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
