@@ -39,7 +39,7 @@
                :rightColor="rightColor"></headerNav>
 
     <ul class="draw-list">
-      <li class="draw-list-items" v-for="item in datas">
+      <li class="draw-list-items" v-for="item in currencyList">
         <div style="width: 100%;height: 100%" @click="addAddress( item, coinList )">
           <span class="drwa-list-01">{{ item.name }}</span>
           <img class="drwa-list-02" src="../../assets/img/index/right@2x.png" alt="">
@@ -93,7 +93,7 @@
         this.$http.post('/currency/get_currency', {
           token: window.localStorage.getItem("jiazhuoToken"),
         }).then((result) => {
-          console.log(result)
+          console.log(result.data.data)
           if (result.data.code === 0) {
             this_.coinList = this_.coinList.concat(result.data.data);
           }
@@ -101,14 +101,12 @@
       },
       get_currency() {
         let this_ = this
-        this.$http.post('/currency/get_currency_address', {
-            token: window.localStorage.getItem("jiazhuoToken"),
-          }
+        this.$http.post('/currency/get_currency_address'
         ).then((result) => {
-          console.log(result.data.data);
+          console.log(result);
           this_.currencyList = this_.currencyList.concat(result.data.data);
-          for (let i = 0; i <= result.data.data.length; i++) {
-            for (let j = 0; j <= this_.coinList.length; j++) {
+          for (let i = 0; i < result.data.data.length; i++) {
+            for (let j = 0; j < this_.coinList.length; j++) {
               if (this_.coinList[j].name === result.data.data[i].name){
                 this_.currencyList[i].index = j;
               }

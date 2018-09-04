@@ -1,8 +1,6 @@
-.picker-slot {
+
+html .picker-item {
+  color: #999888;
   font-size: 28px;
   font-weight: 500;
-}
-
-.picker-item {
-  color: #999888;
 }
