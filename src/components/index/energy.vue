@@ -289,7 +289,6 @@
           this_.dioDataList = []
           this_.pageIndex = 1
           this.$http.post('/web/candy_bill',{
-              token: window.localStorage.getItem("jiazhuoToken"),
               candy_id: 1,
               page: 1,
               pagesize: this_.pagesize
@@ -310,7 +309,6 @@
           })
         } else {
           this.$http.post('/web/candy_bill',{
-              token: window.localStorage.getItem("jiazhuoToken"),
               candy_id: 1,
               page: this_.pageIndex,
               pagesize: this_.pagesize

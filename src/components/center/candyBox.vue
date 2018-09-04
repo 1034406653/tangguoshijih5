@@ -55,7 +55,7 @@
 
   .candy-name {
     position: absolute;
-    top: 50px;
+    top: 42px;
     left: 112px;
     font-size: 28px;
     font-weight: 500;
@@ -64,7 +64,7 @@
 
   .candy-count {
     position: absolute;
-    top: 30px;
+    top: 24px;
     right: 30px;
     font-size: 28px;
     font-weight: 500;
@@ -73,7 +73,7 @@
 
   .candy-price {
     position: absolute;
-    top: 65px;
+    top: 62px;
     right: 30px;
     font-size: 28px;
     font-weight: 500;
@@ -199,7 +199,7 @@
             <img class="candy-icon" :src=" item.candy_icon " alt="">
             <span class="candy-name">{{ item.candy_name }}</span>
             <span class="candy-count">{{ item.user_count }}</span>
-            <span class="candy-price">{{ item.price }}</span>
+            <span class="candy-price">￥{{ item.price }}</span>
           </div>
         </li>
       </ul>
@@ -273,8 +273,7 @@
           this_.allLoaded = false
           this_.candyList = []
           this_.pageIndex = 1
-          this.$http('/web/get_candy', {
-              token: window.localStorage.getItem("jiazhuoToken"),
+          this.$http.post('/web/get_candy', {
               page: 1,
               pagesize: this_.pagesize
             }
@@ -299,8 +298,7 @@
         } else {
           console.log(2)
 
-          this.$http('/web/get_candy', {
-              token: window.localStorage.getItem("jiazhuoToken"),
+          this.$http.post('/web/get_candy', {
               page: this_.pageIndex,
               pagesize: this_.pagesize
             }
