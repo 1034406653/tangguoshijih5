@@ -5,9 +5,9 @@
     opacity: 0.8;
     border-radius: 20px;
     margin: 20px auto;
-    font-size:55px;
-    font-family:PingFang-SC-Bold;
-    font-weight:600;
+    font-size: 55px;
+    font-family: PingFang-SC-Bold;
+    font-weight: 600;
   }
 
   .navBox span {
@@ -28,7 +28,6 @@
 
 <template>
   <div class="content2">
-    <headerNav :pageTitle="pageTitle"></headerNav>
     <div class="navBox boxImg01" @click="goQuestion">
       <span>基本信息反馈</span>
     </div>
@@ -40,7 +39,6 @@
 </template>
 
 <script>
-  import HeaderNav from '../base/headerNav'
 
   export default {
     data() {
@@ -48,15 +46,13 @@
         pageTitle: "说明中心",
       }
     },
-    components: {
-      HeaderNav,
-    },
+    components: {},
     methods: {
       goQuestion() {
-        this.$router.push({path: '/center/set_question'});
+        location.href = ''
       },
       goFuture() {
-        this.$router.push({path: '/center/set_future'});
+        location.href = ''
       }
     }
   }

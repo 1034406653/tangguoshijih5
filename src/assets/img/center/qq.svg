@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="43px" viewBox="0 0 47 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>QQ群</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="68" height="68"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="联系客服" transform="translate(-52.000000, -343.000000)">
+            <g id="QQ群" transform="translate(41.000000, 332.000000)">
+                <g id="Rectangle-34-Copy" opacity="0">
+                    <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#979797" stroke-width="1" x="0.5" y="0.5" width="67" height="67"></rect>
+                </g>
+                <path d="M25.996875,27 C30.4160625,27 34,23.4191875 34,19 C34,14.584 30.4160625,11 25.996875,11 C21.5808125,11 18,14.584 18,19 C18,23.4191875 21.5808125,27 25.996875,27 Z" id="Shape" fill="#F5C8A7" fill-rule="nonzero"></path>
+                <path d="M44.9964112,28 C48.8637556,28 52,24.8640289 52,21.0001709 C52,17.1394573 48.8637555,14 44.9964112,14 C41.1324847,14 38,17.1394573 38,21.0001709 C38,24.8640289 41.1324847,28 44.9964112,28 Z" id="Shape" fill="#F5C8A7" fill-rule="nonzero"></path>
+                <path d="M43.9846776,28.687289 C35.6205471,28.687289 31.3014557,34.0145313 30.5198045,40.4433996 C29.7289087,46.8664142 27.5802801,52.1936565 43.9846776,52.1936565 C60.3983196,52.1936565 58.2432441,46.8664142 57.4523483,40.4433996 C56.6707579,34.0145313 52.351849,28.687289 43.9846776,28.687289 Z" id="Shape-Copy" fill="#87DC49" fill-rule="nonzero"></path>
+                <path d="M26.4978862,28 C17.2464614,28 12.4691866,33.8923736 11.6046153,41.0032373 C10.7298187,48.1076264 8.35325652,54 26.4978862,54 C44.6527412,54 42.2690482,48.1076264 41.3942516,41.0032373 C40.5297476,33.8923736 35.7526746,28 26.4978862,28 Z" id="Shape" fill="#6298E6" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
