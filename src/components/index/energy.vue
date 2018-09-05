@@ -277,6 +277,7 @@
       Loadmore
     },
     created() {
+
       this.base_url = this.$store.state.base_url;
       this.getDioData()
     },
@@ -331,21 +332,6 @@
           })
         }
 
-      },
-      getDioDataDemo() {
-        setTimeout(() => {
-          let lastValue = this.list[this.list.length - 1];
-          if (lastValue < 40) {
-            console.log(1);
-            for (let i = 1; i <= 10; i++) {
-              this.list.push(lastValue + i);
-            }
-          } else {
-            console.log(2);
-            this.allLoaded = true;
-          }
-          this.$refs.loadmore.onBottomLoaded();
-        }, 1500);
       },
       handleBottomChange(status) {
         this.bottomStatus = status;
