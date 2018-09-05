@@ -13,7 +13,8 @@
 			<div>
 				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
 				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" />
-				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @click="changePasswordType" />
+				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @click="changePasswordType" v-if="passwordType!='password'" />
+				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @click="changePasswordType"  v-if="passwordType=='password'"/>
 			</div>
 			<p v-show="tipList.password">密码格式错误</p>
 		</div>
