@@ -139,7 +139,8 @@
 			},
 			goDio() {
 				this.$router.push({
-					path: "/index/dio"
+					path: "/index/dio",
+					query:{id:1},
 				})
 			},
 			goEnergy() {

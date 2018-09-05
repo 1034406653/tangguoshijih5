@@ -2,15 +2,15 @@
 	<div class="content2">
 		<headerNav :pageTitle="pageTitle" :isRightShow="headRightShow" :rightValue="headRightValue" @headRightClick="goDioDetail"></headerNav>
 		<div class="banner">
-			<img src="../../assets/img/index/dio@2x.png" alt="" />
+			<img :src="candy_icon" alt="" />
 			<ul>
 				<li>
 					<p>已持有</p>
-					<p>1,000,000.00000</p>
+					<p>{{user_candy}}</p>
 				</li>
 				<li>
 					<p>预计价值（元）</p>
-					<p>1,000,000.00000</p>
+					<p>{{price}}</p>
 				</li>
 			</ul>
 		</div>
@@ -20,14 +20,14 @@
 					<img src="../../assets/img/index/diodian@2x.png" />
 					<span>项目名称</span>
 				</div>
-				<p>糖果世纪</p>
+				<p>{{candy_name}}</p>
 			</li>
 			<li>
 				<div class="title">
 					<img src="../../assets/img/index/diodian@2x.png" />
 					<span>糖果简介</span>
 				</div>
-				<p>DIO是糖果工厂生产的奖励，可以用于糖果世纪的消耗和兑换等，糖果转盘需要消耗DIO推动，以获取更多种类糖果空投。DIO总量有限，随着时间的推移，获取难度越来越大，前期参与更有优势。</p>
+				<p>{{candy_introduction}}</p>
 			</li>
 			<li>
 				<div class="title">
@@ -35,7 +35,7 @@
 					<span>项目名称</span>
 				</div>
 				<p>
-					<a href="">官网链接</a>
+					<a :href="url">官网链接</a>
 				</p>
 			</li>
 		</ul>
@@ -47,21 +47,48 @@
 	export default {
 		data() {
 			return {
+				id:"1",
 				pageTitle: "DIO",
 				headRightShow: true,
+				candy_name:"",
 				headRightValue: "明细",
+				candy_icon:"",
+				user_candy:"",
+				candy_introduction:"",
+				url:"",
+				price:"",
 			}
 		},
 		components: {
 			HeaderNav,
 		},
+		created(){
+			this.init();
+		},
 		mounted() {
 
 		},
 		methods: {
+			init(){
+				let that=this;
+				this.id=this.$route.query.id;
+				this.$http.post('/web/get_candy_details',{id:that.id}).then((res)=>{
+					console.log(res);
+					if(res.data.code=='0'){
+						that.pageTitle=res.data.data.candy_name;
+						that.candy_name=res.data.data.candy_name;
+						that.candy_icon=res.data.data.candy_icon;
+						that.user_candy=res.data.data.user_candy;
+						that.candy_introduction=res.data.data.candy_introduction;
+						that.url=res.data.data.url;
+						that.price=res.data.data.price;
+					}
+				})
+			},
 			goDioDetail() {
 				this.$router.push({
-					path: "/index/dio_detail"
+					path: "/index/energy",
+					query:{id:1},
 				})
 			}
 		}
@@ -118,6 +145,7 @@
 		margin-top: 54px;
 		text-align: left;
 		background: #fff;
+		padding-bottom: 40px;
 	}
 	.mainText li{
 		width: 100%;
