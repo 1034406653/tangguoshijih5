@@ -263,7 +263,8 @@
         translate: 0,
         moveTranslate: 0,
         base_url: '',
-        height: ''
+        height: '',
+        candyId: 1
       }
     },
     filters: {
@@ -277,8 +278,8 @@
       Loadmore
     },
     created() {
-
-      this.base_url = this.$store.state.base_url;
+      this.candyId = this.$route.query.id || 1
+      this.base_url = this.$store.state.base_url
       this.getDioData()
     },
     methods: {
