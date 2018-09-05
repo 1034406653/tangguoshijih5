@@ -1,7 +1,12 @@
 <template>
-	<div class="content1">
+	<div class="content1 labContent">
 		<div class="banner">
-			<img src="../../assets/img/lab/laboratory_pic_banner@2x.png" />
+			<mt-swipe :auto="5000">
+			  <mt-swipe-item><img src="../../assets/img/lab/laboratory_pic_banner@2x.png" /></mt-swipe-item>
+			  <mt-swipe-item><img src="../../assets/img/lab/2@2x.png" /></mt-swipe-item>
+			  <mt-swipe-item><img src="../../assets/img/lab/3@2x.png" /></mt-swipe-item>
+			</mt-swipe>
+			
 		</div>
 		<div class="content-main">
 			<div class="gameBox">
@@ -47,6 +52,7 @@
 
 <script>
 	import FooterNav from '../base/footerNav'
+	import { Swipe, SwipeItem } from 'mint-ui';
 	import Vue from 'vue'
 	let gameURL = "";
 	let localStorage = window.localStorage;
@@ -59,7 +65,7 @@
 			}
 		},
 		components: {
-			FooterNav,
+			FooterNav,Swipe,SwipeItem
 		},
 		created() {
 			this.init();
@@ -114,20 +120,34 @@
 	}
 </script>
 
-<style scoped>
-	.banner {
+<style>
+	.labContent .banner {
 		width: 100%;
 		height: 450px;
 		overflow: hidden;
 	}
 	
-	.banner img {
+	.labContent .banner img {
 		display: block;
 		width: 100%;
 		height: 100%;
 	}
 	
-	.content-main {
+	.labContent .mint-swipe-indicators{
+		bottom: 50px;
+	}
+	.labContent .mint-swipe-indicator{
+		width: 10px;
+		height: 4px;
+		background: #E975F1;
+		border-radius: 0;
+		opacity: 0.6;
+	}
+	.labContent .mint-swipe-indicators .is-active{
+		width: 30px;
+		background: #E975F1;
+	}
+	.labContent .content-main {
 		text-align: left;
 		position: fixed;
 		width: 100%;
