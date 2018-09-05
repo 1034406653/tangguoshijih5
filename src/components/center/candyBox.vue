@@ -194,7 +194,7 @@
       </div>
 
       <ul class="page-loadmore-list">
-        <li v-for="item in candyList" class="page-loadmore-listitem">
+        <li v-for="item in candyList" class="page-loadmore-listitem" @click="goCoinDetail( item.id )">
           <div class="candy-wrapper">
             <img class="candy-icon" :src=" item.candy_icon " alt="">
             <span class="candy-name">{{ item.candy_name }}</span>
@@ -355,6 +355,9 @@
         console.log('top')
         this.getDioData('update')
       },
+      goCoinDetail(itemId) {
+        this.$router.push({path: '/index/dio', query: {id: itemId}})
+      }
     },
     mounted() {
       this.height = document.documentElement.clientHeight - 188;

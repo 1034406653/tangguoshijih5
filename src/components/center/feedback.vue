@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import HeaderNav from '../base/headerNav'
+  import HeaderNav from '@/components/base/headerNav'
 
   export default {
     data() {
