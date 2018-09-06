@@ -1,6 +1,6 @@
 <template>
 	<div class="content">
-		<headerNav></headerNav>
+		<headerNav :pageTitle="pageTitle"></headerNav>
     <div class="service-list">
       <div class="service-item">
         <div class="item-icon icon-phone"></div>
@@ -29,7 +29,7 @@
 	export default {
 		data() {
 			return {
-
+        pageTitle: '联系我们'
 			}
 		},
 		components: {
