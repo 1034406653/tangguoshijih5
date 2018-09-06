@@ -3,8 +3,9 @@
 		background: #090035;
 		padding-top: 88px;
 		padding-bottom: 60px;
-		
+		font-family: PingFangSC-Regular;
 	}
+	
 	.content .header {
 		width: 100%;
 		position: fixed;
@@ -262,7 +263,6 @@
 	.rule-title {
 		width: 100%;
 		font-size: 38px;
-		font-family: PingFangSC-Regular;
 		font-weight: 400;
 		color: rgba(60, 199, 228, 1);
 		line-height: 40px;
@@ -280,6 +280,94 @@
 		color: rgba(26, 160, 255, 1);
 		text-shadow: 0px 0px 5px rgba(26, 160, 255, 1);
 		margin: 20px auto;
+	}
+	
+	.coverBg {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 1);
+		opacity: 0.6988;
+		z-index: 10000;
+		top: 0;
+		left: 0;
+	}
+	
+	.popup1 {
+		width: 640px;
+		height: 533px;
+		position: fixed;
+		left: 50%;
+		margin-left: -320px;
+		top: 50%;
+		margin-top: -265px;
+		background: url(../../assets/img/game/dial_dial_win_bg@2x.png);
+		background-size: 100% 100%;
+		z-index: 10001;
+		padding-top: 120px;
+		color: rgba(223, 0, 255, 1);
+		text-shadow: 0px 0px 5px rgba(223, 0, 255, 1);
+	}
+	
+	.popup1 p.p1 {
+		width: 100%;
+		height: 56px;
+		line-height: 56px;
+		font-size: 40px;
+		margin-bottom: 56px;
+	}
+	
+	.popup1 p.p2 {
+		width: 100%;
+		height: 40px;
+		font-size: 28px;
+		line-height: 40px;
+		margin-bottom: 10px;
+	}
+	
+	.popup1 p.p3 {
+		font-size: 36px;
+		line-height: 50px;
+		height: 50px;
+		margin-bottom: 46px;
+	}
+	
+	.popup1>div,.popup2>div {
+		width: 300px;
+		height: 80px;
+		box-shadow: 0px 0px 10px 0px rgba(60, 107, 228, 1), 0px 6px 6px 0px rgba(0, 0, 0, 0.3);
+		border-radius: 45px;
+		border: 3px solid rgba(48, 127, 255, 1);
+		/*no*/
+		margin: 0 auto;
+		font-size: 28px;
+		color: rgba(60, 106, 227, 1);
+		line-height: 74px;
+		text-shadow: 0px 0px 4px rgba(60, 107, 228, 1), 0px 7px 6px rgba(0, 0, 0, 0.3);
+	}
+	
+	.popup2 {
+		width: 640px;
+		height: 392px;
+		position: fixed;
+		left: 50%;
+		margin-left: -320px;
+		top: 50%;
+		margin-top: -196px;
+		background: url(../../assets/img/game/dial_dial_lose_bg@2x.png);
+		background-size: 100% 100%;
+		z-index: 10001;
+		padding-top: 106px;
+		color: rgba(223, 0, 255, 1);
+		text-shadow: 0px 0px 5px rgba(223, 0, 255, 1);
+	}
+	
+	.popup2 p {
+		width: 100%;
+		height: 50px;
+		font-size: 36px;
+		line-height: 50px;
+		margin-bottom: 80px;
 	}
 </style>
 <template>
@@ -322,13 +410,28 @@
 					活动规则
 				</div>
 				<p>1. 本活动无次数限制，DIO足额即可参加；</p>
-				<p>2. 每次转转盘消耗15个DIO；</p>
+				<p>2. 每次转转盘消耗12个DIO；</p>
 				<p>3. 奖品设置：所有奖品均为已经ICO的token，后续可以提现；</p>
 				<p>4. 抽取到的token保存在“我的糖果”中；</p>
 				<p>5. 活动时间：即日起至通知截止时间为止，token数量有限，抓紧时间参加哦；</p>
 				<p>6. “糖果世纪”对本活动拥有最终解释权。</p>
 			</div>
 		</div>
+		<div class="popup1" v-if="popup1Show">
+			<p class="p1">中奖啦！</p>
+			<p class="p2">恭喜您获得</p>
+			<p class="p3">{{popup1Value}}</p>
+			<div @click="closePopup1">
+				确定
+			</div>
+		</div>
+		<div class="popup2" v-if="popup2Show">
+			<p>{{popup2Value}}</p>
+			<div @click="closePopup2">
+				确定
+			</div>
+		</div>
+		<div class="coverBg" v-if="popup1Show || popup2Show"></div>
 	</div>
 </template>
 
@@ -346,6 +449,10 @@
 				tableId: "",
 				isdrawBtnActive: false,
 				canDraw: true,
+				popup1Show: false,
+				popup2Show: false,
+				popup1Value:"",
+				popup2Value:"",
 			}
 		},
 		created() {
@@ -381,7 +488,6 @@
 						}, 10)
 					}
 				}, 2000)
-
 			},
 			drawBtnClick() {
 				if(this.canDraw) {
@@ -390,7 +496,6 @@
 					this.$http.post('/prize/draw', {
 						'turntable_id': that.tableId
 					}).then((res) => {
-						console.log(res);
 						if(res.data.code == '0') {
 							let drawId = res.data.data.id;
 							let deg = 0;
@@ -402,17 +507,22 @@
 							allDeg = (allDeg - allDeg % 360) + 360 * 3 + deg;
 							that.prizeTableDeg = `transform: rotate(${allDeg}deg);`
 							that.dioNum = res.data.data.gold_coin;
-							console.log(res.data.data);
 							setTimeout(() => {
-								that.canDraw = true;
+								if(!res.data.data.candy_id){
+									that.popup2Show=true;
+									that.popup2Value=res.data.data.prize_name;
+								}else{
+									that.popup1Show=true;
+									that.popup1Value=res.data.data.count+"个"+res.data.data.candy_name;
+								}
 							}, 3000)
 						} else if(res.data.code == '2') {
-							console.log(res.data.info);
+							that.popup2Show=true;
+							that.popup2Value=res.data.info;
 						}
 
 					})
 				}
-
 			},
 			drawBtnStart() {
 				if(this.canDraw) {
@@ -422,6 +532,14 @@
 			drawBtnEnd() {
 				this.isdrawBtnActive = false
 			},
+			closePopup1() {
+				this.popup1Show=false;
+				this.canDraw = true;
+			},
+			closePopup2() {
+				this.popup2Show=false;
+				this.canDraw = true;
+			}
 		}
 	}
 </script>
