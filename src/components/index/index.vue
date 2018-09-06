@@ -1,14 +1,14 @@
 <template>
 	<div class="content1">
-		<img :src="head_pic" class="user" @click="goUser" />
+		<img :src="head_pic" class="user" @click="goEnergyRecode" />
 		<img src="../../assets/img/index/home_icon_question@3x.png" class="introduce" @click="goIntroduce" />
 		<div class="dio">
 			<div  @click="goDio">
 				<img src="../../assets/img/index/home_icon_dio.png" class="dioIcon" />
 				<span class="dioText">DIO {{dioNum}}</span>
 			</div>
-			<div @click="goEnergy">
-				<img src="../../assets/img/index/home_icon_hashrate.png" class="energyIcon" />
+			<div @click="goEnergyRecode">
+				<img src="../../assets/img/index/home_icon_hashrate.png" class="goUser" />
 				<span class="energyText">算力 {{energyNum}}</span>
 			</div>
 		</div>
@@ -127,9 +127,9 @@
 					}
 				});
 			},
-			goUser() {
+			goEnergyRecode() {
 				this.$router.push({
-					path: "/index/user"
+					path: "/index/energy_recode"
 				})
 			},
 			goIntroduce() {
@@ -165,6 +165,11 @@
 	body .content1 {
 		background: url(../../assets/img/index/home_pic_background.png);
 		background-size: 100% 100%;
+		position: fixed;
+		left: 0;
+		right: 0;
+		top:0;
+		bottom: 100px;
 	}
 	
 	.user {

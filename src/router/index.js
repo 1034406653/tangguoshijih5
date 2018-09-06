@@ -19,6 +19,7 @@ import Set_question from '@/components/center/set_question'
 import Set_future from '@/components/center/set_future'
 import Draw from '@/components/center/draw'
 import Draw_address from '@/components/center/draw_address'
+import RealNameTest from '@/components/center/realNameTest'
 import Login from '@/components/acount/login'
 import Register from '@/components/acount/register'
 import Agreement from '@/components/acount/agreement'
@@ -134,6 +135,12 @@ export default new Router({
       path: '/center/set_future',
       name: 'Set_future',
       component: Set_future,
+      meta: { keepAlive: false }
+    },
+    {
+      path: '/center/realNameTest',
+      name: 'RealNameTest',
+      component: RealNameTest,
       meta: { keepAlive: false }
     },
     {

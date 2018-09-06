@@ -50,11 +50,11 @@
 	.content2 {
 		background: url(../../assets/img/index/share2.jpg);
 		background-size: 100% 100%;
-		position: relative;
+		position: fixed;
 		top: 10px;
-		width: 100%;
-		min-height: 100%;
+		right: 0;
 		left: 0;
+		bottom: 0;
 	}
 	
 	.card {
