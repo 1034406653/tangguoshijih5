@@ -88,10 +88,8 @@
     width: 37px;
     height: 37px;
     position: absolute;
-  }
-
-  .draw-data-wrapper .draw-data-block .draw-data-reset img {
     background-size: 100% 100%;
+    background: url("../../assets/img/center/delete.png");
   }
 
   .piker-wrapper {
@@ -156,7 +154,6 @@
         <span class="draw-data-span">地址</span>
         <input type="text" class="draw-address" v-model="queryData.value" placeholder="请输入或黏贴地址" @blur="">
         <span class="draw-data-reset" @click="reset" v-if="resetShow">
-          <img src="../../assets/img/center/delete.png" alt="">
         </span>
       </div>
     </div>
