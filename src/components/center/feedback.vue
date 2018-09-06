@@ -2,7 +2,6 @@
   .navBox {
     width: 670px;
     height: 260px;
-    opacity: 0.8;
     border-radius: 20px;
     margin: 20px auto;
     font-size:55px;
@@ -18,10 +17,12 @@
   }
 
   .boxImg01 {
+    background: url("../../assets/img/center/banner1@2x.png");
     background-size: 100% 100%;
   }
 
   .boxImg02 {
+    background: url("../../assets/img/center/banner2@2x.png");
     background-size: 100% 100%;
   }
 </style>
@@ -30,10 +31,8 @@
   <div class="content2">
     <headerNav :pageTitle="pageTitle"></headerNav>
     <div class="navBox boxImg01" @click="goQuestion">
-      <span>基本信息反馈</span>
     </div>
     <div class="navBox boxImg02" @click="goFuture">
-      <span>未来信息展示</span>
     </div>
   </div>
 
