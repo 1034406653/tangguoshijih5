@@ -94,27 +94,6 @@
     background-size: 100% 100%;
   }
 
-  .draw-button {
-    margin-top: 80px;
-    width: 670px;
-    height: 80px;
-    background: linear-gradient(140deg, rgba(229, 118, 236, 1), rgba(116, 65, 163, 1));
-    border-radius: 40px;
-    box-shadow: none;
-    outline: none;
-    border: none;
-    font-size: 30px;
-    font-family: PingFang-SC-Medium;
-    letter-spacing: 5px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-    line-height: 32px;
-  }
-
-  .buttonDisClass {
-    background: gray;
-  }
-
   .piker-wrapper {
     background-color: white;
     width: 100%;
