@@ -9,6 +9,7 @@
 			
 		</div>
 		<div class="content-main">
+			<div class="borderDIv"></div>
 			<div class="gameBox">
 				<div class="content-title">
 					游戏
@@ -121,6 +122,9 @@
 </script>
 
 <style>
+	.labContent{
+		background: rgba(255, 255, 255, 1);
+	}
 	.labContent .banner {
 		width: 100%;
 		height: 450px;
@@ -149,18 +153,22 @@
 	}
 	.labContent .content-main {
 		text-align: left;
-		position: fixed;
-		width: 100%;
-		top: 420px;
-		bottom: 98px;
-		overflow: auto;
+		position: relative;
 		padding-bottom: 10px;
-		padding-top: 40px;
+		padding-top: 20px;
 		z-index: 10;
 		background: rgba(255, 255, 255, 1);
-		border-radius: 20px 20px 0 0;
+		
 	}
-	
+	.borderDIv{
+		width: 100%;
+		height: 40px;
+		border-radius: 20px 20px 0 0;
+		background: rgba(255, 255, 255, 1);
+		position: absolute;
+		top: -20px;
+		left: 0;
+	}
 	.gameBox,
 	.taskMustBox,
 	.taskDayBox {

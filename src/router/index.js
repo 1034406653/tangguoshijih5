@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/index/index'
 import Dio from '@/components/index/dio'
-import DioDetail from '@/components/index/dio_detail'
+import EnergyRecode from '@/components/index/energy_recode'
 import Energy from '@/components/index/energy'
 import Share from '@/components/index/share'
-import User from '@/components/index/user'
+
 import Introduce from '@/components/index/introduce'
 import IntroduceHelp from '@/components/index/introduce_help'
 import IntroduceFuture from '@/components/index/introduce_future'
@@ -42,9 +42,9 @@ export default new Router({
       meta: { keepAlive: false }
     },
     {
-    	path: '/index/dio_detail',
-      name: 'DioDetail',
-      component: resolve => require(['../components/index/dio_detail'], resolve),
+    	path: '/index/energy_recode',
+      name: 'EnergyRecode',
+      component: resolve => require(['../components/index/energy_recode'], resolve),
       meta: { keepAlive: false }
     },
     {
@@ -57,12 +57,6 @@ export default new Router({
     	path: '/index/share',
       name: 'Share',
       component: resolve => require(['../components/index/share'], resolve),
-      meta: { keepAlive: false }
-    },
-    {
-    	path: '/index/user',
-      name: 'User',
-      component: resolve => require(['../components/index/user'], resolve),
       meta: { keepAlive: false }
     },
     {

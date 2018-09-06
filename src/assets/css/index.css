@@ -225,10 +225,12 @@ body .content1 {
 		left: 50%;
 		margin-left: -200px;
 		top: 930px;
+		margin-bottom: 110px;
 	}
 	
 	.candyList>li.candy11 {
 		left: 50%;
 		margin-left: 0px;
 		top: 930px;
+		margin-bottom: 110px;
 	}

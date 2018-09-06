@@ -165,11 +165,7 @@
 	body .content1 {
 		background: url(../../assets/img/index/home_pic_background.png);
 		background-size: 100% 100%;
-		position: fixed;
-		left: 0;
-		right: 0;
-		top:0;
-		bottom: 100px;
+		position: relative;
 	}
 	
 	.user {
@@ -329,9 +325,10 @@
 	.candyList2 {
 		position: absolute;
 		left: 0;
-		top: 30px;
+		top: 0;
 		width: 100%;
-		height: calc( 100% - 130px);
+		height: auto;
+		padding-bottom: 300px;
 	}
 	
 	.candyList>li,
