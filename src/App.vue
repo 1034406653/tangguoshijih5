@@ -31,12 +31,13 @@
 		height: 100%;
 		background: #F7F7F7;
 		overflow: auto;
+		padding-bottom: 30px;
 	}
 	
 	.content1 {
 		width: 100%;
 		height: 100%;
-		padding: 0px 0 99px 0;
+		padding: 0px 0 120px 0;
 		overflow: auto;
 		position: relative;
 		background: #F7F7F7;
@@ -45,7 +46,7 @@
 	.content2 {
 		width: 100%;
 		height: 100%;
-		padding: 88px 0 0 0;
+		padding: 88px 0 30px 0;
 		overflow: auto;
 		position: relative;
 		background: #F7F7F7;
