@@ -1,5 +1,5 @@
 <template>
-	<div class="logBtn" :class="[cBtnActiveStart, { cBtnActive: cBtnActive}]" @touchstart="cBtnStart" @touchend="cBtnEnd" @click="cBtnClick">{{cBtnValue}}</div>
+	<div class="logBtn" :class="[cBtnActiveStart, { cBtnActive: cBtnActive}]" @touchstart="cBtnStart" @touchend="cBtnClick">{{cBtnValue}}</div>
 </template>
 
 <script>
@@ -26,12 +26,10 @@
 					this.cBtnActiveStart='cBtnActiveStart';
 				}
 			},
-			cBtnEnd(){
-				this.cBtnActiveStart='';
-				
-			},
+			
 			cBtnClick(){
 				this.$emit('cBtnTuch')
+				this.cBtnActiveStart='';
 			}
 		}
 	}

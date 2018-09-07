@@ -5,10 +5,6 @@ import Dio from '@/components/index/dio'
 import EnergyRecode from '@/components/index/energy_recode'
 import Energy from '@/components/index/energy'
 import Share from '@/components/index/share'
-
-import Introduce from '@/components/index/introduce'
-import IntroduceHelp from '@/components/index/introduce_help'
-import IntroduceFuture from '@/components/index/introduce_future'
 import Lab from '@/components/lab/lab'
 import Center from '@/components/center/center'
 import CandyBox from '@/components/center/candyBox'
@@ -57,24 +53,6 @@ export default new Router({
     	path: '/index/share',
       name: 'Share',
       component: resolve => require(['../components/index/share'], resolve),
-      meta: { keepAlive: false }
-    },
-    {
-    	path: '/index/introduce',
-      name: 'Introduce',
-      component: resolve => require(['../components/index/introduce'], resolve),
-      meta: { keepAlive: false }
-    },
-    {
-    	path: '/index/introduce_help',
-      name: 'IntroduceHelp',
-      component: resolve => require(['../components/index/introduce_help'], resolve),
-      meta: { keepAlive: false }
-    },
-    {
-    	path: '/index/introduce_future',
-      name: 'IntroduceFuture',
-      component: resolve => require(['../components/index/introduce_future'], resolve),
       meta: { keepAlive: false }
     },
     {

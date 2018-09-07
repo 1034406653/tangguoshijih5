@@ -4,12 +4,12 @@
       <img :src="head_pic" alt="用户头像"/>
       <input class="headInput" ref="inputer" type="file" accept="image/png, image/gif, image/jpg, image/jpeg"
              @change="handleFileChange($event)"/>
-      <div @click="changeNickname">{{nickname}}</div>
+      <div @touchend="changeNickname">{{nickname}}</div>
     </div>
-    <div class="nav-box" @click="goShare">
+    <div class="nav-box" @touchend="goShare">
       <img src="../../assets/img/center/me_pic_banner1.png"/>
     </div>
-    <div class="nav-box" @click="goCandybox">
+    <div class="nav-box" @touchend="goCandybox">
       <img src="../../assets/img/center/me_pic_banner2.png"/>
     </div>
     <div class="account-box">
@@ -19,24 +19,24 @@
       <div class="account-li">
         <img src="../../assets/img/center/me_icon_account@2x.png"/>
         <span>当前账户</span>
-        <b>13781868557</b>
+        <b>{{mobile}}</b>
       </div>
-      <div class="account-li" @click="goRealName">
+      <div class="account-li" @touchend="goRealName">
         <img src="../../assets/img/center/realNameTest@2x.png"/>
         <span>实名认证</span>
         <img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo"/>
       </div>
-      <div class="account-li" @click="goDraw">
+      <div class="account-li" @touchend="goDraw">
         <img src="../../assets/img/center/me_icon_adress@2x.png"/>
         <span>提币地址</span>
         <img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo"/>
       </div>
-      <div class="account-li" @click="goChangePassword">
+      <div class="account-li" @touchend="goChangePassword">
         <img src="../../assets/img/center/me_icon_modify@2x.png"/>
         <span>修改密码</span>
         <img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo"/>
       </div>
-      <div class="account-li" @click="goSet">
+      <div class="account-li" @touchend="goSet">
         <img src="../../assets/img/center/me_icon_setup@2x.png"/>
         <span>设置</span>
         <img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo"/>
@@ -56,6 +56,7 @@
         footerNav: ["", "", "active"],
         head_pic: require("../../assets/img/index/home_pic_avatar.png"),
         nickname: "",
+        mobile:"",
       }
     },
     components: {
@@ -70,6 +71,7 @@
           this.head_pic = window.localStorage.getItem('head_pic');
         }
         this.nickname = window.localStorage.getItem('nickname') || "";
+        this.mobile = window.localStorage.getItem('mobile') || "";
       },
       handleFileChange(event) {
         let that = this;
@@ -192,7 +194,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .mint-msgbox-header {
     padding-top: 40px;
   }
