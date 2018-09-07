@@ -1,12 +1,21 @@
 <template>
 	<div class="content1 labContent">
-		<div class="banner">
-			<mt-swipe :auto="5000" :prevent='true'>
-			  <mt-swipe-item><img src="../../assets/img/lab/laboratory_pic_banner@2x.png" /></mt-swipe-item>
-			  <mt-swipe-item><img src="../../assets/img/lab/2@2x.png" /></mt-swipe-item>
-			  <mt-swipe-item><img src="../../assets/img/lab/3@2x.png" /></mt-swipe-item>
-			</mt-swipe>	
-		</div>
+		
+			<!--<mt-swipe :auto="5000" :prevent='true'>
+			  <mt-swipe-item></mt-swipe-item>
+			  <mt-swipe-item></mt-swipe-item>
+			  <mt-swipe-item></mt-swipe-item>
+			</mt-swipe>	-->
+			<div class="swiper-container banner">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img src="../../assets/img/lab/laboratory_pic_banner@2x.png" /></div>
+					<div class="swiper-slide"><img src="../../assets/img/lab/2@2x.png" /></div>
+					<div class="swiper-slide"><img src="../../assets/img/lab/3@2x.png" /></div>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+		
 		<div class="content-main">
 			<div class="borderDIv"></div>
 			<div class="gameBox">
@@ -52,7 +61,8 @@
 
 <script>
 	import FooterNav from '../base/footerNav'
-	import { Swipe, SwipeItem } from 'mint-ui';
+	import Swiper from 'swiper';
+	import 'swiper/dist/css/swiper.min.css';
 	import Vue from 'vue'
 	let gameURL = "";
 	let localStorage = window.localStorage;
@@ -65,14 +75,26 @@
 			}
 		},
 		components: {
-			FooterNav,Swipe,SwipeItem
+			FooterNav,
+			Swiper
 		},
 		created() {
 			this.init();
 		},
+		mounted(){
+			let mySwiper = new Swiper('.swiper-container', {
+					loop: true,
+					// 如果需要分页器
+					pagination: {
+						el: '.swiper-pagination',
+					},
+				})
+		},
 		methods: {
 			init() {
+
 				let that = this;
+				
 				this.$http.post('/power/get_power').then(res => {
 					if(res.data.code == "0") {
 						res.data.data.game.forEach((x, i) => {
@@ -102,7 +124,7 @@
 			},
 			goSign() {
 				console.log("");
-				let that=this;
+				let that = this;
 				if(!this.signed) {
 					this.$http.post('/power/receive_power').then(res => {
 						if(res.data.code == "0") {
@@ -111,9 +133,9 @@
 					})
 				}
 			},
-			goShare(){
+			goShare() {
 				this.$router.push({
-					path:"/index/share"
+					path: "/index/share"
 				})
 			}
 		}
@@ -121,9 +143,10 @@
 </script>
 
 <style>
-	.labContent{
+	.labContent {
 		background: rgba(255, 255, 255, 1);
 	}
+	
 	.labContent .banner {
 		width: 100%;
 		height: 450px;
@@ -136,20 +159,23 @@
 		height: 100%;
 	}
 	
-	.labContent .mint-swipe-indicators{
+	.labContent .swiper-pagination {
 		bottom: 50px;
 	}
-	.labContent .mint-swipe-indicator{
+	
+	.banner .swiper-pagination-bullet  {
 		width: 10px;
 		height: 4px;
 		background: #E975F1;
 		border-radius: 0;
 		opacity: 0.6;
 	}
-	.labContent .mint-swipe-indicators .is-active{
+	
+	.banner .swiper-pagination-bullet-active {
 		width: 30px;
 		background: #E975F1;
 	}
+	
 	.labContent .content-main {
 		text-align: left;
 		position: relative;
@@ -157,9 +183,9 @@
 		padding-top: 20px;
 		z-index: 10;
 		background: rgba(255, 255, 255, 1);
-		
 	}
-	.borderDIv{
+	
+	.borderDIv {
 		width: 100%;
 		height: 40px;
 		border-radius: 20px 20px 0 0;
@@ -168,6 +194,7 @@
 		top: -20px;
 		left: 0;
 	}
+	
 	.gameBox,
 	.taskMustBox,
 	.taskDayBox {

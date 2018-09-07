@@ -55,12 +55,12 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(data => {
 	if(data.data.code === 1002) {
 		console.log("请求出问题了")
-//		window.localStorage.removeItem('jiazhuoToken')
-//		window.localStorage.removeItem('head_pic')
-//		window.localStorage.removeItem('nickname')
-//		router.push({
-//			path: "/acount/login"
-//		})
+		window.localStorage.removeItem('jiazhuoToken')
+		window.localStorage.removeItem('head_pic')
+		window.localStorage.removeItem('nickname')
+		router.push({
+			path: "/acount/login"
+		})
 	}
 	return data;
 }, error => {

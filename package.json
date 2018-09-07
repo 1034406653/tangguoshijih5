@@ -17,6 +17,7 @@
     "px2rem-loader": "^0.1.9",
     "qrcode": "^1.2.2",
     "qrcodejs2": "^0.0.2",
+    "swiper": "^4.3.5",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
