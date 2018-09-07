@@ -279,13 +279,22 @@
           id: this.queryData.id
         }).then((result) => {
           if (result.data.code === 0) {
-            let instance = Toast(result.data.info);
+             Toast({
+								message: result.data.info,
+								position: 'middle',
+								duration: 1000,
+								className: "toastName"
+							}); 
             setTimeout(() => {
-              instance.close()
               this.$router.back(-1)
-            }, 2000);
+            }, 1500);
           } else {
-            MessageBox.alert(result.data.info, '')
+          	Toast({
+								message: result.data.info,
+								position: 'middle',
+								duration: 10000000,
+								className: "toastName"
+							}); 
           }
         })
       },
@@ -296,13 +305,22 @@
             id: this.queryData.id
           }).then((result) => {
             if (result.data.code === 0) {
-              let instance = Toast(result.data.info);
+              Toast({
+								message: result.data.info,
+								position: 'middle',
+								duration: 1000,
+								className: "toastName"
+							}); 
               setTimeout(() => {
-                instance.close()
                 this.$router.back(-1)
-              }, 2000);
+              }, 1500);
             } else {
-              MessageBox.alert(result.data.info, '')
+              Toast({
+								message: result.data.info,
+								position: 'middle',
+								duration: 1000,
+								className: "toastName"
+							}); 
             }
           })
         })
