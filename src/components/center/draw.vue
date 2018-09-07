@@ -35,7 +35,7 @@
 
 <template>
   <div class="content2">
-    <headerNav :pageTitle="title" @headRightClick="url(coinList)" :isRightShow="show" :rightValue="title_"
+    <headerNav :pageTitle="title" @headRightClick="url(coinList)" :isRightShow="coinList.length > 0" :rightValue="title_"
                :rightColor="rightColor"></headerNav>
 
     <ul class="draw-list">
@@ -107,7 +107,7 @@
           this_.currencyList = this_.currencyList.concat(result.data.data);
           for (let i = 0; i < result.data.data.length; i++) {
             for (let j = 0; j < this_.coinList.length; j++) {
-              if (this_.coinList[j].name === result.data.data[i].name){
+              if (this_.coinList[j].name === result.data.data[i].name) {
                 this_.currencyList[i].index = j;
               }
             }
