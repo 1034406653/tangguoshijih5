@@ -26,6 +26,7 @@
 		},
 		mounted() {
 			this.init();
+			this.invitation();
 		},
 		methods: {
 			init() {
@@ -42,6 +43,16 @@
 					}
 				})
 			},
+      invitation(){
+        let that = this;
+        this.$http.post('/user/invitation').then(res => {
+          console.log(1)
+
+
+            console.log(res)
+
+        })
+      }
 		}
 	}
 </script>
