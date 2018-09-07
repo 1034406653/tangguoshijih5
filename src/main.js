@@ -25,6 +25,7 @@ router.beforeEach((to, from, next) => {
 			next();
 		} else { //不然就跳转到登录；
 			next('/acount/login');
+			console.log("没有登录你出问题了")
 
 		}
 	}
@@ -45,7 +46,6 @@ axios.interceptors.request.use(config => {
 			config.data = qs.stringify(params);
 			config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 		}
-
 	}
 	return config;
 }, error => {
@@ -54,12 +54,13 @@ axios.interceptors.request.use(config => {
 // 响应拦截器
 axios.interceptors.response.use(data => {
 	if(data.data.code === 1002) {
-		window.localStorage.removeItem('jiazhuoToken')
-		window.localStorage.removeItem('head_pic')
-		window.localStorage.removeItem('nickname')
-		router.push({
-			path: "/acount/login"
-		})
+		console.log("请求出问题了")
+//		window.localStorage.removeItem('jiazhuoToken')
+//		window.localStorage.removeItem('head_pic')
+//		window.localStorage.removeItem('nickname')
+//		router.push({
+//			path: "/acount/login"
+//		})
 	}
 	return data;
 }, error => {

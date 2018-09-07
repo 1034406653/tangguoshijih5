@@ -372,10 +372,7 @@
 </style>
 <template>
 	<div class="content">
-		<div class="header">
-			<img src="../../assets/img/game/navigation_nav_back@2x.png" class="back" />
-			<span>糖果转盘</span>
-		</div>
+		
 		<div class="main">
 			<div class="dioBox">
 				<img src="../../assets/img/game/dial_dial_DIO@2x.png" />
@@ -402,7 +399,7 @@
 				</ul>
 				<img src="../../assets/img/game/dial_dial_pointer@2x.png" class="pointer" />
 			</div>
-			<div class="drawBtn" @click="drawBtnClick" :class="{drawBtnActive:isdrawBtnActive}" @touchend="drawBtnEnd" @touchstart="drawBtnStart">
+			<div class="drawBtn" @touchend="drawBtnClick" :class="{drawBtnActive:isdrawBtnActive}" @touchstart="drawBtnStart">
 				开始抽奖
 			</div>
 			<div class="rule">
@@ -421,13 +418,13 @@
 			<p class="p1">中奖啦！</p>
 			<p class="p2">恭喜您获得</p>
 			<p class="p3">{{popup1Value}}</p>
-			<div @click="closePopup1">
+			<div @touchend="closePopup1">
 				确定
 			</div>
 		</div>
 		<div class="popup2" v-if="popup2Show">
 			<p>{{popup2Value}}</p>
-			<div @click="closePopup2">
+			<div @touchend="closePopup2">
 				确定
 			</div>
 		</div>
@@ -523,15 +520,14 @@
 
 					})
 				}
+				this.isdrawBtnActive = false
 			},
 			drawBtnStart() {
 				if(this.canDraw) {
 					this.isdrawBtnActive = true
 				}
 			},
-			drawBtnEnd() {
-				this.isdrawBtnActive = false
-			},
+			
 			closePopup1() {
 				this.popup1Show=false;
 				this.canDraw = true;

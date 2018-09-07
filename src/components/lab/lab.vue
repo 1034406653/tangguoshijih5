@@ -1,12 +1,11 @@
 <template>
 	<div class="content1 labContent">
 		<div class="banner">
-			<mt-swipe :auto="5000">
+			<mt-swipe :auto="5000" :prevent='true'>
 			  <mt-swipe-item><img src="../../assets/img/lab/laboratory_pic_banner@2x.png" /></mt-swipe-item>
 			  <mt-swipe-item><img src="../../assets/img/lab/2@2x.png" /></mt-swipe-item>
 			  <mt-swipe-item><img src="../../assets/img/lab/3@2x.png" /></mt-swipe-item>
-			</mt-swipe>
-			
+			</mt-swipe>	
 		</div>
 		<div class="content-main">
 			<div class="borderDIv"></div>
@@ -16,7 +15,7 @@
 					<span @clic="moreGame" v-if="gameList.length>3" class="moreGame">更多</span>
 				</div>
 				<ul class="gameList">
-					<li v-for="item in gameList" @click="goGame(item.game_url,item.id)">
+					<li v-for="item in gameList" @touchend="goGame(item.game_url,item.id)">
 						<img :src="item.game_icon" />
 					</li>
 				</ul>
@@ -26,7 +25,7 @@
 					每日任务
 				</div>
 				<ul class="taskLi">
-					<li @click="goSign">
+					<li @touchend="goSign">
 						<img src="../../assets/img/lab/laboratory_icon_signin.png" />
 						<b>每日签到</b>
 						<span v-if="!signed">算力+1</span>
@@ -39,7 +38,7 @@
 					必做任务
 				</div>
 				<ul class="taskLi">
-					<li @click="goShare">
+					<li @touchend="goShare">
 						<img src="../../assets/img/lab/laboratory_icon_signin.png" />
 						<b>邀请好友</b>
 						<span>算力+5 DIO+50</span>

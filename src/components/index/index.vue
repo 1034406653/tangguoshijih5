@@ -1,27 +1,27 @@
 <template>
 	<div class="content1">
-		<img :src="head_pic" class="user" @click="goEnergyRecode" />
-		<img src="../../assets/img/index/home_icon_question@3x.png" class="introduce" @click="goIntroduce" />
+		<img :src="head_pic" class="user" @touchend="goEnergyRecode" />
+		<img src="../../assets/img/index/home_icon_question@3x.png" class="introduce" @touchend="goFeedback" />
 		<div class="dio">
-			<div  @click="goDio">
+			<div  @touchend="goDio">
 				<img src="../../assets/img/index/home_icon_dio.png" class="dioIcon" />
 				<span class="dioText">DIO {{dioNum}}</span>
 			</div>
-			<div @click="goEnergyRecode">
+			<div @touchend="goEnergyRecode">
 				<img src="../../assets/img/index/home_icon_hashrate.png" class="goUser" />
 				<span class="energyText">算力 {{energyNum}}</span>
 			</div>
 		</div>
-		<div class="energy" @click="goLab">
+		<div class="energy" @touchend="goLab">
 			<img src="../../assets/img/index/home_icon_promote.png" />
 			<span>提升算力</span>
 		</div>
-		<div class="share" @click="goShare">
+		<div class="share" @touchend="goShare">
 			<img src="../../assets/img/index/home_iocn_invitation.png" />
 			<span>邀请好友</span>
 		</div>
 		<ul class="candyList">
-			<li :class="item.className" v-for="(item,index) in candyList" @click="delCanday(index,item.id,item.candy_count)">
+			<li :class="item.className" v-for="(item,index) in candyList" @touchend="delCanday(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
 					<img src="../../assets/img/index/home_dio@2x.png" alt="糖果" />
 					<p>{{item.candy_count}}</p>
@@ -31,7 +31,7 @@
 		
 		
 		<ul class="candyList" v-if="candyList.length<1">
-			<li :class="item.className" v-for="(item,index) in candyList2" @click="delCanday2(index,item.id,item.candy_count)">
+			<li :class="item.className" v-for="(item,index) in candyList2" @touchend="delCanday2(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
 					<img src="../../assets/img/index/home_dio@2x.png" alt="糖果" />
 					<p>{{item.candy_count}}</p>
@@ -132,9 +132,9 @@
 					path: "/index/energy_recode"
 				})
 			},
-			goIntroduce() {
+			goFeedback() {
 				this.$router.push({
-					path: "/index/introduce"
+					path: "/center/feedback"
 				})
 			},
 			goDio() {
