@@ -30,9 +30,9 @@
 <template>
   <div class="content2">
     <headerNav :pageTitle="pageTitle"></headerNav>
-    <div class="navBox boxImg01" @click="goQuestion">
+    <div class="navBox boxImg01" @touchend="goQuestion">
     </div>
-    <div class="navBox boxImg02" @click="goFuture">
+    <div class="navBox boxImg02" @touchend="goFuture">
     </div>
   </div>
 

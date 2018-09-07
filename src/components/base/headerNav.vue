@@ -2,7 +2,7 @@
 	<div id="header">
 		<img src="../../assets/img/base/navigation_nav_back@2x.png" class="back" @touchend="goBack" v-show="goBackShow" />
 		<div class="title">{{pageTitle}}</div>
-		<span v-if="isRightShow" :style="rightColor" class="rightBtn" @touchend="navTo">{{rightValue}}</span>
+		<span v-if="isRightShow" :style="rightColor" class="rightBtn" @click="navTo">{{rightValue}}</span>
 	</div>
 </template>
 

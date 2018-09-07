@@ -399,7 +399,7 @@
 				</ul>
 				<img src="../../assets/img/game/dial_dial_pointer@2x.png" class="pointer" />
 			</div>
-			<div class="drawBtn" @touchend="drawBtnClick" :class="{drawBtnActive:isdrawBtnActive}" @touchstart="drawBtnStart">
+			<div class="drawBtn" @click="drawBtnClick" :class="{drawBtnActive:isdrawBtnActive}" @touchstart="drawBtnStart">
 				开始抽奖
 			</div>
 			<div class="rule">
@@ -418,13 +418,13 @@
 			<p class="p1">中奖啦！</p>
 			<p class="p2">恭喜您获得</p>
 			<p class="p3">{{popup1Value}}</p>
-			<div @touchend="closePopup1">
+			<div @click="closePopup1">
 				确定
 			</div>
 		</div>
 		<div class="popup2" v-if="popup2Show">
 			<p>{{popup2Value}}</p>
-			<div @touchend="closePopup2">
+			<div @click="closePopup2">
 				确定
 			</div>
 		</div>

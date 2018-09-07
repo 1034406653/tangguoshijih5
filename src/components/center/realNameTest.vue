@@ -156,7 +156,7 @@
                :disabled="identity_cardDis" v-show="seeShowNum">
         <input type="text" class="realname-input" :value=" realData.identity_card | HideNum "
                disabled v-show="seeHideNum">
-        <span class="realname-seeNumber" :class="toggleSeeNumber" @touchend="seeNumber" v-show="seeShow">
+        <span class="realname-seeNumber" :class="toggleSeeNumber" @click="seeNumber" v-show="seeShow">
         </span>
       </div>
     </div>
