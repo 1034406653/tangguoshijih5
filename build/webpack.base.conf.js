@@ -3,6 +3,9 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const ImageminPlugin = require("imagemin-webpack-plugin").default
+const imageminMozjpeg = require("imagemin-mozjpeg")
+/*const CopyWebpackPlugin = require('copy-webpack-plugin')*/
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -67,6 +70,24 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      disable: process.env.NODE_ENV !== 'production',
+      pngquant: {
+        quality: '10-80'
+      },
+      optipng: {
+        optimizationLeval: 6
+      },
+      plugins: [
+        imageminMozjpeg({
+          quality: 100,
+          progressive: true
+        })
+      ]
+    })
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).

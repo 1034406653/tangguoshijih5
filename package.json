@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "copy-webpack-plugin": "^4.5.2",
     "es6-promise": "^4.2.4",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-webpack-plugin": "^2.2.0",
     "lib-flexible": "^0.3.2",
     "mint-ui": "^2.2.13",
     "px2rem-loader": "^0.1.9",
