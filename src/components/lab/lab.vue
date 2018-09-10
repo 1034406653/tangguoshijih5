@@ -1,11 +1,5 @@
 <template>
 	<div class="content1 labContent">
-		
-			<!--<mt-swipe :auto="5000" :prevent='true'>
-			  <mt-swipe-item></mt-swipe-item>
-			  <mt-swipe-item></mt-swipe-item>
-			  <mt-swipe-item></mt-swipe-item>
-			</mt-swipe>	-->
 			<div class="swiper-container banner">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide"><img src="../../assets/img/lab/laboratory_pic_banner@2x.png" /></div>
@@ -143,7 +137,7 @@
 </script>
 
 <style>
-	.labContent {
+	body .labContent {
 		background: rgba(255, 255, 255, 1);
 	}
 	

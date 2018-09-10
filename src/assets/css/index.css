@@ -1,6 +1,7 @@
 body .content1 {
 	background: url(../../assets/img/index/home_pic_background.png);
 	background-size: 100% 100%;
+	position: relative;
 }
 
 .user {
@@ -36,17 +37,26 @@ body .content1 {
 	z-index: 10;
 }
 
+.dio div {
+	width: auto;
+	float: left;
+	height: auto;
+	overflow: hidden;
+}
+
 .dio img {
 	width: 56px;
 	height: 56px;
 	float: left;
 	margin: 0px 5px;
 }
-.dio .energyIcon{
-	width: 25px;
-	height: 36px;
-	margin: 10px 10px;
+
+.dio .energyIcon {
+	width: 35px;
+	height: 44px;
+	margin: 6px 10px;
 }
+
 .dio span {
 	float: left;
 	height: 56px;
@@ -96,7 +106,6 @@ body .content1 {
 	position: absolute;
 	right: 0;
 	top: 138px;
-	overflow: hidden;
 }
 
 .energy img,
@@ -121,7 +130,8 @@ body .content1 {
 .share {
 	top: 256px;
 }
-.candyBox{
+
+.candyBox {
 	width: 100px;
 	height: 120px;
 	color: white;
@@ -130,14 +140,15 @@ body .content1 {
 	overflow: hidden;
 	margin: 40px auto;
 }
-.candyBox img{ 
+
+.candyBox img {
 	width: 78px;
 	height: 78px;
 	margin: 1px auto;
 	display: block;
 }
 
-.candyBox p{ 
+.candyBox p {
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
@@ -145,92 +156,111 @@ body .content1 {
 	text-overflow: inherit;
 	overflow: hidden;
 }
-.candyList {
-		position: absolute;
-		left: 0;
-		top: 30px;
-		width: 100%;
-		height: calc( 100% - 130px);
-	}
-	
-	.candyList>li {
-		position: absolute;
-		width: 200px;
-		height: 200px;
-		border: 1px solid white;
-		/*px*/
-	}
-	
-	.candyList>li.candy0 {
-		left: 50%;
-		margin-left: -100px;
-		top: 130px;
-	}
-	
-	.candyList>li.candy1 {
-		left: 50%;
-		margin-left: -300px;
-		top: 330px;
-	}
-	
-	.candyList>li.candy2 {
-		left: 50%;
-		margin-left: -100px;
-		top: 330px;
-	}
-	
-	.candyList>li.candy3 {
-		left: 50%;
-		margin-left: 100px;
-		top: 330px;
-	}
-	
-	.candyList>li.candy4 {
-		left: 50%;
-		margin-left: -300px;
-		top: 530px;
-	}
-	
-	.candyList>li.candy5 {
-		left: 50%;
-		margin-left: -100px;
-		top: 530px;
-	}
-	
-	.candyList>li.candy6 {
-		left: 50%;
-		margin-left: 100px;
-		top: 530px;
-	}
-	
-	.candyList>li.candy7 {
-		left: 50%;
-		margin-left: -300px;
-		top: 730px;
-	}
-	
-	.candyList>li.candy8 {
-		left: 50%;
-		margin-left: -100px;
-		top: 730px;
-	}
-	
-	.candyList>li.candy9 {
-		left: 50%;
-		margin-left: 100px;
-		top: 730px;
-	}
-	
-	.candyList>li.candy10 {
-		left: 50%;
-		margin-left: -200px;
-		top: 930px;
-		margin-bottom: 110px;
-	}
-	
-	.candyList>li.candy11 {
-		left: 50%;
-		margin-left: 0px;
-		top: 930px;
-		margin-bottom: 110px;
-	}
+
+.candyList,
+.candyList2 {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+	padding-bottom: 300px;
+}
+
+.candyList>li,
+.candyList2>li {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+}
+
+.candyList>li.candy0,
+.candyList2>li.candy0 {
+	left: 50%;
+	margin-left: 0px;
+	top: 130px;
+}
+
+.candyList>li.candy1,
+.candyList2>li.candy1 {
+	left: 50%;
+	margin-left: -300px;
+	top: 330px;
+}
+
+.candyList>li.candy2,
+.candyList2>li.candy2 {
+	left: 50%;
+	margin-left: -100px;
+	top: 330px;
+}
+
+.candyList>li.candy3,
+.candyList2>li.candy3 {
+	left: 50%;
+	margin-left: 100px;
+	top: 330px;
+}
+
+.candyList>li.candy4,
+.candyList2>li.candy4 {
+	left: 50%;
+	margin-left: -300px;
+	top: 530px;
+}
+
+.candyList>li.candy5,
+.candyList2>li.candy5 {
+	left: 50%;
+	margin-left: -100px;
+	top: 530px;
+}
+
+.candyList>li.candy6,
+.candyList2>li.candy6 {
+	left: 50%;
+	margin-left: 100px;
+	top: 530px;
+}
+
+.candyList>li.candy7,
+.candyList2>li.candy7 {
+	left: 50%;
+	margin-left: -300px;
+	top: 730px;
+}
+
+.candyList>li.candy8,
+.candyList2>li.candy8 {
+	left: 50%;
+	margin-left: -100px;
+	top: 730px;
+}
+
+.candyList>li.candy9,
+.candyList2>li.candy9 {
+	left: 50%;
+	margin-left: 100px;
+	top: 730px;
+}
+
+.candyList>li.candy10,
+.candyList2>li.candy10 {
+	left: 50%;
+	margin-left: -200px;
+	top: 930px;
+}
+
+.candyList>li.candy11,
+.candyList2>li.candy11 {
+	left: 50%;
+	margin-left: 0px;
+	top: 930px;
+}
+
+.candyList>li.candy12,
+.candyList2>li.candy12 {
+	left: 50%;
+	margin-left: -200px;
+	top: 130px;
+}

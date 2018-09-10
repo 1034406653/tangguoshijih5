@@ -22,6 +22,7 @@ import Agreement from '@/components/acount/agreement'
 import PasswordBack from '@/components/acount/passwordBack'
 import ChangePassword from '@/components/acount/changePassword'
 import Turntable from '@/components/game/turntable'
+import Guide from '@/components/index/guide'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -155,6 +156,12 @@ export default new Router({
       path: '/game/turntable',
       name: 'Turntable',
       component: resolve => require(['../components/game/turntable'], resolve),
+      meta: { keepAlive: false }
+    },
+    {
+      path: '/index/guide',
+      name: 'Guide',
+      component: resolve => require(['../components/index/guide'], resolve),
       meta: { keepAlive: false }
     }
   ]
