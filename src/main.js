@@ -15,19 +15,24 @@ Vue.prototype.$qs = qs
 Vue.use(MintUI)
 Vue.config.productionTip = false
 let userInfo = '';
+let guideActive='';
 router.beforeEach((to, from, next) => {
-	userInfo = window.localStorage.getItem("jiazhuoToken");
-	if(userInfo) {
-		next();
-	} else {
-		let reg = /^\/acount/;
-		if(reg.test(to.path)) { //如果是登录页面路径，就直接next()
+	guideActive=window.localStorage.getItem("guideActive");
+	if(guideActive||to.path=='/index/guide') {
+		userInfo = window.localStorage.getItem("jiazhuoToken");
+		if(userInfo) {
 			next();
-		} else { //不然就跳转到登录；
-			next('/acount/login');
-			console.log("没有登录你出问题了")
-
+		} else {
+			let reg = /^\/acount/;
+			if(reg.test(to.path)) { //如果是登录页面路径，就直接next()
+				next();
+			} else { //不然就跳转到登录；
+				next('/acount/login');
+				console.log("没有登录你出问题了")
+			}
 		}
+	}else{
+		next('/index/guide');
 	}
 })
 promise.polyfill();
