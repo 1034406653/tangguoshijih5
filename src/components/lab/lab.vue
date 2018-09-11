@@ -33,7 +33,7 @@
 					<li @touchend="goSign">
 						<img src="../../assets/img/lab/laboratory_icon_signin.png" />
 						<b>每日签到</b>
-						<span v-if="!signed">算力+1</span>
+						<span v-if="!signed">算力+{{ login_power }}</span>
 						<span v-if="signed">已完成</span>
 					</li>
 				</ul>
@@ -46,7 +46,7 @@
 					<li @touchend="goShare">
 						<img src="../../assets/img/lab/laboratory_icon_signin.png" />
 						<b>邀请好友</b>
-						<span>算力+5 DIO+50</span>
+						<span>算力+{{ invitation_power }} DIO+{{ invitation_coin_count }}</span>
 					</li>
 				</ul>
 			</div>
@@ -68,6 +68,9 @@
 				footerNav: ["", "active", ""],
 				gameList: [],
 				signed: false,
+        login_power: '1',
+        invitation_power: '5',
+        invitation_coin_count: '55'
 			}
 		},
 		components: {
@@ -90,6 +93,7 @@
 			init() {
 				let that = this;
 				this.$http.post('/power/get_power').then(res => {
+				  console.log(res)
 					if(res.data.code == "0") {
 						res.data.data.game.forEach((x, i) => {
 							if(i < 3) {
@@ -102,6 +106,11 @@
 						} else {
 							that.signed = false;
 						}
+						if(res.data.data.conf){
+              that.login_power = res.data.data.conf.login_power
+              that.invitation_power = res.data.data.conf.invitation_power
+              that.invitation_coin_count = res.data.data.conf.invitation_coin_count
+            }
 					}
 				})
 			},
@@ -112,7 +121,6 @@
 				this.$router.push('/lab/gameList')
 			},
 			goSign() {
-				console.log("");
 				let that = this;
 				if(!this.signed) {
 					this.$http.post('/power/receive_power').then(res => {
