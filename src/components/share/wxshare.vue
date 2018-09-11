@@ -54,6 +54,7 @@
 	html,
 	body {
 		overflow: auto;
+    background-color: white;
 	}
 	
 	.content-wxshare {
