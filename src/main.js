@@ -18,17 +18,18 @@ let userInfo = '';
 let guideActive='';
 router.beforeEach((to, from, next) => {
 	guideActive=window.localStorage.getItem("guideActive");
-	if(guideActive||to.path=='/index/guide') {
+	console.log(guideActive);
+	if(guideActive ||to.path=='/index/guide') {
 		userInfo = window.localStorage.getItem("jiazhuoToken");
-		if(userInfo) {
+		if(userInfo ||to.path=='/index/guide') {
 			next();
 		} else {
 			let reg = /^\/acount/;
 			if(reg.test(to.path)) { //如果是登录页面路径，就直接next()
 				next();
 			} else { //不然就跳转到登录；
-				next('/acount/login');
 				console.log("没有登录你出问题了")
+				next('/acount/login');
 			}
 		}
 	}else{

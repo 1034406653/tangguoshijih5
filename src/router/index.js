@@ -24,6 +24,7 @@ import PasswordBack from '@/components/acount/passwordBack'
 import ChangePassword from '@/components/acount/changePassword'
 import Turntable from '@/components/game/turntable'
 import Guide from '@/components/index/guide'
+import Wxshare from '@/components/share/wxshare'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -169,6 +170,12 @@ export default new Router({
       path: '/index/guide',
       name: 'Guide',
       component: resolve => require(['../components/index/guide'], resolve),
+      meta: { keepAlive: false }
+    },
+    {
+      path: '/share/wxshare',
+      name: 'Wxshare',
+      component: resolve => require(['../components/share/wxshare'], resolve),
       meta: { keepAlive: false }
     }
   ]
