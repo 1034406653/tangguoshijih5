@@ -4,7 +4,12 @@
 			<div class="QRcode"><span>{{card_code}}</span></div>
 			<canvas id="QRcanvas" class="card_img"></canvas>
 		</div>
-		<div id="imgBox" style="display: none;"></div>
+		<div id="imgBox"></div>
+		<div id='downPic'>
+			点我下载
+		</div>
+		<a href="" download="" id='downPic2'></a>
+		<img src="" id="picpic"/>
 	</div>
 
 </template>
@@ -13,7 +18,14 @@
 	import QRCode from 'qrcode'
 	import html2canvas from '../../../static/js/html2canvas.min.js'
 	import Canvas2Image from '../../../static/js/canvas2image.js'
-
+	var saveFile = function(data, filename) {
+		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+		save_link.href = data;
+		save_link.download = filename;
+		var event = document.createEvent('MouseEvents');
+		event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+		save_link.dispatchEvent(event);
+	};
 	export default {
 		data() {
 			return {
@@ -42,34 +54,29 @@
 			})
 			setTimeout(() => {
 				html2canvas(document.getElementById('picbox')).then(function(canvas) {
-					document.getElementById('imgBox').appendChild(canvas);
+					var pageData = canvas.toDataURL('image/jpeg', 1.0);
+					document.getElementById('picpic').src=pageData;
+					document.getElementById('downPic2').href=pageData;
+					document.getElementById('downPic2').download='1111.jpg';
 				});
-				document.getElementById('picbox').onclick = () => {
-					let canvasEle = document.getElementById('imgBox').children[0];
-					console.log(document.getElementById('imgBox').children[0]);
-					let image = new Image();
-					image.id = 'picNew';
-					image.src = canvasEle.toDataURL("image/png");
-					document.getElementById('imgBox').appendChild(image);
-					let a = document.createElement('a')
-					let event = new MouseEvent('click')
-					a.download = name || '下载图片名称'
-					a.href = image.src
-					console.log(a);
-					a.dispatchEvent(event)
-					return image;
-				}
-				
+				document.getElementById('downPic').onclick=function(){
+					document.getElementById('downPic').onclick=document.getElementById('downPic2').click();
+				};
 			}, 500)
 		}
 	}
 </script>
 
-<style scoped>
+<style>
+	html,
+	body {
+		overflow: auto;
+	}
+	
 	.content-wxshare {
 		width: 100%;
 		height: 1200px;
-		background: url(../../assets/img/share/wxshare.png);
+		background: #0000FF;
 		background-size: 100% 100%;
 	}
 	
@@ -96,5 +103,15 @@
 	
 	canvas {
 		display: none;
+	}
+	
+	#downPic{
+		position: fixed;
+		z-index: 100000000;
+		width: 100%;
+		height: 50px;
+		background: #006600;
+		top: 0;
+		left: 0;
 	}
 </style>
