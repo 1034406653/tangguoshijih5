@@ -6,6 +6,7 @@ import EnergyRecode from '@/components/index/energy_recode'
 import Energy from '@/components/index/energy'
 import Share from '@/components/index/share'
 import Lab from '@/components/lab/lab'
+import GameList from '@/components/lab/gameList'
 import Center from '@/components/center/center'
 import CandyBox from '@/components/center/candyBox'
 import Contact from '@/components/center/contact'
@@ -60,6 +61,12 @@ export default new Router({
     	path: '/lab/lab',
       name: 'Lab',
       component: resolve => require(['../components/lab/lab'], resolve),
+      meta: { keepAlive: false }
+    },
+    {
+      path: '/lab/gameList',
+      name: 'GameList',
+      component: resolve => require(['../components/lab/gameList'], resolve),
       meta: { keepAlive: false }
     },
     {
