@@ -63,7 +63,6 @@
         let that = this;
         this.$http.post('/power/get_power').then(res => {
           if(res.data.code === 0) {
-            console.log(res.data.data.game)
             that.gameList = that.gameList.concat(res.data.data.game)
           }
         })

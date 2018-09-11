@@ -237,7 +237,6 @@
         let this_ = this
         if (page === 'update') {
           this_.allLoaded = false
-          console.log(1)
           this_.dioDataList = []
           this_.pageIndex = 1
           this.$http.post('/power/power_bill', {
@@ -245,7 +244,6 @@
               pagesize: this_.pagesize
             })
           .then((result) => {
-            console.log(result.data.data);
             if (result.data.data.count < this_.pagesize) {
               this_.allLoaded = true
             } else {
@@ -259,7 +257,6 @@
               page: this_.pageIndex,
               pagesize: this_.pagesize
             }).then((result) => {
-            console.log(result.data.data);
             if (result.data.data.count < this_.pagesize) {
               this_.allLoaded = true
             } else {
@@ -276,12 +273,10 @@
         setTimeout(() => {
           let lastValue = this.list[this.list.length - 1];
           if (lastValue < 40) {
-            console.log(1);
             for (let i = 1; i <= 10; i++) {
               this.list.push(lastValue + i);
             }
           } else {
-            console.log(2);
             this.allLoaded = true;
           }
           this.$refs.loadmore.onBottomLoaded();
@@ -291,7 +286,6 @@
         this.bottomStatus = status;
       },
       loadBottom() {
-        console.log('bottom')
         this.getDioData()
       },
       handleTopChange(status) {
@@ -304,15 +298,11 @@
         this.moveTranslate = (1 + translateNum / 70).toFixed(2);
       },
       loadTop() {
-        console.log('top')
         this.getDioData('update')
       },
     },
     mounted() {
       this.height = document.documentElement.clientHeight - 188;
-      console.log(this.height);
-      console.log(document.documentElement.clientHeight);
-      console.log(this.$refs.loadmore.offsetTop);
     }
   }
 </script>

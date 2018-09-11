@@ -286,7 +286,6 @@
       getDioData(page) {
         let this_ = this
         if (page === 'update') {
-          console.log(1)
           this_.allLoaded = false
           this_.dioDataList = []
           this_.pageIndex = 1
@@ -338,7 +337,6 @@
         this.bottomStatus = status;
       },
       loadBottom() {
-        console.log('bottom')
         this.getDioData()
       },
       handleTopChange(status) {
@@ -351,14 +349,11 @@
         this.moveTranslate = (1 + translateNum / 70).toFixed(2);
       },
       loadTop() {
-        console.log('top')
         this.getDioData('update')
       },
     },
     mounted() {
       this.height = document.documentElement.clientHeight - 188;
-      console.log(this.height);
-      console.log(document.documentElement.clientHeight);
     }
   }
 </script>

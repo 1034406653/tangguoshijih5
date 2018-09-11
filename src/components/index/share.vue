@@ -166,7 +166,6 @@
         let that = this;
         this.$http.post('/user/invitationInfo').then(res => {
           if (res.data.code == "0") {
-            console.log(res)
             that.card_code = res.data.data.inv_code;
             that.inv_power = res.data.data.inv_power;
             that.inv_candy = res.data.data.inv_candy;

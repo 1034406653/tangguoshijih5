@@ -233,11 +233,9 @@
     },
     methods: {
       getQueryData() {
-        console.log(this.$route.query)
         let this_ = this
         if (this.$route.query.coinList[0] === "[object Object]") {
           this.$http.post('/currency/get_currency').then((result) => {
-            console.log(result)
             if (result.data.code === 0) {
               this_.slots[0].values = this_.slots[0].values.concat(result.data.data);
             }
@@ -263,7 +261,6 @@
         }
       },
       onValuesChange(picker, values) {
-        console.log(values)
         if(this.popupShow === false){
           return false
         }else {
