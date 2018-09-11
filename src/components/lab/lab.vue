@@ -12,6 +12,7 @@
 		
 		<div class="content-main">
 			<div class="borderDIv"></div>
+
 			<div class="gameBox">
 				<div class="content-title">
 					游戏
@@ -23,6 +24,7 @@
 					</li>
 				</ul>
 			</div>
+
 			<div class="taskDayBox">
 				<div class="content-title">
 					每日任务
@@ -86,9 +88,7 @@
 		},
 		methods: {
 			init() {
-
 				let that = this;
-				
 				this.$http.post('/power/get_power').then(res => {
 					if(res.data.code == "0") {
 						res.data.data.game.forEach((x, i) => {
@@ -109,12 +109,7 @@
 				window.open(`${game_url}?token=${localStorage.jiazhuoToken}&nickname=${encodeURI(encodeURI(localStorage.nickname))}&head_pic=${localStorage.head_pic === 'null' ? '' : localStorage.head_pic}&game_id=${game_id}`);
 			},
 			moreGame() {
-				let that = this;
-				this.$http.post('/power/get_power').then(res => {
-					if(res.data.code == "0") {
-						that.gameList = res.data.data.game;
-					}
-				})
+				this.$router.push('/lab/gameList')
 			},
 			goSign() {
 				console.log("");
