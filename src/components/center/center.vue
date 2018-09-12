@@ -52,7 +52,6 @@
   import {MessageBox, Toast} from 'mint-ui';
 
 
-
   export default {
     data() {
       return {
@@ -68,7 +67,7 @@
     created() {
       this.init();
     },
-    mounted(){
+    mounted() {
       Prevent.flag = false
       Prevent.init()
     },
