@@ -152,7 +152,7 @@
       </div>
       <div class="draw-data-block">
         <span class="draw-data-span">地址</span>
-        <input type="text" class="draw-address" v-model="queryData.value" placeholder="请输入或黏贴地址" @blur="">
+        <input type="text" class="draw-address" v-model="queryData.value" placeholder="请输入或黏贴地址">
         <span class="draw-data-reset" @click="reset" v-if="resetShow">
         </span>
       </div>
@@ -258,6 +258,7 @@
           this.isRightShow = false
           this.buttonDis = false
           this.popupShow = true
+          this.$router.back(-1)
         }
       },
       onValuesChange(picker, values) {
