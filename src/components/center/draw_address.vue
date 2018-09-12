@@ -145,7 +145,7 @@
                :isRightShow="isRightShow" :rightColor="color" :rightValue="rightValue"></headerNav>
 
     <div class="draw-data-wrapper">
-      <div class="draw-data-block" @touchend="selectListShow">
+      <div class="draw-data-block" @click="selectListShow">
         <span class="draw-data-span">币种</span>
         <div class="draw-coin">{{ queryData.name }}</div>
         <div class="draw-coin selectCoin" v-if="selectCoin">请选择币种</div>
