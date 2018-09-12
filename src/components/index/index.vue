@@ -28,8 +28,6 @@
 				</div>
 			</li>
 		</ul>
-		
-		
 		<ul class="candyList" v-if="candyList.length<1">
 			<li :class="item.className" v-for="(item,index) in candyList2" @touchend="delCanday2(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
@@ -53,6 +51,7 @@
 <script>
 	import '../../assets/css/index.css'
 	import FooterNav from '../base/footerNav'
+	import {Prevent} from '../../../static/js/pervent.js'
 	let arr = new Set([]);
 	export default {
 		data() {
@@ -77,6 +76,7 @@
 		},
 		methods: {
 			init() {
+				Prevent.init();
 				var that = this;
 				for(let i = 0; arr.size < 13; i++) {
 					arr.add(Math.floor(Math.random() * 13));
