@@ -174,7 +174,7 @@
 				}
 			},
 			goPasswordBackend(){
-				console.log('1');
+
 			}
 		},
 		watch: {

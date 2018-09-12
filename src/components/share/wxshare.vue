@@ -4,12 +4,6 @@
 			<div class="QRcode"><span>{{card_code}}</span></div>
 			<canvas id="QRcanvas" class="card_img"></canvas>
 		</div>
-		<div id="imgBox"></div>
-		<div id='downPic'>
-			点我下载
-		</div>
-		<a href="" download="" id='downPic2'></a>
-		<img src="" id="picpic"/>
 	</div>
 
 </template>
@@ -45,24 +39,13 @@
 					that.invitation_coin_count = res.data.data.invitation_coin_count;
 					that.invitation_power = res.data.data.invitation_power;
 					let canvas = document.getElementById('canvas');
-					let QRCode_BaseURL = 'http://www.baidu.com'
+					let QRCode_BaseURL = 'http://web.hzjiazhuo.com/h5/#/invite'
 					let QRCode_URL = QRCode_BaseURL + '?invitation_code=' + this.card_code;
 					QRCode.toCanvas(QRcanvas, QRCode_URL, function(error) {
 						if(error) console.error(error)
 					})
 				}
 			})
-			setTimeout(() => {
-				html2canvas(document.getElementById('picbox')).then(function(canvas) {
-					var pageData = canvas.toDataURL('image/jpeg', 1.0);
-					document.getElementById('picpic').src=pageData;
-					document.getElementById('downPic2').href=pageData;
-					document.getElementById('downPic2').download='1111.jpg';
-				});
-				document.getElementById('downPic').onclick=function(){
-					document.getElementById('downPic').onclick=document.getElementById('downPic2').click();
-				};
-			}, 500)
 		}
 	}
 </script>
@@ -71,12 +54,13 @@
 	html,
 	body {
 		overflow: auto;
+    background-color: white;
 	}
 	
 	.content-wxshare {
 		width: 100%;
 		height: 1200px;
-		background: #0000FF;
+    background: url("../../assets/img/share/wxshare.png");
 		background-size: 100% 100%;
 	}
 	
@@ -93,25 +77,13 @@
 		color: rgba(226, 104, 220, 1);
 		line-height: 46px;
 	}
-	
+
 	#QRcanvas {
 		position: fixed;
+    width: 184px !important;
+    height: 184px !important;
 		left: 8.53%;
 		top: 939px;
 		display: block;
-	}
-	
-	canvas {
-		display: none;
-	}
-	
-	#downPic{
-		position: fixed;
-		z-index: 100000000;
-		width: 100%;
-		height: 50px;
-		background: #006600;
-		top: 0;
-		left: 0;
 	}
 </style>

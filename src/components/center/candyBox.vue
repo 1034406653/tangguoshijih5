@@ -269,7 +269,6 @@
       getDioData(page) {
         let this_ = this
         if (page === 'update') {
-          console.log(1)
           this_.allLoaded = false
           this_.candyList = []
           this_.pageIndex = 1
@@ -278,9 +277,7 @@
               pagesize: this_.pagesize
             }
           ).then((result) => {
-            console.log(result)
             if (result.data.code === 0) {
-              console.log(result.data.data);
               if (result.data.data.candy.length < this_.pagesize) {
                 this_.allLoaded = true
               } else {
@@ -291,12 +288,11 @@
               this_.candyTotal = result.data.data.all_price;
               this_.$refs.loadmore.onTopLoaded()
             } else {
-              console.log(result.data.info)
+
             }
 
           })
         } else {
-          console.log(2)
 
           this.$http.post('/web/get_candy', {
               page: this_.pageIndex,
@@ -304,7 +300,6 @@
             }
           ).then((result) => {
             if (result.data.code === 0) {
-              console.log(result.data.data);
               if (result.data.data.candy.length < this_.pagesize) {
                 this_.allLoaded = true
               } else {
@@ -315,7 +310,6 @@
               this_.candyTotal = result.data.data.all_price;
               this.$refs.loadmore.onBottomLoaded()
             } else {
-              console.log(result.data.info)
             }
           })
         }
@@ -324,12 +318,10 @@
         setTimeout(() => {
           let lastValue = this.list[this.list.length - 1];
           if (lastValue < 40) {
-            console.log(1);
             for (let i = 1; i <= 10; i++) {
               this.list.push(lastValue + i);
             }
           } else {
-            console.log(2);
             this.allLoaded = true;
           }
           this.$refs.loadmore.onBottomLoaded();
@@ -339,7 +331,6 @@
         this.bottomStatus = status;
       },
       loadBottom() {
-        console.log('bottom')
         this.getDioData()
       },
       handleTopChange(status) {
@@ -352,7 +343,6 @@
         this.moveTranslate = (1 + translateNum / 70).toFixed(2);
       },
       loadTop() {
-        console.log('top')
         this.getDioData('update')
       },
       goCoinDetail(itemId) {
@@ -361,8 +351,6 @@
     },
     mounted() {
       this.height = document.documentElement.clientHeight - 188;
-      console.log(this.height);
-      console.log(document.documentElement.clientHeight);
     }
   }
 </script>

@@ -93,7 +93,6 @@
         this.$http.post('/currency/get_currency', {
           token: window.localStorage.getItem("jiazhuoToken"),
         }).then((result) => {
-          console.log(result.data.data)
           if (result.data.code === 0) {
             this_.coinList = this_.coinList.concat(result.data.data);
           }
@@ -103,7 +102,6 @@
         let this_ = this
         this.$http.post('/currency/get_currency_address'
         ).then((result) => {
-          console.log(result);
           this_.currencyList = this_.currencyList.concat(result.data.data);
           for (let i = 0; i < result.data.data.length; i++) {
             for (let j = 0; j < this_.coinList.length; j++) {

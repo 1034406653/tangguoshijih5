@@ -99,7 +99,6 @@
                 that.$http.post('/user/updateUserinfo', {
                   head_pic: res.data.data
                 }).then(result => {
-                  console.log(result);
                   if (result.data.code == '0') {
                     window.localStorage.setItem('head_pic', res.data.data);
                     Toast({

@@ -95,7 +95,6 @@
 								className: "toastName"
 							});
 						} else if(result.data.code == "0") {
-							console.log(result.data.data);
 							window.localStorage.setItem("jiazhuoToken", result.data.data.token);
 							window.localStorage.setItem("nickname", result.data.data.user_info.nickname);
 							window.localStorage.setItem("head_pic", result.data.data.user_info.head_pic);

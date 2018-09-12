@@ -73,7 +73,6 @@
 				let that=this;
 				this.id=this.$route.query.id;
 				this.$http.post('/web/get_candy_details',{id:that.id}).then((res)=>{
-					console.log(res);
 					if(res.data.code=='0'){
 						that.pageTitle=res.data.data.candy_name;
 						that.candy_name=res.data.data.candy_name;
