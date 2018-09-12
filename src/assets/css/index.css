@@ -164,7 +164,6 @@ body .content1 {
 	top: 0;
 	width: 100%;
 	height: auto;
-	padding-bottom: 300px;
 }
 
 .candyList>li,
@@ -249,6 +248,7 @@ body .content1 {
 	left: 50%;
 	margin-left: -200px;
 	top: 930px;
+	margin-bottom: 88px;
 }
 
 .candyList>li.candy11,
@@ -256,6 +256,7 @@ body .content1 {
 	left: 50%;
 	margin-left: 0px;
 	top: 930px;
+	margin-bottom: 88px;
 }
 
 .candyList>li.candy12,
@@ -263,4 +264,5 @@ body .content1 {
 	left: 50%;
 	margin-left: -200px;
 	top: 130px;
+	
 }
