@@ -231,6 +231,9 @@
     created() {
       this.getQueryData()
     },
+    mounted(){
+
+    },
     methods: {
       getQueryData() {
         let this_ = this
@@ -253,6 +256,11 @@
           this.slots[0].defaultIndex = this.$route.query.item.index
           this.resetShow = true
           this.isRightShow = true
+        } else if (this.$route.query.add === true) {
+          this.resetShow = false
+          this.isRightShow = false
+          this.buttonDis = false
+          this.popupShow = true
         } else {
           this.resetShow = false
           this.isRightShow = false
@@ -262,9 +270,9 @@
         }
       },
       onValuesChange(picker, values) {
-        if(this.popupShow === false){
+        if (this.popupShow === false) {
           return false
-        }else {
+        } else {
           this.queryData.name = values[0].name;
           this.queryData.currency_id = values[0].id;
         }
@@ -277,22 +285,22 @@
           id: this.queryData.id
         }).then((result) => {
           if (result.data.code === 0) {
-             Toast({
-								message: result.data.info,
-								position: 'middle',
-								duration: 1000,
-								className: "toastName"
-							}); 
+            Toast({
+              message: result.data.info,
+              position: 'middle',
+              duration: 1000,
+              className: "toastName"
+            });
             setTimeout(() => {
               this.$router.back(-1)
             }, 1500);
           } else {
-          	Toast({
-								message: result.data.info,
-								position: 'middle',
-								duration: 10000000,
-								className: "toastName"
-							}); 
+            Toast({
+              message: result.data.info,
+              position: 'middle',
+              duration: 10000000,
+              className: "toastName"
+            });
           }
         })
       },
@@ -304,21 +312,21 @@
           }).then((result) => {
             if (result.data.code === 0) {
               Toast({
-								message: result.data.info,
-								position: 'middle',
-								duration: 1000,
-								className: "toastName"
-							}); 
+                message: result.data.info,
+                position: 'middle',
+                duration: 1000,
+                className: "toastName"
+              });
               setTimeout(() => {
                 this.$router.back(-1)
               }, 1500);
             } else {
               Toast({
-								message: result.data.info,
-								position: 'middle',
-								duration: 1000,
-								className: "toastName"
-							}); 
+                message: result.data.info,
+                position: 'middle',
+                duration: 1000,
+                className: "toastName"
+              });
             }
           })
         })

@@ -2,21 +2,21 @@ let Prevent = {
   flag: true,
   init() {
     /*this.flag = true*/
-    var this_ = this
+
     function stopTouchendPropagation(ev) {
       console.log('stopTouchendPropagation')
-      console.log('stopTouchendPropagation--FLAG--:' + this_.flag)
+      console.log('stopTouchendPropagation--FLAG--:' + this.flag)
       ev.stopPropagation();
       setTimeout(function () {
         window.removeEventListener('touchend', stopTouchendPropagation, true);
-        this_.flag = false;
+        this.flag = false;
       }, 50);
     }
 
     function touchListen(ev) {
       console.log('touchListen')
-      console.log('touchListen--FLAG--:' + this_.flag)
-      this_.flag || (this_.flag = true, window.addEventListener('touchend', stopTouchendPropagation, true));
+      console.log('touchListen--FLAG--:' + this.flag)
+      this.flag || (this.flag = true, window.addEventListener('touchend', stopTouchendPropagation, true));
     }
 
     if (this.flag === false) {

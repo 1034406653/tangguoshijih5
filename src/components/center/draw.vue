@@ -40,7 +40,7 @@
 
     <ul class="draw-list">
       <li class="draw-list-items" v-for="item in currencyList">
-        <div style="width: 100%;height: 100%" @click="addAddress( item, coinList )">
+        <div style="width: 100%;height: 100%" @click="addAddress( item, coinList)">
           <span class="drwa-list-01">{{ item.name }}</span>
           <img class="drwa-list-02" src="../../assets/img/index/right@2x.png" alt="">
         </div>
@@ -113,9 +113,9 @@
         })
       },
       url(coinList) {
-        this.$router.push({path: '/center/draw_address', query: {coinList}})
+        this.$router.push({path: '/center/draw_address', query: {coinList, add: true}})
       },
-      addAddress(item, coinList) {
+      addAddress(item, coinList, add) {
         this.$router.push({
           path: '/center/draw_address',
           query: {item, coinList}

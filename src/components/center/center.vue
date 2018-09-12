@@ -47,9 +47,11 @@
 </template>
 
 <script>
-	import {Prevent} from '../../../static/js/pervent.js'
+  import {Prevent} from '../../../static/js/pervent.js'
   import FooterNav from '../base/footerNav'
   import {MessageBox, Toast} from 'mint-ui';
+
+
 
   export default {
     data() {
@@ -57,18 +59,26 @@
         footerNav: ["", "", "active"],
         head_pic: require("../../assets/img/index/home_pic_avatar.png"),
         nickname: "",
-        mobile:"",
+        mobile: "",
       }
     },
     components: {
       FooterNav,
     },
     created() {
-     this.init();
+      this.init();
+    },
+    mounted(){
+      Prevent.flag = false
+      Prevent.init()
+    },
+    beforeDestroy() {
+      Prevent.flag = true
+      Prevent.init()
+      console.log('beforeDestroy')
     },
     methods: {
       init() {
-      	Prevent.init();
         if (window.localStorage.getItem('head_pic') != 'null') {
           this.head_pic = window.localStorage.getItem('head_pic');
         }
