@@ -54,13 +54,13 @@
 	html,
 	body {
 		overflow: auto;
-    background-color: white;
+		background-color: white;
 	}
 	
 	.content-wxshare {
 		width: 100%;
 		height: 1200px;
-    background: url("../../assets/img/share/wxshare.png");
+		background: url("../../assets/img/share/wxshare.png");
 		background-size: 100% 100%;
 	}
 	
@@ -77,11 +77,11 @@
 		color: rgba(226, 104, 220, 1);
 		line-height: 46px;
 	}
-
+	
 	#QRcanvas {
 		position: fixed;
-    width: 184px !important;
-    height: 184px !important;
+		width: 184px !important;
+		height: 184px !important;
 		left: 8.53%;
 		top: 939px;
 		display: block;

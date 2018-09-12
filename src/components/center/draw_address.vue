@@ -153,7 +153,7 @@
       <div class="draw-data-block">
         <span class="draw-data-span">地址</span>
         <input type="text" class="draw-address" v-model="queryData.value" placeholder="请输入或黏贴地址" @blur="">
-        <span class="draw-data-reset" @touchend="reset" v-if="resetShow">
+        <span class="draw-data-reset" @click="reset" v-if="resetShow">
         </span>
       </div>
     </div>
@@ -164,9 +164,9 @@
               v-model="popupVisible" position="bottom">
       <div class="piker-wrapper">
         <div class="piker-title">
-          <span class="piker-cancel" @touchend="pikerCancel">取消</span>
+          <span class="piker-cancel" @click="pikerCancel">取消</span>
           <span class="piker-title">币种</span>
-          <span class="piker-yes" @touchend="pikerYes">确定</span>
+          <span class="piker-yes" @click="pikerYes">确定</span>
         </div>
         <mt-picker :slots="slots" @change="onValuesChange" :visibleItemCount="visibleCount"
                    :itemHeight="itemHeight" class="slot1" :valueKey="valueKey"></mt-picker>

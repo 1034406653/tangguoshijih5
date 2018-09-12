@@ -47,6 +47,7 @@
 </template>
 
 <script>
+	import {Prevent} from '../../../static/js/pervent.js'
   import FooterNav from '../base/footerNav'
   import {MessageBox, Toast} from 'mint-ui';
 
@@ -63,10 +64,11 @@
       FooterNav,
     },
     created() {
-      this.init();
+     this.init();
     },
     methods: {
       init() {
+      	Prevent.init();
         if (window.localStorage.getItem('head_pic') != 'null') {
           this.head_pic = window.localStorage.getItem('head_pic');
         }

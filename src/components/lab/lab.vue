@@ -57,6 +57,7 @@
 
 <script>
 	import FooterNav from '../base/footerNav'
+	import {Prevent} from '../../../static/js/pervent.js'
 	import Swiper from 'swiper';
 	import 'swiper/dist/css/swiper.min.css';
 	import Vue from 'vue'
@@ -91,6 +92,7 @@
 		},
 		methods: {
 			init() {
+				Prevent.init();
 				let that = this;
 				this.$http.post('/power/get_power').then(res => {
 					if(res.data.code == "0") {

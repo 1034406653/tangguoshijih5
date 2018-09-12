@@ -194,7 +194,7 @@
       </div>
 
       <ul class="page-loadmore-list">
-        <li v-for="item in candyList" class="page-loadmore-listitem" @touchend="goCoinDetail( item.id )">
+        <li v-for="item in candyList" class="page-loadmore-listitem" @click="goCoinDetail( item.id )">
           <div class="candy-wrapper">
             <img class="candy-icon" :src=" item.candy_icon " alt="">
             <span class="candy-name">{{ item.candy_name }}</span>
@@ -231,7 +231,6 @@
       </div>
     </mt-loadmore>
 
-    <!--<router-link :to="{ path: '/index/dio', query: {}}">dio</router-link>-->
   </div>
 </template>
 
@@ -284,7 +283,6 @@
                 this_.pageIndex++
               }
               this_.candyList = this_.candyList.concat(result.data.data.candy)
-
               this_.candyTotal = result.data.data.all_price;
               this_.$refs.loadmore.onTopLoaded()
             } else {

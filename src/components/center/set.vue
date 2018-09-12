@@ -2,11 +2,11 @@
 	<div class="content2">
 		<headerNav :pageTitle="pageTitle"></headerNav>
 		<ul class="setList">
-			<li @touchend="goContact">
+			<li @click="goContact">
 				<span>联系我们</span>
 				<img src="../../assets/img/center/me_icon_right@2x.png" />
 			</li>
-			<li @touchend="goFeedback">
+			<li @click="goFeedback">
 				<span>说明中心</span>
 				<img src="../../assets/img/center/me_icon_right@2x.png" />
 			</li>
