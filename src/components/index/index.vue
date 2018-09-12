@@ -27,7 +27,7 @@
 					<p>{{item.candy_count}}</p>
 				</div>
 			</li>
-		</ul>
+		</ul>		
 		<ul class="candyList" v-if="candyList.length<1">
 			<li :class="item.className" v-for="(item,index) in candyList2" @touchend="delCanday2(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
@@ -49,9 +49,9 @@
 </template>
 
 <script>
+	import {Prevent} from '../../../static/js/pervent.js'
 	import '../../assets/css/index.css'
 	import FooterNav from '../base/footerNav'
-	import {Prevent} from '../../../static/js/pervent.js'
 	let arr = new Set([]);
 	export default {
 		data() {
