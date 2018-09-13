@@ -227,7 +227,6 @@
             this.seeHideNum = true
             this.contact = true
           } else {
-            MessageBox.alert(result.data.info, '')
             this.seeShowNum = true
             this.seeHideNum = false
             this.contact = false

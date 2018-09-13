@@ -55,7 +55,21 @@
 	.toastName .mint-toast-text {
 		font-size: 26px;
 		line-height: 40px;
+    display: block;
 	}
+
+  .toastName img {
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+  }
+
+  .toastName p {
+    font-size: 28px;
+    color: white;
+  }
 	
 	body .v-modal {
 		opacity: 0.4;
