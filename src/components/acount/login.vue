@@ -1,6 +1,5 @@
 <template>
 	<div class="content2">
-		<headerNav :pageTitle="pageTitle" :goBackShow="goBackShow"></headerNav>
 		<img src="../../assets/img/acount/logo.png" class="logLogo" />
 		<div class="inputBox">
 			<div>
@@ -18,7 +17,7 @@
 			</div>
 			<p v-show="tipList.password">密码格式错误</p>
 		</div>
-		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goLogin"></colorBtn>
+		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goLogin" :cBtnValue="btnValue"></colorBtn>
 		<div class="restAcount">
 			<span @click="goPasswordBack">忘记密码</span>
 			<span @click="goRegister">手机号快速注册</span>
@@ -34,8 +33,7 @@
 	export default {
 		data() {
 			return {
-				pageTitle: "登录",
-				goBackShow: false,
+        btnValue: '登录',
 				passwordType: "password",
 				isLogBtnActive: false,
 				loginData: {

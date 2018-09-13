@@ -74,7 +74,6 @@
     beforeDestroy() {
       Prevent.flag = true
       Prevent.init()
-      console.log('beforeDestroy')
     },
     methods: {
       init() {
