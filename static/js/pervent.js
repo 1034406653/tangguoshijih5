@@ -1,52 +1,36 @@
 let Prevent = {
   flag: true,
-  stopTouchendPropagation: function(ev){
-    var this_ = this
+  stopTouchendPropagation: function (ev) {
     console.log('stopTouchendPropagation')
-    console.log('stopTouchendPropagation--FLAG--:' + this_.flag)
+    console.log('stopTouchendPropagation--FLAG--:' + Prevent.flag)
     ev.stopPropagation();
     setTimeout(function () {
       window.removeEventListener('touchend', Prevent.stopTouchendPropagation, true);
-      this_.flag = false;
+      Prevent.flag = false;
     }, 50);
   },
-  touchListen: function(ev){
-    var this_ = this
+  touchListen: function (ev) {
     console.log('touchListen')
-    console.log('touchListen--FLAG--:' + this_.flag)
-    this_.flag || (this_.flag = true, window.addEventListener('touchend', Prevent.stopTouchendPropagation, true));
+    console.log('touchListen--FLAG--:' + Prevent.flag)
+    if (Prevent.flag === false) {
+      window.addEventListener('touchend', Prevent.stopTouchendPropagation, true)
+      Prevent.flag = true
+    } else if (Prevent.flag === true) {
+      window.removeEventListener('touchend', Prevent.stopTouchendPropagation, false);
+    }
+    /*Prevent.flag || (Prevent.flag = true, window.addEventListener('touchend', Prevent.stopTouchendPropagation, true));*/
     ev.stopPropagation();
   },
   init() {
-    var this_ = this
-
-    if (this.flag === false) {
+    if (Prevent.flag === false) {
       console.log('addEventListener')
-      console.log('addEventListener--FLAG--:' + this.flag)
+      console.log('addEventListener--FLAG--:' + Prevent.flag)
       window.addEventListener('touchmove', Prevent.touchListen, false);
-    } else if (this.flag === true) {
+    } else if (Prevent.flag === true) {
       console.log('removeEventListener')
-      console.log('removeEventListener--FLAG--:' + this.flag)
-      window.removeEventListener('touchmove', ()=>{}, false);
+      console.log('removeEventListener--FLAG--:' + Prevent.flag)
+      window.removeEventListener('touchmove', Prevent.touchListen, false);
     }
-
-    /*function stopTouchendPropagation(ev) {
-      console.log('stopTouchendPropagation')
-      console.log('stopTouchendPropagation--FLAG--:' + this_.flag)
-      ev.stopPropagation();
-      setTimeout(function () {
-        window.removeEventListener('touchend', stopTouchendPropagation, true);
-        this_.flag = false;
-      }, 50);
-    }*/
-
-    /*function touchListen(ev) {
-      console.log('touchListen')
-      console.log('touchListen--FLAG--:' + this_.flag)
-      this_.flag || (this_.flag = true, window.addEventListener('touchend', stopTouchendPropagation, true));
-      ev.stopPropagation();
-    }*/
-
   }
 }
 export {
