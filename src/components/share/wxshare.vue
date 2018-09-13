@@ -1,5 +1,6 @@
 <template>
-	<div>
+  <div>
+    <headerNav :pageTitle="pageTitle"></headerNav>
 		<div class="content-wxshare" id="picbox">
 			<div class="QRcode"><span>{{card_code}}</span></div>
 			<canvas id="QRcanvas" class="card_img"></canvas>
@@ -10,9 +11,9 @@
 
 <script>
 	import QRCode from 'qrcode'
-	import html2canvas from '../../../static/js/html2canvas.min.js'
-	import Canvas2Image from '../../../static/js/canvas2image.js'
-	var saveFile = function(data, filename) {
+  import HeaderNav from '../base/headerNav'
+
+  var saveFile = function(data, filename) {
 		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
 		save_link.href = data;
 		save_link.download = filename;
@@ -23,11 +24,13 @@
 	export default {
 		data() {
 			return {
+        pageTitle: '糖果世纪-分享',
 				card_code: "",
 			}
 		},
 		components: {
-			QRCode
+			QRCode,
+      HeaderNav
 		},
 		mounted() {
 			let that = this;
@@ -58,6 +61,8 @@
 	}
 	
 	.content-wxshare {
+    margin-top: 88px;
+    position: relative;
 		width: 100%;
 		height: 1200px;
 		background: url("../../assets/img/share/wxshare.png");
@@ -65,7 +70,7 @@
 	}
 	
 	.QRcode {
-		position: fixed;
+		position: absolute;
 		width: 100%;
 		top: 678px;
 		left: 0;
@@ -79,7 +84,7 @@
 	}
 	
 	#QRcanvas {
-		position: fixed;
+		position: absolute;
 		width: 184px !important;
 		height: 184px !important;
 		left: 8.53%;

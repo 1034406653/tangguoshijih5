@@ -26,8 +26,15 @@ import Turntable from '@/components/game/turntable'
 import Guide from '@/components/index/guide'
 import Wxshare from '@/components/share/wxshare'
 Vue.use(Router)
+
+
+
 export default new Router({
   routes: [
+    { //重定向
+      path: "*",
+      redirect: "/"
+    },
     {
       path: '/',
       name: 'Index',
