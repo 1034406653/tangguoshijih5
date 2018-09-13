@@ -70,7 +70,7 @@
 		},
 		created() {
 			this.init();
-			if(window.localStorage.getItem('head_pic')!='null'){
+			if(window.localStorage.getItem('head_pic')){
 				this.head_pic=window.localStorage.getItem('head_pic');
 			}
 		},

@@ -248,7 +248,7 @@ body .content1 {
 	left: 50%;
 	margin-left: -200px;
 	top: 930px;
-	margin-bottom: 88px;
+  height: 288px;
 }
 
 .candyList>li.candy11,
@@ -256,13 +256,12 @@ body .content1 {
 	left: 50%;
 	margin-left: 0px;
 	top: 930px;
-	margin-bottom: 168px;
+  height: 288px;
 }
 
 .candyList>li.candy12,
 .candyList2>li.candy12 {
 	left: 50%;
 	margin-left: -200px;
-	top: 130px;
-	
+  top: 130px;
 }
