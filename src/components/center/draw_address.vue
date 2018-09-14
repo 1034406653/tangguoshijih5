@@ -88,9 +88,9 @@
     width: 37px;
     height: 37px;
     position: absolute;
+    background: url("../../assets/img/center/delete.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background: url("../../assets/img/center/delete.png");
   }
 
   .draw-data-wrapper .draw-data-block #draw-data-reset {
