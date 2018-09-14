@@ -89,6 +89,7 @@
     height: 37px;
     position: absolute;
     background-size: 100% 100%;
+    background-repeat: no-repeat;
     background: url("../../assets/img/center/delete.png");
   }
 

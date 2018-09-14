@@ -55,7 +55,21 @@
 	.toastName .mint-toast-text {
 		font-size: 26px;
 		line-height: 40px;
+    display: block;
 	}
+
+  .toastName img {
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+  }
+
+  .toastName p {
+    font-size: 28px;
+    color: white;
+  }
 	
 	body .v-modal {
 		opacity: 0.4;
@@ -102,5 +116,31 @@
 		border-right: 1px solid rgba(239, 239, 239, 1);
 		/*px*/
 	}
-	
+
+  .mint-msgbox-title {
+    font-size:36px ;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    line-height:80px;
+  }
+
+  .mint-msgbox-input {
+
+  }
+
+  .mint-msgbox-input input {
+    width:480px;
+    height:60px;
+    font-size:30px;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    line-height:32px;
+    border-radius:10px;
+    border-color: rgba(153,153,153,1);
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+  }
 </style>

@@ -131,11 +131,11 @@
     width: 38%;
     margin-top: 60px;
     margin-left: 31%;
-    font-size:24px;
-    font-family:PingFang-SC-Medium;
-    font-weight:500;
-    color:rgba(153,153,153,1);
-    line-height:36px;
+    font-size: 24px;
+    font-family: PingFang-SC-Medium;
+    font-weight: 500;
+    color: rgba(153, 153, 153, 1);
+    line-height: 36px;
   }
 </style>
 
@@ -154,7 +154,7 @@
         <span class="realname-data-span">身份证</span>
         <input type="text" class="realname-input" v-model="realData.identity_card" placeholder="在此输入身份证号码"
                :disabled="identity_cardDis" v-show="seeShowNum">
-        <input type="text" class="realname-input" :value=" realData.identity_card | HideNum "
+        <input type="number" class="realname-input" :value=" realData.identity_card | HideNum "
                disabled v-show="seeHideNum">
         <span class="realname-seeNumber" :class="toggleSeeNumber" @click="seeNumber" v-show="seeShow">
         </span>
@@ -166,7 +166,7 @@
       <p>客服电话：15306544612</p>
     </div>
 
-    <div class="realname-button" v-if="seeButton">
+    <div class="realname-button" v-if="seeButton" @click="wrongTipToast">
       <colorBtn :cBtnActive="buttonDis" @cBtnTuch="cofirmshow" :cBtnValue="cBtnValue"></colorBtn>
     </div>
   </div>
@@ -176,6 +176,7 @@
   import HeaderNav from '../base/headerNav'
   import ColorBtn from '../base/colorBtn'
   import {MessageBox} from 'mint-ui'
+  import {Toast} from 'mint-ui'
 
   export default {
     data() {
@@ -195,13 +196,16 @@
         toggleSeeNumber: 'realname-seeNumber-active',
         seeShowNum: true,
         seeHideNum: false,
-        contact: true
+        contact: true,
+        wrongTip: '',
+        wrongTipContrl: true
       }
     },
     components: {
       HeaderNav,
       ColorBtn,
       MessageBox,
+      Toast
     },
     created() {
       this.get_realauth()
@@ -227,7 +231,6 @@
             this.seeHideNum = true
             this.contact = true
           } else {
-            MessageBox.alert(result.data.info, '')
             this.seeShowNum = true
             this.seeHideNum = false
             this.contact = false
@@ -252,7 +255,12 @@
           identity_card: this.realData.identity_card
         }).then((result) => {
           if (result.data.code === 0) {
-            MessageBox.alert(result.data.info, '')
+            Toast({
+              message: '保存成功！',
+              position: 'center',
+              duration: 1500,
+              className: "realName-toast"
+            })
             this.buttonDis = true
             this.seeButton = false
             this.contact = true
@@ -260,10 +268,23 @@
             this.seeShowNum = false
             this.seeHideNum = true
           } else {
-            MessageBox.alert(result.data.info, '')
+            console.log(result.data.info)
             this.contact = true
           }
         })
+      },
+      wrongTipToast() {
+        let this_ = this
+        if (this.wrongTipContrl === true) {
+          Toast({
+            message: this_.wrongTip,
+            position: 'center',
+            duration: 1500,
+            className: "realName-toast"
+          })
+        } else if (this.wrongTipContrl === false) {
+
+        }
       },
       seeNumber() {
         if (this.toggleSeeNumber === '') {
@@ -280,10 +301,21 @@
     watch: {
       realData: {
         handler(curVal, oldVal) {
-          if (curVal.realname !== '' && curVal.identity_card.length === 18) {
+          if (curVal.realname.length === 0) {
             this.buttonDis = true
+            this.wrongTip = '姓名不能为空'
+            this.wrongTipContrl = true
+          } else if (curVal.realname.length > 10) {
+            this.buttonDis = true
+            this.wrongTip = '姓名长度过长'
+            this.wrongTipContrl = true
+          } else if (curVal.identity_card.length === 18) {
+            this.buttonDis = true
+            this.wrongTip = '非18位身份证号'
+            this.wrongTipContrl = true
           } else {
             this.buttonDis = false
+            this.wrongTipContrl = false
           }
         },
         deep: true,

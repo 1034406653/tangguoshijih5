@@ -4,7 +4,7 @@
       <img :src="head_pic" alt="用户头像"/>
       <input class="headInput" ref="inputer" type="file" accept="image/png, image/gif, image/jpg, image/jpeg"
              @change="handleFileChange($event)"/>
-      <div @touchend="changeNickname">{{nickname}}</div>
+      <div @click="changeNickname">{{nickname}}</div>
     </div>
     <div class="nav-box" @touchend="goShare">
       <img src="../../assets/img/center/me_pic_banner1.png"/>
@@ -77,7 +77,7 @@
     },
     methods: {
       init() {
-        if (window.localStorage.getItem('head_pic') != 'null') {
+        if (window.localStorage.getItem('head_pic')) {
           this.head_pic = window.localStorage.getItem('head_pic');
         }
         this.nickname = window.localStorage.getItem('nickname') || "";
