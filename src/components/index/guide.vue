@@ -93,7 +93,7 @@
 				this.zindexActive3 = '';
 				window.localStorage.setItem('guideActive',"completed")
 				this.$router.push({
-					path:"/acount/login"
+					path:"/index/index"
 				})
 			},
 		}
