@@ -43,6 +43,7 @@
     color: rgba(51, 51, 51, 1);
     line-height: 48px;
     margin: 37px auto;
+    text-align: left;
   }
 
   .futAlert .futAlert-button {

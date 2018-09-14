@@ -152,9 +152,9 @@
       </div>
       <div class="realname-data-block">
         <span class="realname-data-span">身份证</span>
-        <input type="text" class="realname-input" v-model="realData.identity_card" placeholder="在此输入身份证号码"
+        <input type="number" class="realname-input" v-model="realData.identity_card" placeholder="在此输入身份证号码"
                :disabled="identity_cardDis" v-show="seeShowNum">
-        <input type="number" class="realname-input" :value=" realData.identity_card | HideNum "
+        <input type="text" class="realname-input" :value=" retrunValue "
                disabled v-show="seeHideNum">
         <span class="realname-seeNumber" :class="toggleSeeNumber" @click="seeNumber" v-show="seeShow">
         </span>
@@ -166,7 +166,7 @@
       <p>客服电话：15306544612</p>
     </div>
 
-    <div class="realname-button" v-if="seeButton" @click="wrongTipToast">
+    <div class="realname-button" v-if="seeButton">
       <colorBtn :cBtnActive="buttonDis" @cBtnTuch="cofirmshow" :cBtnValue="cBtnValue"></colorBtn>
     </div>
   </div>
@@ -197,7 +197,7 @@
         seeShowNum: true,
         seeHideNum: false,
         contact: true,
-        wrongTip: '',
+        wrongTip: '信息不能为空',
         wrongTipContrl: true
       }
     },
@@ -210,9 +210,13 @@
     created() {
       this.get_realauth()
     },
-    filters: {
-      HideNum: function (value) {
-        return value.replace(/(\d{1})\d{16}(\d{1})/, '$1****************$2')
+    computed: {
+      retrunValue() {
+        let xing = '';
+        for (var i = 0; i < 16; i++) {
+          xing += '*';
+        }
+        return this.realData.identity_card.substring(0, 1) + xing + this.realData.identity_card.substring(this.realData.identity_card.length, 17)
       }
     },
     methods: {
@@ -238,15 +242,33 @@
         })
       },
       cofirmshow() {
-        MessageBox.confirm('', {
-          message: `<div class="confirm">
+        let this_ = this
+        if (this.wrongTipContrl === true) {
+          Toast({
+            message: this_.wrongTip,
+            position: 'center',
+            duration: 1500,
+            className: "toastName"
+          })
+        } else if (this.wrongTipContrl === false) {
+          MessageBox.confirm('', {
+            message: `<div class="confirm">
                      <span class="confirmFir">姓名</span> <span class="confirmSec">${this.realData.realname}</span>
                   </div>
                   <div class="confirm">
                      <span class="confirmFir">身份证</span> <span class="confirmSec">${this.realData.identity_card}</span>
                   </div>`,
-          title: ''
-        }).then(this.save_realauth())
+            title: ''
+          }).then(action => {
+            if (action === 'confirm') {
+              this.save_realauth()
+            }
+          }).catch(err => {
+            if (err === 'cancel') {
+
+            }
+          })
+        }
       },
       save_realauth() {
         let this_ = this
@@ -259,7 +281,7 @@
               message: '保存成功！',
               position: 'center',
               duration: 1500,
-              className: "realName-toast"
+              className: "toastName"
             })
             this.buttonDis = true
             this.seeButton = false
@@ -272,19 +294,6 @@
             this.contact = true
           }
         })
-      },
-      wrongTipToast() {
-        let this_ = this
-        if (this.wrongTipContrl === true) {
-          Toast({
-            message: this_.wrongTip,
-            position: 'center',
-            duration: 1500,
-            className: "realName-toast"
-          })
-        } else if (this.wrongTipContrl === false) {
-
-        }
       },
       seeNumber() {
         if (this.toggleSeeNumber === '') {
@@ -302,19 +311,19 @@
       realData: {
         handler(curVal, oldVal) {
           if (curVal.realname.length === 0) {
-            this.buttonDis = true
+            this.buttonDis = false
             this.wrongTip = '姓名不能为空'
             this.wrongTipContrl = true
           } else if (curVal.realname.length > 10) {
-            this.buttonDis = true
+            this.buttonDis = false
             this.wrongTip = '姓名长度过长'
             this.wrongTipContrl = true
-          } else if (curVal.identity_card.length === 18) {
-            this.buttonDis = true
+          } else if (curVal.identity_card.length !== 18 || /(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(curVal.identity_card) === false) {
+            this.buttonDis = false
             this.wrongTip = '非18位身份证号'
             this.wrongTipContrl = true
           } else {
-            this.buttonDis = false
+            this.buttonDis = true
             this.wrongTipContrl = false
           }
         },
