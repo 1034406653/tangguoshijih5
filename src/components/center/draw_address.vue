@@ -101,10 +101,7 @@
     height: 37px;
     position: absolute;
     background: url("../../assets/img/center/delete.png");
-    background-repeat: no-repeat;
-    background-size: 37px 37px;
-
-
+    background-size: 100% 100%;
   }
 
   .piker-wrapper {
