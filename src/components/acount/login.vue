@@ -22,13 +22,15 @@
 			<span @click="goPasswordBack">忘记密码</span>
 			<span @click="goRegister">手机号快速注册</span>
 		</div>
+		<div id="toastlxl" class="toastlxl"></div>
 	</div>
 </template>
 <script>
 	import "../../assets/css/acount.css"
+	import { Toastlxl } from "../../../static/js/toastlxl.js"
 	import HeaderNav from '../base/headerNav'
 	import ColorBtn from '../base/colorBtn'
-	import { Toast } from 'mint-ui'
+	var showModal ='';
 	let base_url = '';
 	export default {
 		data() {
@@ -44,7 +46,6 @@
 					mobile: false,
 					password: false,
 				},
-
 			}
 		},
 		components: {
@@ -52,6 +53,9 @@
 		},
 		created() {
 			base_url = this.$store.state.base_url;
+		},
+		mounted(){
+			showModal = new Toastlxl('toastlxl');				
 		},
 		methods: {
 			changePasswordType() {
@@ -83,29 +87,18 @@
 			},
 			goLogin() {
 				var that = this;
+				
 				if(this.isLogBtnActive) {
 					this.$http.post('/user/login', that.loginData).then((result) => {
 						if(result.data.code == "1") {
 							that.loginData.password = "";
-							Toast({
-								message: result.data.info,
-								position: 'top',
-								duration: 1000,
-								className: "toastName"
-							});
+							showModal.show(result.data.info);
 						} else if(result.data.code == "0") {
 							window.localStorage.setItem("jiazhuoToken", result.data.data.token);
 							window.localStorage.setItem("nickname", result.data.data.user_info.nickname);
 							window.localStorage.setItem("head_pic", result.data.data.user_info.head_pic);
 							window.localStorage.setItem("mobile", result.data.data.user_info.mobile);
-							this.$store.state.head_pic=result.data.data.user_info.head_pic;
-							this.$store.state.nickname=result.data.data.user_info.nickname;
-							Toast({
-								message: result.data.info,
-								position: 'top',
-								duration: 1000,
-								className: "toastName"
-							});
+							showModal.show(`<div class='toastlxl_icon'></div><p>登陆成功</p>`);
 							that.$store.commit({
 								type: 'addToken',
 								tokenCode: result.data.data.token
@@ -114,7 +107,7 @@
 								that.$router.push({
 									path: "/"
 								})
-							}, 1000)
+							}, 1500)
 						}
 					});
 				}

@@ -32,15 +32,17 @@
 			<p v-show="tipList.repassword">两次输入密码不同</p>
 		</div>
 		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goPasswordBack"></colorBtn>
+		<div id="toastlxl" class="toastlxl"></div>
 	</div>
 </template>
 
 <script>
 	import "../../assets/css/acount.css"
 	import HeaderNav from '../base/headerNav'
-	import { Toast } from 'mint-ui'
+	import { Toastlxl } from "../../../static/js/toastlxl.js"
 	import ColorBtn from '../base/colorBtn'
 	let base_url = ""
+	var showModal =''
 	export default {
 		data() {
 			return {
@@ -64,10 +66,14 @@
 			}
 		},
 		components: {
-			HeaderNav,ColorBtn
+			HeaderNav,
+			ColorBtn
 		},
 		created() {
 			base_url = this.$store.state.base_url;
+		},
+		mounted(){
+			showModal = new Toastlxl('toastlxl');				
 		},
 		methods: {
 			mobileBlur() {
@@ -135,19 +141,9 @@
 					this.$http.post('/user/reSetPassword', that.resetPassword)
 						.then((result) => {
 							if(result.data.code === 1) {
-								Toast({
-									message: result.data.info,
-									position: 'top',
-									duration: 1500,
-									className: "toastName"
-								});
+								showModal.show(result.data.info);
 							} else if(result.data.code === 0) {
-								Toast({
-									message: result.data.info,
-									position: 'top',
-									duration: 1500,
-									className: "toastName"
-								});
+								showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
 								setTimeout(() => {
 									that.$router.push({
 										path: "/acount/login"
@@ -170,9 +166,11 @@
 					if(curVal.verify_code.length == "4") {
 						this.tipList.verify_code = false;
 					}
+					if(this.resetPassword.password == this.resetPassword.repassword) {
+						this.tipList.repassword = false;
+					}
 					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6 && curVal.verify_code.length == "4" && this.resetPassword.password === this.resetPassword.repassword) {
 						this.isLogBtnActive = true;
-
 					} else {
 						this.isLogBtnActive = false;
 					}
