@@ -65,7 +65,6 @@
 		}
 	}
 </script>
-
 <style scoped>
 	.setList {
 		width: 100%;
