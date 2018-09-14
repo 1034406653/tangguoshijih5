@@ -70,7 +70,7 @@
   <div class="content2">
     <headerNav :pageTitle="pageTitle"></headerNav>
     <div class="pageContent">
-      <img src="../../assets/img/center/future@2x.png" alt="">
+      <img src="../../assets/img/center/future@2x.png" alt="" onclick="return false">
       <div class="mask" v-show="maskShow"></div>
       <button class="showDetail" @click="show"></button>
       <div class="futAlert" v-show="maskShow">

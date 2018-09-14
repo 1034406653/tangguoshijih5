@@ -48,7 +48,8 @@ body .content1 {
 	width: 56px;
 	height: 56px;
 	float: left;
-	margin: 0px 5px;
+	margin: 0 5px;
+  margin-right: 0;
 }
 
 .dio .energyIcon {
@@ -73,10 +74,11 @@ body .content1 {
 }
 
 .dioText {
-	width: 210px;
+	width: 226px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: inherit;
+  text-align: center;
 }
 
 .energyIcon {

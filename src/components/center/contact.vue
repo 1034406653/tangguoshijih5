@@ -5,19 +5,29 @@
 			<div class="service-item">
 				<div class="item-icon icon-phone"></div>
 				<p class="item-subtitle">客服电话</p>
-				<p>
-					<a href="tel:15306544612" class="item-title">15306544612</a>
-				</p>
+        <div>
+          <p>
+            <a href="tel:15306544612" class="item-title">15306544612</a>
+          </p>
+        </div>
 			</div>
 			<div class="service-item">
 				<div class="item-icon icon-wx"></div>
-				<span class="item-subtitle">微信号</span>
-				<p class="item-title">tangguoshiji</p>
+        <div>
+          <span class="item-subtitle">微信号</span>
+        </div>
+        <div>
+          <p class="item-title">tangguoshiji</p>
+        </div>
 			</div>
 			<div class="service-item">
 				<div class="item-icon icon-qq"></div>
-				<span class="item-subtitle">QQ群</span>
-				<p class="item-title">167811379</p>
+        <div>
+          <span class="item-subtitle">QQ群</span>
+        </div>
+        <div>
+          <p class="item-title">167811379</p>
+        </div>
 			</div>
 		</div>
 	</div>

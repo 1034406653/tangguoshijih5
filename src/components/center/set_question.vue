@@ -13,7 +13,7 @@
   <div class="content2">
     <headerNav :pageTitle="pageTitle"></headerNav>
     <div class="pageContent">
-      <img src="../../assets/img/center/question@2x.png" alt="">
+      <img src="../../assets/img/center/question@2x.png" alt="" onclick="return false">
     </div>
   </div>
 </template>

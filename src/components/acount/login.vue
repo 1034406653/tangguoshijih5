@@ -43,8 +43,7 @@
 				tipList: {
 					mobile: false,
 					password: false,
-				},
-
+				}
 			}
 		},
 		components: {
@@ -90,7 +89,7 @@
 							Toast({
 								message: result.data.info,
 								position: 'top',
-								duration: 1000,
+								duration: 1500,
 								className: "toastName"
 							});
 						} else if(result.data.code == "0") {

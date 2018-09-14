@@ -93,6 +93,17 @@
     background: url("../../assets/img/center/delete.png");
   }
 
+  .draw-data-wrapper .draw-data-block #draw-data-reset {
+    top: 30px;
+    right: 0;
+    width: 37px;
+    height: 37px;
+    position: absolute;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background: url("../../assets/img/center/delete.png");
+  }
+
   .piker-wrapper {
     background-color: white;
     width: 100%;
@@ -154,7 +165,7 @@
       <div class="draw-data-block">
         <span class="draw-data-span">地址</span>
         <input type="text" class="draw-address" v-model="queryData.value" placeholder="请输入或黏贴地址">
-        <span class="draw-data-reset" @click="reset" v-if="resetShow">
+        <span id='draw-data-reset' class="draw-data-reset" @click="reset" v-if="resetShow">
         </span>
       </div>
     </div>
@@ -287,7 +298,7 @@
         }).then((result) => {
           if (result.data.code === 0) {
             Toast({
-              message: result.data.info,
+              message: '添加成功',
               position: 'middle',
               duration: 1000,
               className: "toastName"
@@ -296,12 +307,7 @@
               this.$router.back(-1)
             }, 1500);
           } else {
-            Toast({
-              message: result.data.info,
-              position: 'middle',
-              duration: 10000000,
-              className: "toastName"
-            });
+            console.log(result.data.info)
           }
         })
       },
@@ -313,7 +319,7 @@
           }).then((result) => {
             if (result.data.code === 0) {
               Toast({
-                message: result.data.info,
+                message: '删除成功',
                 position: 'middle',
                 duration: 1000,
                 className: "toastName"
@@ -322,12 +328,7 @@
                 this.$router.back(-1)
               }, 1500);
             } else {
-              Toast({
-                message: result.data.info,
-                position: 'middle',
-                duration: 1000,
-                className: "toastName"
-              });
+              console.log(result.data.info)
             }
           })
         })
