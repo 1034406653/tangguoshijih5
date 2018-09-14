@@ -23,8 +23,13 @@ router.beforeEach((to, from, next) => {
 		if(userInfo || to.path == '/index/guide') {
 			next();
 		} else {
-			let reg = /^\/acount/;
-			if(reg.test(to.path)) { //如果是登录页面路径，就直接next()
+			/*账号相关*/
+			let reg1 = /^\/acount/;
+			/*基本说明*/
+			let reg2 = /^\/center\/feedback/;
+			let reg3 = /^\/center\/set_future/;
+			let reg4 = /^\/center\/set_question/;
+			if(reg1.test(to.path)||reg2.test(to.path)||reg3.test(to.path)||reg4.test(to.path)) { //如果是登录页面路径，就直接next()
 				next();
 			} else { //不然就跳转到登录；
 				next('/acount/login');
