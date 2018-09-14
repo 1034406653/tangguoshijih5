@@ -119,7 +119,7 @@
       <div class="logoLight"></div>
     </div>
 
-    <div class="card">
+    <div class="card" touchend="return false">
       <div class="card_code">{{card_code}}</div>
       <canvas id="canvas" class="card_img"></canvas>
       <div class="shareBtn" @click="goSharePage"></div>
