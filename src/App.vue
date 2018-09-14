@@ -15,7 +15,7 @@
 
 <style>
 	@import url("../static/css/common.css");
-  @import url('assets/css/my_mint_draw.css');
+	@import url('assets/css/my_mint_draw.css');
 	#app {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
@@ -55,21 +55,21 @@
 	.toastName .mint-toast-text {
 		font-size: 26px;
 		line-height: 40px;
-    display: block;
+		display: block;
 	}
-
-  .toastName img {
-    display: block;
-    margin: 0 auto;
-    width: 30px;
-    height: 30px;
-    background-size: 100% 100%;
-  }
-
-  .toastName p {
-    font-size: 28px;
-    color: white;
-  }
+	
+	.toastName img {
+		display: block;
+		margin: 0 auto;
+		width: 30px;
+		height: 30px;
+		background-size: 100% 100%;
+	}
+	
+	.toastName p {
+		font-size: 28px;
+		color: white;
+	}
 	
 	body .v-modal {
 		opacity: 0.4;
@@ -116,31 +116,59 @@
 		border-right: 1px solid rgba(239, 239, 239, 1);
 		/*px*/
 	}
-
-  .mint-msgbox-title {
-    font-size:36px ;
-    font-family:PingFang-SC-Medium;
-    font-weight:500;
-    color:rgba(51,51,51,1);
-    line-height:80px;
-  }
-
-  .mint-msgbox-input {
-
-  }
-
-  .mint-msgbox-input input {
-    width:480px;
-    height:60px;
-    font-size:30px;
-    font-family:PingFang-SC-Medium;
-    font-weight:500;
-    color:rgba(51,51,51,1);
-    line-height:32px;
-    border-radius:10px;
-    border-color: rgba(153,153,153,1);
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-  }
+	
+	.mint-msgbox-title {
+		font-size: 36px;
+		font-family: PingFang-SC-Medium;
+		font-weight: 500;
+		color: rgba(51, 51, 51, 1);
+		line-height: 80px;
+	}
+	
+	.mint-msgbox-input input {
+		width: 480px;
+		height: 60px;
+		font-size: 30px;
+		font-family: PingFang-SC-Medium;
+		font-weight: 500;
+		color: rgba(51, 51, 51, 1);
+		line-height: 32px;
+		border-radius: 10px;
+		border-color: rgba(153, 153, 153, 1);
+		text-align: center;
+		display: block;
+		margin: 0 auto;
+	}
+	/*toast样式*/
+	
+	.toastlxl {
+		display: none;
+		padding: 16px 0;
+		width: 34%;
+		background: rgba(0, 0, 0, 0.4);
+		line-height: 60px;
+		position: fixed;
+		top: 35%;
+		left: 50%;
+		margin-left: -17%;
+		border-radius: 20px;
+		color: #ffffff;
+		font-size: 24px;
+		text-align: center;
+		z-index: 1;
+	}
+	
+	.toastlxl>span {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	
+	.toastlxl>span .toastlxl_icon {
+		background: url(../src/assets/img/base/toastlxl_icon.png);
+		background-size: 100% 100%;
+		width: 40px;
+		height: 40px;
+		margin: 0 auto;
+	}
 </style>

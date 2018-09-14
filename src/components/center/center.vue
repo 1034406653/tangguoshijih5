@@ -43,15 +43,16 @@
       </div>
     </div>
     <FooterNav :footerNav="footerNav"></FooterNav>
+    <div id="toastlxl" class="toastlxl"></div>
   </div>
 </template>
 
 <script>
   import {Prevent} from '../../../static/js/pervent.js'
   import FooterNav from '../base/footerNav'
-  import {MessageBox, Toast} from 'mint-ui';
-
-
+  import {MessageBox} from 'mint-ui';
+	import { Toastlxl } from "../../../static/js/toastlxl.js"
+	var showModal ='';
   export default {
     data() {
       return {
@@ -70,6 +71,7 @@
     mounted() {
       Prevent.flag = false
       Prevent.init()
+      showModal = new Toastlxl('toastlxl');
     },
     beforeDestroy() {
       Prevent.flag = true
@@ -111,19 +113,9 @@
                 }).then(result => {
                   if (result.data.code == '0') {
                     window.localStorage.setItem('head_pic', res.data.data);
-                    Toast({
-                      message: result.data.info,
-                      position: 'middle',
-                      duration: 1000,
-                      className: "toastName"
-                    });
+                    showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
                   } else {
-                    Toast({
-                      message: result.data.info,
-                      position: 'middle',
-                      duration: 1000,
-                      className: "toastName"
-                    });
+                    showModal.show(result.data.info);
                   }
 
                 })
@@ -148,19 +140,9 @@
             if (res.data.code == '0') {
               that.nickname = value;
               window.localStorage.setItem('nickname', value);
-              Toast({
-                message: res.data.info,
-                position: 'middle',
-                duration: 1000,
-                className: "toastName"
-              });
+              showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
             } else {
-              Toast({
-                message: res.data.info,
-                position: 'middle',
-                duration: 1000,
-                className: "toastName"
-              });
+              showModal.show(res.data.info);
             }
 
           })
