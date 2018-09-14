@@ -169,6 +169,7 @@
     <div class="realname-button" v-if="seeButton">
       <colorBtn :cBtnActive="buttonDis" @cBtnTuch="cofirmshow" :cBtnValue="cBtnValue"></colorBtn>
     </div>
+    <div id="toastlxl" class="toastlxl"></div>
   </div>
 </template>
 
@@ -176,8 +177,7 @@
   import HeaderNav from '../base/headerNav'
   import ColorBtn from '../base/colorBtn'
   import {MessageBox} from 'mint-ui'
-  import {Toast} from 'mint-ui'
-
+  import { Toastlxl } from "../../../static/js/toastlxl.js"
   export default {
     data() {
       return {
@@ -204,8 +204,7 @@
     components: {
       HeaderNav,
       ColorBtn,
-      MessageBox,
-      Toast
+      MessageBox
     },
     created() {
       this.get_realauth()
@@ -244,12 +243,7 @@
       cofirmshow() {
         let this_ = this
         if (this.wrongTipContrl === true) {
-          Toast({
-            message: this_.wrongTip,
-            position: 'center',
-            duration: 1500,
-            className: "toastName"
-          })
+        	showModal.show(this_.wrongTip);
         } else if (this.wrongTipContrl === false) {
           MessageBox.confirm('', {
             message: `<div class="confirm">
@@ -277,12 +271,7 @@
           identity_card: this.realData.identity_card
         }).then((result) => {
           if (result.data.code === 0) {
-            Toast({
-              message: '保存成功！',
-              position: 'center',
-              duration: 1500,
-              className: "toastName"
-            })
+            showModal.show(`<div class='toastlxl_icon'></div><p>保存成功</p>`);
             this.buttonDis = true
             this.seeButton = false
             this.contact = true

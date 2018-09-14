@@ -69,9 +69,9 @@
       this.init();
     },
     mounted() {
+    	showModal = new Toastlxl('toastlxl');				
       Prevent.flag = false
       Prevent.init()
-      showModal = new Toastlxl('toastlxl');
     },
     beforeDestroy() {
       Prevent.flag = true
@@ -115,7 +115,7 @@
                     window.localStorage.setItem('head_pic', res.data.data);
                     showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
                   } else {
-                    showModal.show(result.data.info);
+                   showModal.show(result.data.info);
                   }
 
                 })
@@ -142,7 +142,7 @@
               window.localStorage.setItem('nickname', value);
               showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
             } else {
-              showModal.show(res.data.info);
+              showModal.show(result.data.info);
             }
 
           })

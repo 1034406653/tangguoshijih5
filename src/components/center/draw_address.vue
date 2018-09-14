@@ -184,15 +184,16 @@
                    :itemHeight="itemHeight" class="slot1" :valueKey="valueKey"></mt-picker>
       </div>
     </mt-popup>
-
+		<div id="toastlxl" class="toastlxl"></div>
   </div>
 </template>
 
 <script>
   import HeaderNav from '../base/headerNav'
   import ColorBtn from '../base/colorBtn'
-  import {MessageBox, Popup, Picker, Toast} from 'mint-ui'
-
+  import {MessageBox, Popup, Picker} from 'mint-ui'
+  import { Toastlxl } from "../../../static/js/toastlxl.js"
+  var showModal ='';
   export default {
     data() {
       return {
@@ -237,14 +238,13 @@
       Picker,
       MessageBox,
       Popup,
-      ColorBtn,
-      Toast
+      ColorBtn
     },
     created() {
       this.getQueryData()
     },
     mounted(){
-
+			showModal = new Toastlxl('toastlxl');	
     },
     methods: {
       getQueryData() {
@@ -297,12 +297,7 @@
           id: this.queryData.id
         }).then((result) => {
           if (result.data.code === 0) {
-            Toast({
-              message: '添加成功',
-              position: 'middle',
-              duration: 1000,
-              className: "toastName"
-            });
+            showModal.show(`<div class='toastlxl_icon'></div><p>添加成功</p>`);
             setTimeout(() => {
               this.$router.back(-1)
             }, 1500);
@@ -318,12 +313,7 @@
             id: this.queryData.id
           }).then((result) => {
             if (result.data.code === 0) {
-              Toast({
-                message: '删除成功',
-                position: 'middle',
-                duration: 1000,
-                className: "toastName"
-              });
+             showModal.show(`<div class='toastlxl_icon'></div><p>删除成功</p>`);
               setTimeout(() => {
                 this.$router.back(-1)
               }, 1500);
