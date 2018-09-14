@@ -13,7 +13,7 @@
 				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
 				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" />
 				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @click="changePasswordType" v-if="passwordType!='password'" />
-				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @click="changePasswordType"  v-if="passwordType=='password'"/>
+				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @click="changePasswordType" v-if="passwordType=='password'" />
 			</div>
 			<p v-show="tipList.password">密码格式错误</p>
 		</div>
@@ -30,12 +30,12 @@
 	import { Toastlxl } from "../../../static/js/toastlxl.js"
 	import HeaderNav from '../base/headerNav'
 	import ColorBtn from '../base/colorBtn'
-	var showModal ='';
+	var showModal = '';
 	let base_url = '';
 	export default {
 		data() {
 			return {
-        btnValue: '登录',
+				btnValue: '登录',
 				passwordType: "password",
 				isLogBtnActive: false,
 				loginData: {
@@ -49,13 +49,14 @@
 			}
 		},
 		components: {
-			HeaderNav,ColorBtn
+			HeaderNav,
+			ColorBtn
 		},
 		created() {
 			base_url = this.$store.state.base_url;
 		},
-		mounted(){
-			showModal = new Toastlxl('toastlxl');				
+		mounted() {
+			showModal = new Toastlxl('toastlxl');
 		},
 		methods: {
 			changePasswordType() {
@@ -87,7 +88,6 @@
 			},
 			goLogin() {
 				var that = this;
-				
 				if(this.isLogBtnActive) {
 					this.$http.post('/user/login', that.loginData).then((result) => {
 						if(result.data.code == "1") {
@@ -104,9 +104,15 @@
 								tokenCode: result.data.data.token
 							})
 							setTimeout(() => {
-								that.$router.push({
-									path: "/"
-								})
+								if(window.localStorage.getItem("guideActive")=='completed') {
+									that.$router.push({
+										path: "/"
+									})
+								}else{
+									that.$router.push({
+										path: "/index/guide"
+									})
+								}
 							}, 1500)
 						}
 					});

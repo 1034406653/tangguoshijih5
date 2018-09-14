@@ -17,10 +17,9 @@ Vue.config.productionTip = false
 let userInfo = '';
 let guideActive='';
 router.beforeEach((to, from, next) => {
-	guideActive=window.localStorage.getItem("guideActive");
-	if(guideActive ||to.path=='/index/guide') {
+	
 		userInfo = window.localStorage.getItem("jiazhuoToken");
-		if(userInfo ||to.path=='/index/guide') {
+		if(userInfo) {
 			next();
 		} else {
 			let reg = /^\/acount/;
@@ -30,9 +29,7 @@ router.beforeEach((to, from, next) => {
 				next('/acount/login');
 			}
 		}
-	}else{
-		next('/index/guide');
-	}
+	
 })
 promise.polyfill();
 // 全局配置
