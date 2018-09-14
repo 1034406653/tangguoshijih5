@@ -1,6 +1,6 @@
 <template>
 	<div id="header">
-		<img src="../../assets/img/base/navigation_nav_back@2x.png" class="back" @click="goBack" v-show="goBackShow" />
+		<img src="../../assets/img/base/navigation_nav_back@2x.png" class="back" @touchend="goBack" v-show="goBackShow" />
 		<div class="title">{{pageTitle}}</div>
 		<span v-if="isRightShow" :style="rightColor" class="rightBtn" @click="navTo">{{rightValue}}</span>
 	</div>
