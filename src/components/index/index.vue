@@ -20,6 +20,11 @@
 			<img src="../../assets/img/index/home_iocn_invitation.png" />
 			<span>邀请好友</span>
 		</div>
+
+    <div class="plant" onclick="return false">
+
+    </div>
+
 		<ul class="candyList">
 			<li :class="item.className" v-for="(item,index) in candyList" @touchend="delCanday(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
@@ -37,7 +42,7 @@
 			</li>
 		</ul>
 		<ul class="candyList2" v-show="candyList.length<1 && candyList2.length<1">
-			<li class="candy2">
+			<li class="candy2 candyProduct">
 				<div class="candyBox">
 					<img src="../../assets/img/index/home_dio@2x.png" alt="糖果" />
 					<p>正在生成中</p>

@@ -1,5 +1,5 @@
 body .content1 {
-	background: url(../../assets/img/index/home_pic_background.png);
+	background: url(../../../static/me_pic_background.png);
 	background-size: 100% 100%;
 	position: relative;
 }
@@ -255,7 +255,7 @@ body .content1 {
 .candyList>li.candy11,
 .candyList2>li.candy11 {
 	left: 50%;
-	margin-left: 0px;
+	margin-left: 0;
 	top: 930px;
   height: 288px;
 }
@@ -265,4 +265,20 @@ body .content1 {
 	left: 50%;
 	margin-left: -200px;
   top: 130px;
+}
+
+.content1 .candyList2 .candyProduct {
+  top: 240px
+}
+
+.plant {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -318px;
+  margin-top: -160px;
+  width: 636px;
+  height: 468px;
+  background: url("../../assets/img/index/race_circle@2x.png");
+  background-size: 100% 100%;
 }
