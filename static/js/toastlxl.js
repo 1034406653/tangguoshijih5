@@ -15,7 +15,7 @@ Toastlxl.prototype.show = function(text) {
 	window.setTimeout(function() {
 		that.shown = false;
 		that.ele.style.display = "none"
-	}, 1500);
+	}, 1000);
 };
 export {
 	Toastlxl

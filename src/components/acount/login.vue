@@ -104,16 +104,10 @@
 								tokenCode: result.data.data.token
 							})
 							setTimeout(() => {
-								if(window.localStorage.getItem("guideActive")=='completed') {
-									that.$router.push({
+								that.$router.push({
 										path: "/"
 									})
-								}else{
-									that.$router.push({
-										path: "/index/guide"
-									})
-								}
-							}, 1500)
+							}, 1000)
 						}
 					});
 				}

@@ -22,7 +22,23 @@
 				<b>下一步</b>
 			</div>
 		</div>
-		<div class="guide3" :style="zindexActive3" @click="goLogin">
+		<div class="guide1" :style="zindexActive1" v-if="step1BOX">
+			<img src="../../assets/img/index/guide3-bg3.png" class="guide3-bg3" />
+			<img src="../../assets/img/index/guide3-step3.png" class="guide3-step3" />
+			<div class="guide-step3-text" v-if="step3Show">
+				<span>更多糖果游戏，尽在实验室</span>
+				<b>知道啦</b>
+			</div>
+		</div>
+		<div class="guide2" :style="zindexActive2"v-if="step2BOX">
+			<img src="../../assets/img/index/guide3-bg3.png" class="guide3-bg3" />
+			<img src="../../assets/img/index/guide3-step3.png" class="guide3-step3" />
+			<div class="guide-step3-text" v-if="step3Show">
+				<span>更多糖果游戏，尽在实验室</span>
+				<b>知道啦</b>
+			</div>
+		</div>
+		<div class="guide3" :style="zindexActive3" @click="goLogin" v-if="step3BOX">
 			<img src="../../assets/img/index/guide3-bg3.png" class="guide3-bg3" />
 			<img src="../../assets/img/index/guide3-step3.png" class="guide3-step3" />
 			<div class="guide-step3-text" v-if="step3Show">
@@ -33,7 +49,6 @@
 		<div class="share">
 			<img src="../../assets/img/index/home_iocn_invitation.png" />
 			<span>邀请好友</span>
-			
 		</div>
 
 		<div class="candyList2 guide1" :style="zindexActive1">
@@ -41,7 +56,7 @@
 				<div class="candyBox">
 					<img src="../../assets/img/index/home_dio@2x.png" alt="糖果" />
 					<p>正在生成中</p>
-					<div class="cover-circle" v-if="step1Show"></div>
+					<!--<div class="cover-circle" v-if="step1Show"></div>-->
 				</div>
 				<img src="../../assets/img/index/guide-step1@2x.png" v-if="step1Show" />
 				<div class="guide-step1-text" v-if="step1Show">
@@ -51,7 +66,7 @@
 			</div>
 		</div>
 		<FooterNav :footerNav="footerNav"></FooterNav>
-		<div class="coverBg"></div>
+		<div class="coverBg" v-if="step3BOX"></div>
 	</div>
 </template>
 <script>
@@ -69,6 +84,9 @@
 				step2Show: false,
 				zindexActive3: '',
 				step3Show: false,
+				step3BOX:true,
+				step1BOX:true,
+				step2BOX:true,
 			}
 		},
 		components: {
@@ -92,9 +110,10 @@
 				this.step3Show = false;
 				this.zindexActive3 = '';
 				window.localStorage.setItem('guideActive',"completed")
-				this.$router.push({
-					path:"/index/index"
-				})
+				this.step3BOX=false;
+//				this.$router.push({
+//					path:"/index/index"
+//				})
 			},
 		}
 	}

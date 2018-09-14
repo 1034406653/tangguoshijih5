@@ -15,11 +15,12 @@ Vue.prototype.$qs = qs
 Vue.use(MintUI)
 Vue.config.productionTip = false
 let userInfo = '';
-let guideActive='';
+let guideActive = '';
 router.beforeEach((to, from, next) => {
-	
+	guideActive = window.localStorage.getItem("guideActive")
+	if(guideActive == 'completed' || to.path == '/index/guide') {
 		userInfo = window.localStorage.getItem("jiazhuoToken");
-		if(userInfo) {
+		if(userInfo || to.path == '/index/guide') {
 			next();
 		} else {
 			let reg = /^\/acount/;
@@ -29,7 +30,9 @@ router.beforeEach((to, from, next) => {
 				next('/acount/login');
 			}
 		}
-	
+	}else{
+		next('/index/guide');
+	}
 })
 promise.polyfill();
 // 全局配置
