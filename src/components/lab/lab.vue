@@ -3,9 +3,8 @@
 		<div class="swiper-container banner">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide" v-for="item in bannerList">
-					<img src="../../assets/img/lab/laboratory_pic_banner@2x.png" />
+					<img :src="item.img_url" />
 				</div>
-
 			</div>
 			<!-- 如果需要分页器 -->
 			<div class="swiper-pagination"></div>
@@ -53,6 +52,7 @@
 			</div>
 		</div>
 		<FooterNav :footerNav="footerNav"></FooterNav>
+		<div id="toastlxl" class="toastlxl"></div>
 	</div>
 </template>
 
@@ -62,7 +62,7 @@
 	import Swiper from 'swiper';
 	import 'swiper/dist/css/swiper.min.css';
 	import Vue from 'vue'
-
+	import { Toastlxl } from "../../../static/js/toastlxl.js"
 	let gameURL = "";
 	let localStorage = window.localStorage;
 	export default {
@@ -84,32 +84,30 @@
 		created() {
 			this.init();
 		},
-		mounted() {
-			let mySwiper = new Swiper('.swiper-container', {
-				autoplay: {
-					delay: 3000,
-					stopOnLastSlide: false,
-					disableOnInteraction: true,
-				},
-				loop: true,
-				// 如果需要分页器
-				pagination: {
-					el: '.swiper-pagination',
-				},
-			})
-		},
 		methods: {
 			init() {
 				Prevent.init();
 				let that = this;
 				/*banner图*/
 				this.$http.post('/web/get_banner').then(res => {
-					console.log(res);
 					if(res.data.code == "0") {
-						that.bannerList=res.data.data;
+						that.bannerList = res.data.data;
+						setTimeout(() => {
+							let mySwiper = new Swiper('.swiper-container', {
+								autoplay: {
+									delay: 3000,
+									stopOnLastSlide: false,
+									disableOnInteraction: true,
+								},
+								loop: true,
+								// 如果需要分页器
+								pagination: {
+									el: '.swiper-pagination',
+								},
+							})
+						}, 200)
 					}
 				})
-
 				this.$http.post('/power/get_power').then(res => {
 					if(res.data.code == "0") {
 						res.data.data.game.forEach((x, i) => {
