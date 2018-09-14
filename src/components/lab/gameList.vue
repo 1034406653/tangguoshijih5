@@ -31,7 +31,7 @@
 
     <div class="gameBox">
       <ul class="gameList">
-        <li v-for="item in gameList" @click="goGame(item.game_url,item.id)">
+        <li v-for="item in gameList" @touchend="goGame(item.game_url,item.id)">
           <img :src="item.game_icon"/>
         </li>
       </ul>

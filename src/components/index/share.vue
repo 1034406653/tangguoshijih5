@@ -122,7 +122,7 @@
     <div class="card" onclick="return false">
       <div class="card_code">{{card_code}}</div>
       <canvas id="canvas" class="card_img"></canvas>
-      <div class="shareBtn" @click="goSharePage"></div>
+      <div class="shareBtn" @touchend="goSharePage"></div>
       <div class="shareCountPow">
         <p>累计获得{{ inv_candy }}个DIO</p>
         <p>累计获得{{ inv_power }}个永久算力</p>

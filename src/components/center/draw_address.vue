@@ -321,7 +321,8 @@
               console.log(result.data.info)
             }
           })
-        })
+        }).catch(err => {
+				});
       },
       reset() {
         this.queryData.value = ''

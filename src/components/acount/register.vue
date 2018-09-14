@@ -12,7 +12,7 @@
 			<div>
 				<img src="../../assets/img/acount/reg_reg_captcha@2x.png" class="icon" />
 				<input type="text" placeholder="请输入验证码" v-model="registerData.verify_code" @blur="verifyBlur" />
-				<span class="verifyBtn" v-show="verifyBtnShow" @click="getVerify">获取验证码</span>
+				<span class="verifyBtn" v-show="verifyBtnShow" @touchend="getVerify">获取验证码</span>
 				<span class="verifyCount verifyBtn" v-show="!verifyBtnShow">{{verifyCountNum}} S</span>
 			</div>
 			<p v-show="tipList.verify_code">验证码格式错误</p>
@@ -40,7 +40,7 @@
 		</div>
 		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goRegister" :cBtnValue="cBtnValue"></colorBtn>
 		<div class="agreement">
-			注册即表示您同意<span @click="goAgreement">《用户注册协议》</span>
+			注册即表示您同意<span @touchend="goAgreement">《用户注册协议》</span>
 		</div>
 	</div>
 </template>
