@@ -111,7 +111,7 @@
 </style>
 
 <template>
-  <div class="content2">
+  <div class="content2" touchend="return false">
     <headerNav :pageTitle="pageTitle"></headerNav>
 
     <div class="logoItem">
@@ -119,7 +119,7 @@
       <div class="logoLight"></div>
     </div>
 
-    <div class="card" touchend="return false">
+    <div class="card">
       <div class="card_code">{{card_code}}</div>
       <canvas id="canvas" class="card_img"></canvas>
       <div class="shareBtn" @click="goSharePage"></div>
