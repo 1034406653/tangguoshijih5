@@ -1,7 +1,7 @@
 <template>
   <div>
     <headerNav :pageTitle="pageTitle"></headerNav>
-		<div class="content-wxshare" id="picbox">
+		<div class="content-wxshare" id="picbox" onclick="return false">
 			<div class="QRcode"><span>{{card_code}}</span></div>
 			<canvas id="QRcanvas" class="card_img"></canvas>
 		</div>

@@ -1,6 +1,6 @@
 <template>
 	<div class="content2">
-		<img src="../../assets/img/acount/logo.png" class="logLogo" />
+		<img src="../../assets/img/acount/logo.png" class="logLogo" onclick="return false"/>
 		<div class="inputBox">
 			<div>
 				<img src="../../assets/img/acount/reg_reg_phone@2x.png" class="icon" />

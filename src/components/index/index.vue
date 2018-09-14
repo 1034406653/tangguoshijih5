@@ -1,5 +1,5 @@
 <template>
-	<div class="content1" touchend="return false">
+	<div class="content1" onclick="return false">
 		<img :src="head_pic" class="user" @touchend="goEnergyRecode" />
 		<img src="../../assets/img/index/home_icon_question@3x.png" class="introduce" @touchend="goFeedback" />
 		<div class="dio">

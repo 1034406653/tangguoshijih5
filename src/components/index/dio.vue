@@ -1,7 +1,7 @@
 <template>
 	<div class="content2">
 		<headerNav :pageTitle="pageTitle" :isRightShow="headRightShow" :rightValue="headRightValue" @headRightClick="goDioDetail"></headerNav>
-		<div class="banner">
+		<div class="banner" onclick="return false">
 			<img :src="candy_icon" alt="" />
 			<ul>
 				<li>

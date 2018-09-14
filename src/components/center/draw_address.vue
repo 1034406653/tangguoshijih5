@@ -94,14 +94,17 @@
   }
 
   .draw-data-wrapper .draw-data-block #draw-data-reset {
+    display: block;
     top: 30px;
     right: 0;
     width: 37px;
     height: 37px;
     position: absolute;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
     background: url("../../assets/img/center/delete.png");
+    background-repeat: no-repeat;
+    background-size: 37px 37px;
+
+
   }
 
   .piker-wrapper {
