@@ -2,7 +2,8 @@
 	<div class="content1 labContent">
 		<div class="swiper-container banner">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide" v-for="item in bannerList">
+				<div class="swiper-slide" v-for="(item,index) in bannerList">
+					<!--<p>{{index}}</p>-->
 					<img :src="item.img_url" />
 				</div>
 			</div>
@@ -19,7 +20,7 @@
 					<span @clic="moreGame" v-if="gameList.length>3" class="moreGame">更多</span>
 				</div>
 				<ul class="gameList">
-					<li v-for="item in gameList" @touchend="goGame(item.game_url,item.id)">
+					<li v-for="(item,index) in gameList" @touchend="goGame(item.game_url,item.id)">
 						<img :src="item.game_icon" />
 					</li>
 				</ul>
@@ -55,7 +56,6 @@
 		<div id="toastlxl" class="toastlxl"></div>
 	</div>
 </template>
-
 <script>
 	import FooterNav from '../base/footerNav'
 	import { Prevent } from '../../../static/js/pervent.js'

@@ -23,7 +23,8 @@
 			<div class="account-li" @touchend="goRealName">
 				<img src="../../assets/img/center/realNameTest@2x.png" />
 				<span>实名认证</span>
-				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" />
+				<img src="../../assets/img/center/me_icon_right@2x.png" class="nextGo" v-if="!authenticated" />
+				<b v-if="authenticated" class="authenticatedText">已认证</b>
 			</div>
 			<div class="account-li" @touchend="goDraw">
 				<img src="../../assets/img/center/me_icon_adress@2x.png" />
@@ -59,6 +60,7 @@
 				head_pic: require("../../assets/img/index/home_pic_avatar.png"),
 				nickname: "",
 				mobile: "",
+				authenticated:false,
 			}
 		},
 		components: {
@@ -78,11 +80,17 @@
 		},
 		methods: {
 			init() {
+				let that=this;
 				if(window.localStorage.getItem('head_pic')) {
 					this.head_pic = window.localStorage.getItem('head_pic');
 				}
 				this.nickname = window.localStorage.getItem('nickname') || "";
 				this.mobile = window.localStorage.getItem('mobile') || "";
+				this.$http.post('user/get_realauth').then((res)=>{
+					if(res.data.code==0){
+						that.authenticated=true;
+					}
+				})
 			},
 			handleFileChange(event) {
 				let that = this;
@@ -119,7 +127,7 @@
 								})
 								window.localStorage.setItem('head_pic', res.data.data);
 							}
-						})
+					})
 				}
 			},
 			changeNickname() {
