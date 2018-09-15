@@ -178,6 +178,8 @@
   import ColorBtn from '../base/colorBtn'
   import {MessageBox} from 'mint-ui'
   import { Toastlxl } from "../../../static/js/toastlxl.js"
+
+  var showModal = '';
   export default {
     data() {
       return {
@@ -208,6 +210,9 @@
     },
     created() {
       this.get_realauth()
+    },
+    mounted() {
+      showModal = new Toastlxl('toastlxl');
     },
     computed: {
       retrunValue() {
@@ -267,20 +272,21 @@
       save_realauth() {
         let this_ = this
         this.$http.post('/user/realauth', {
-          realname: this.realData.realname,
-          identity_card: this.realData.identity_card
+          realname: this_.realData.realname,
+          identity_card: this_.realData.identity_card
         }).then((result) => {
           if (result.data.code === 0) {
+            console.log(result)
             showModal.show(`<div class='toastlxl_icon'></div><p>保存成功</p>`);
-            this.buttonDis = true
-            this.seeButton = false
-            this.contact = true
-            this.seeShow = true
-            this.seeShowNum = false
-            this.seeHideNum = true
+            this_.buttonDis = true
+            this_.seeButton = false
+            this_.contact = true
+            this_.seeShow = true
+            this_.seeShowNum = false
+            this_.seeHideNum = true
           } else {
             console.log(result.data.info)
-            this.contact = true
+            this_.contact = true
           }
         })
       },
