@@ -155,7 +155,6 @@
 						.then((result) => {
 							if(result.data.code === 1) {
 								showModal.show(result.data.info);
-								
 							} else if(result.data.code === 0) {
 								showModal.show(`<div class='toastlxl_icon'></div><p>注册成功</p>`);
 								setTimeout(() => {
