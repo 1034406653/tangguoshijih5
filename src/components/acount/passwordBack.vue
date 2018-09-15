@@ -78,7 +78,7 @@
 		methods: {
 			mobileBlur() {
 				let that = this;
-				if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.resetPassword.mobile)) {
+				if(this.resetPassword.mobile.length != 11) {
 					that.tipMobileText = "手机号格式错误";
 					this.tipList.mobile = true;
 				} else {
@@ -112,7 +112,7 @@
 			},
 			getVerify() {
 				let that = this;
-				if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.resetPassword.mobile)) {
+				if(this.resetPassword.mobile.length == 11) {
 					this.$http.post('/user/sendCode', {
 							mobile: that.resetPassword.mobile
 						})
@@ -125,8 +125,11 @@
 									} else {
 										clearInterval(timer);
 										that.verifyBtnShow = true;
+										that.verifyCountNum = 59;
 									}
 								}, 1000)
+							}else{
+								showModal.show('今日验证码请求已上限');
 							}
 
 						})
@@ -157,7 +160,7 @@
 		watch: {
 			resetPassword: {
 				handler(curVal, oldVal) {
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile)) {
+					if(curVal.mobile.length==11) {
 						this.tipList.mobile = false;
 					}
 					if(curVal.password.length >= 6 && curVal.password.length <= 20) {
@@ -169,7 +172,7 @@
 					if(this.resetPassword.password == this.resetPassword.repassword) {
 						this.tipList.repassword = false;
 					}
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6 && curVal.verify_code.length == "4" && this.resetPassword.password === this.resetPassword.repassword) {
+					if(this.resetPassword.mobile==11 && curVal.password.length >= 6 && curVal.verify_code.length == "4" && this.resetPassword.password === this.resetPassword.repassword) {
 						this.isLogBtnActive = true;
 					} else {
 						this.isLogBtnActive = false;

@@ -107,7 +107,7 @@
 			},
 			getVerify() {
 				let that = this;
-				if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.resetPassword.mobile)) {
+				if(this.resetPassword.mobile.length==11) {
 					this.$http.post('/user/sendCode', {
 							mobile: that.resetPassword.mobile
 						})
@@ -123,6 +123,8 @@
 										that.verifyCountNum = 59;
 									}
 								}, 1000)
+							}else{
+								showModal.show('今日验证码请求已上限');
 							}
 
 						})

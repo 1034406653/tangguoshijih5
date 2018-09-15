@@ -91,7 +91,7 @@
 		methods: {
 			mobileBlur() {
 				let that = this;
-				if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.registerData.mobile)) {
+				if(this.registerData.mobile.length != 11) {
 					that.tipMobileText = "手机号格式错误";
 					this.tipList.mobile = true;
 				} else {
@@ -125,7 +125,7 @@
 			},
 			getVerify() {
 				let that = this;
-				if(/^[1][3,4,5,7,8][0-9]{9}$/.test(this.registerData.mobile)) {
+				if(this.registerData.mobile.length==11) {
 					this.$http.post('/user/sendCode', {
 							mobile: that.registerData.mobile
 						})
@@ -138,9 +138,12 @@
 								} else {
 									clearInterval(timer);
 									that.verifyBtnShow = true;
+									that.verifyCountNum = 59;
 								}
 							}, 1000)
-						}
+						}else{
+								showModal.show('今日验证码请求已上限');
+							}
 
 					})
 				} else {
@@ -180,7 +183,7 @@
 		watch: {
 			registerData: {
 				handler(curVal, oldVal) {
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile)) {
+					if(curVal.mobile.length==11) {
 						this.tipList.mobile = false;
 					}
 					if(curVal.password.length >= 6 && curVal.password.length <= 20) {
@@ -192,7 +195,7 @@
 					if(curVal.nickname.length > 0 && curVal.nickname.length <= 8) {
 						this.tipList.nickname = false;
 					}
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6 && curVal.verify_code.length == "4" && curVal.nickname.length > 0 && curVal.nickname.length <= 8) {
+					if(curVal.mobile==11 && curVal.password.length >= 6 && curVal.verify_code.length == "4" && curVal.nickname.length > 0 && curVal.nickname.length <= 8) {
 						this.isLogBtnActive = true;
 
 					} else {
