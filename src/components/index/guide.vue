@@ -85,7 +85,7 @@
 			},
 			onStep3() {
 				this.step3BOX = false;
-				
+				window.localStorage.setItem('guideActive','completed')
 			},
 			goLogin() {
 				this.$router.push({
