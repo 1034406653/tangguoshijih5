@@ -12,6 +12,7 @@ body .content1 {
 	left: 30px;
 	top: 14px;
 	z-index: 10;
+	border-radius: 50%;
 }
 
 .introduce {

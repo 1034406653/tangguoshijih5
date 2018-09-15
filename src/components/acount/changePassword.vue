@@ -4,9 +4,8 @@
 		<div class="inputBox firstInputBox">
 			<div>
 				<img src="../../assets/img/acount/reg_reg_phone@2x.png" class="icon" />
-				<input type="text" placeholder="请输入您的手机号" v-model="resetPassword.mobile" @blur="mobileBlur" />
+				<div class="phoneNumber">{{resetPassword.mobile}}</div>
 			</div>
-			<p v-show="tipList.mobile">{{tipMobileText}}</p>
 		</div>
 		<div class="inputBox verifyInputBox">
 			<div>
@@ -83,27 +82,9 @@
 		},
 		mounted() {
 			showModal = new Toastlxl('toastlxl');
+			this.resetPassword.mobile = window.localStorage.getItem('mobile') || '';
 		},
 		methods: {
-			mobileBlur() {
-				let that = this;
-				if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.resetPassword.mobile)) {
-					that.tipMobileText = "手机号格式错误";
-					this.tipList.mobile = true;
-				} else {
-					this.$http.post('/user/mobile_registered', {
-							mobile: that.resetPassword.mobile
-						})
-						.then((result) => {
-							if(result.data.code === 1) {
-								that.tipList.mobile = false;
-							} else if(result.data.code === 0) {
-								that.tipMobileText = '该号码未被注册';
-								that.tipList.mobile = true;
-							}
-						});
-				}
-			},
 			verifyBlur() {
 				if(this.resetPassword.verify_code.length != "4") {
 					this.tipList.verify_code = true;
@@ -120,7 +101,7 @@
 				}
 			},
 			password2Blur() {
-				if(this.resetPassword.repassword!=this.resetPassword.password) {
+				if(this.resetPassword.repassword != this.resetPassword.password) {
 					this.tipList.repassword = true;
 				}
 			},
@@ -139,6 +120,7 @@
 									} else {
 										clearInterval(timer);
 										that.verifyBtnShow = true;
+										that.verifyCountNum = 59;
 									}
 								}, 1000)
 							}
@@ -171,9 +153,6 @@
 		watch: {
 			resetPassword: {
 				handler(curVal, oldVal) {
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile)) {
-						this.tipList.mobile = false;
-					}
 					if(curVal.password.length >= 6 && curVal.password.length <= 20) {
 						this.tipList.password = false;
 					}
@@ -183,10 +162,10 @@
 					if(curVal.verify_code.length == "4") {
 						this.tipList.verify_code = false;
 					}
-					if(this.resetPassword.repassword==this.resetPassword.password) {
+					if(this.resetPassword.repassword == this.resetPassword.password) {
 						this.tipList.repassword = false;
 					}
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile)&&curVal.password.length >= 6 && curVal.password.length <= 20 && curVal.old_password.length >= 6 && curVal.old_password.length <= 20 &&curVal.verify_code.length == "4" && this.resetPassword.repassword.length >= 6 && this.resetPassword.repassword==this.resetPassword.password) {
+					if(curVal.password.length >= 6 && curVal.password.length <= 20 && curVal.old_password.length >= 6 && curVal.old_password.length <= 20 && curVal.verify_code.length == "4" && this.resetPassword.repassword.length >= 6 && this.resetPassword.repassword == this.resetPassword.password) {
 						this.isLogBtnActive = true;
 					} else {
 						this.isLogBtnActive = false;
@@ -202,5 +181,15 @@
 	.content2 .toastlxl {
 		width: 40%;
 		margin-left: -20%;
+	}
+	
+	.inputBox .phoneNumber {
+		float: left;
+		width: 6.4rem;
+		height: 1.066667rem;
+		line-height: 1.066667rem;
+		font-size: 0.373333rem;
+		font-weight: 400;
+		color: rgba(153, 153, 153, 1);
 	}
 </style>
