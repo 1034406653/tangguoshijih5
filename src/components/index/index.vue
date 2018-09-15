@@ -130,7 +130,7 @@
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
 						that.$refs.audioMp3.play()
-						that.dioNum = (parseFloat(candy_count) + parseFloat(that.dioNum));
+						that.dioNum = res.data.data.DIO;
 					}
 				});
 			},
@@ -148,7 +148,7 @@
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
 						that.$refs.audioMp3.play()
-						that.dioNum = (parseFloat(candy_count) + parseFloat(that.dioNum));
+						that.dioNum = res.data.data.DIO;
 					}
 				});
 			},
