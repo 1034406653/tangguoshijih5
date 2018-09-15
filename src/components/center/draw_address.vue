@@ -331,6 +331,8 @@
         let this_ = this
         if (this_.buttonDis === false) {
           showModal.show(`<p>请输入正确的地址</p>`)
+        } else if (!this.placeholderSpan_1) {
+          showModal.show(`<p>请选择币种</p>`)
         } else {
           this.$http.post('/currency/add_currency', {
             currency_id: this.queryData.currency_id,
@@ -397,7 +399,7 @@
             this.placeholderSpan_2 = true
           }
 
-          if ((curVal.name !== '' && curVal.value !== '') && !(/.*[\u4e00-\u9fa5]+.*$/.test(curVal.value))) {
+          if ((curVal.name !== '' && curVal.value !== '') && !(/.*[\u4e00-\u9fa5]+.*$/.test(curVal.value)) && (!this.placeholderSpan_1 && !this.placeholderSpan_2)) {
             this.buttonDis = true
             this.buttonDisClass = ''
           } else {
