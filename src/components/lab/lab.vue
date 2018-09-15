@@ -20,7 +20,7 @@
 					<span @clic="moreGame" v-if="gameList.length>3" class="moreGame">更多</span>
 				</div>
 				<ul class="gameList">
-					<li v-for="(item,index) in gameList" @touchend="goGame(item.game_url,item.id)">
+					<li v-for="(item,index) in gameList" @click="goGame(item.game_url,item.id)">
 						<img :src="item.game_icon" />
 					</li>
 				</ul>
@@ -31,7 +31,7 @@
 					每日任务
 				</div>
 				<ul class="taskLi">
-					<li @touchend="goSign">
+					<li @click="goSign">
 						<img src="../../assets/img/lab/laboratory_icon_signin.png" />
 						<b>每日签到</b>
 						<span v-if="!signed">算力+{{ login_power }}</span>
