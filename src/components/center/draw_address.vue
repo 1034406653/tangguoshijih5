@@ -1,33 +1,4 @@
 <style scoped>
-
-  input::-webkit-input-placeholder {
-    font-size: 24px;
-    font-family: PingFang-SC-Medium;
-    font-weight: 500;
-    color: #999999;
-  }
-
-  input::-moz-placeholder { /* Mozilla Firefox 19+ */
-    font-size: 24px;
-    font-family: PingFang-SC-Medium;
-    font-weight: 500;
-    color: #999999;
-  }
-
-  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    font-size: 24px;
-    font-family: PingFang-SC-Medium;
-    font-weight: 500;
-    color: #999999;
-  }
-
-  input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    font-size: 24px;
-    font-family: PingFang-SC-Medium;
-    font-weight: 500;
-    color: #999999;
-  }
-
   .draw-data-wrapper {
     width: 100%;
     background: rgba(255, 255, 255, 1);
@@ -330,10 +301,14 @@
       add_currency() {
         let this_ = this
         if (this_.buttonDis === false) {
-          showModal.show(`<p>请输入正确的地址</p>`)
-        } else if (!this.placeholderSpan_1) {
-          showModal.show(`<p>请选择币种</p>`)
-        } else {
+          if(this.placeholderSpan_1){
+            console.log(1)
+            showModal.show(`<p>请选择币种</p>`)
+          }else if(this.placeholderSpan_2){
+            console.log(2)
+            showModal.show(`<p>请输入正确的地址</p>`)
+          }
+        }else {
           this.$http.post('/currency/add_currency', {
             currency_id: this.queryData.currency_id,
             value: this.queryData.value,

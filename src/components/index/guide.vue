@@ -20,11 +20,11 @@
 			<img src="../../assets/img/index/home_iocn_invitation.png" />
 			<span>邀请好友</span>
 		</div>
-		<div class="candyList2">
+		<div class="candyList2" @touchend="goLogin">
 			<div class="guide-step1">
 				<div class="candyBox">
 					<img src="../../assets/img/index/home_dio@2x.png" alt="糖果" />
-					<p>正在生成中</p>
+					<p>登录后查看</p>
 				</div>
 			</div>
 		</div>
