@@ -184,7 +184,7 @@
                    :itemHeight="itemHeight" class="slot1" :valueKey="valueKey"></mt-picker>
       </div>
     </mt-popup>
-		<div id="toastlxl" class="toastlxl"></div>
+    <div id="toastlxl" class="toastlxl"></div>
   </div>
 </template>
 
@@ -192,8 +192,9 @@
   import HeaderNav from '../base/headerNav'
   import ColorBtn from '../base/colorBtn'
   import {MessageBox, Popup, Picker} from 'mint-ui'
-  import { Toastlxl } from "../../../static/js/toastlxl.js"
-  var showModal ='';
+  import {Toastlxl} from "../../../static/js/toastlxl.js"
+
+  var showModal = '';
   export default {
     data() {
       return {
@@ -221,7 +222,7 @@
             textAlign: 'center',
             defaultIndex: 0,
           }
-        ]
+        ],
       }
     },
     computed: {
@@ -243,8 +244,8 @@
     created() {
       this.getQueryData()
     },
-    mounted(){
-			showModal = new Toastlxl('toastlxl');	
+    mounted() {
+      showModal = new Toastlxl('toastlxl');
     },
     methods: {
       getQueryData() {
@@ -291,20 +292,24 @@
       },
       add_currency() {
         let this_ = this
-        this.$http.post('/currency/add_currency', {
-          currency_id: this.queryData.currency_id,
-          value: this.queryData.value,
-          id: this.queryData.id
-        }).then((result) => {
-          if (result.data.code === 0) {
-            showModal.show(`<div class='toastlxl_icon'></div><p>添加成功</p>`);
-            setTimeout(() => {
-              this.$router.back(-1)
-            }, 1500);
-          } else {
-            console.log(result.data.info)
-          }
-        })
+        if (this_.buttonDis === false) {
+          showModal.show(`<p>请输入正确的地址</p>`)
+        } else {
+          this.$http.post('/currency/add_currency', {
+            currency_id: this.queryData.currency_id,
+            value: this.queryData.value,
+            id: this.queryData.id
+          }).then((result) => {
+            if (result.data.code === 0) {
+              showModal.show(`<div class='toastlxl_icon'></div><p>添加成功</p>`);
+              setTimeout(() => {
+                this.$router.back(-1)
+              }, 1500);
+            } else {
+              console.log(result.data.info)
+            }
+          })
+        }
       },
       deleteAddress() {
         let this_ = this
@@ -313,7 +318,7 @@
             id: this.queryData.id
           }).then((result) => {
             if (result.data.code === 0) {
-             showModal.show(`<div class='toastlxl_icon'></div><p>删除成功</p>`);
+              showModal.show(`<div class='toastlxl_icon'></div><p>删除成功</p>`);
               setTimeout(() => {
                 this.$router.back(-1)
               }, 1500);
@@ -322,7 +327,7 @@
             }
           })
         }).catch(err => {
-				});
+        });
       },
       reset() {
         this.queryData.value = ''
@@ -346,13 +351,16 @@
         handler(curVal, oldVal) {
           if (curVal.name === '') {
             this.selectCoin = true
-          } else if (curVal.name !== '' && curVal.value !== '') {
+          }
+
+          if ((curVal.name !== '' && curVal.value !== '') && !(/.*[\u4e00-\u9fa5]+.*$/.test(curVal.value))) {
             this.buttonDis = true
             this.buttonDisClass = ''
           } else {
             this.buttonDis = false
             this.buttonDisClass = 'buttonDisClass'
           }
+
           if (curVal.value !== '') {
             this.resetShow = true
           } else {
