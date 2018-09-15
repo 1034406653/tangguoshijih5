@@ -195,7 +195,7 @@
 					if(curVal.nickname.length > 0 && curVal.nickname.length <= 8) {
 						this.tipList.nickname = false;
 					}
-					if(curVal.mobile==11 && curVal.password.length >= 6 && curVal.verify_code.length == "4" && curVal.nickname.length > 0 && curVal.nickname.length <= 8) {
+					if(curVal.mobile.length==11 && curVal.password.length >= 6 && curVal.verify_code.length == "4" && curVal.nickname.length > 0 && curVal.nickname.length <= 8) {
 						this.isLogBtnActive = true;
 
 					} else {
