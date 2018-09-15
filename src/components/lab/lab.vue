@@ -44,7 +44,7 @@
 					必做任务
 				</div>
 				<ul class="taskLi">
-					<li @touchend="goShare">
+					<li @click="goShare">
 						<img src="../../assets/img/lab/laboratory_icon_signin.png" />
 						<b>邀请好友</b>
 						<span>算力+{{ invitation_power }} DIO+{{ invitation_coin_count }}</span>
