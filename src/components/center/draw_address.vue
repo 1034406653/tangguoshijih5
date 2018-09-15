@@ -52,6 +52,20 @@
     left: 0;
   }
 
+  .draw-data-wrapper .draw-data-block #drwa-data-placeholder {
+    position: absolute;
+    display: block;
+    width: 60%;
+    text-align: center;
+    font-weight: 500;
+    color: rgba(153, 153, 153, 1);
+    font-size: 24px;
+    top: 34px;
+    left: 20%;
+    z-index: 999;
+    background-color: white;
+  }
+
   .draw-data-wrapper .draw-data-block .draw-coin {
     font-size: 28px;
     font-family: PingFang-SC-Medium;
@@ -159,6 +173,7 @@
     <div class="draw-data-wrapper">
       <div class="draw-data-block" @click="selectListShow">
         <span class="draw-data-span">币种</span>
+        <span id="drwa-data-placeholder" v-show="placeholderSpan">请选择币种</span>
         <div class="draw-coin">{{ queryData.name }}</div>
         <div class="draw-coin selectCoin" v-if="selectCoin">请选择币种</div>
       </div>
@@ -223,6 +238,7 @@
             defaultIndex: 0,
           }
         ],
+        placeholderSpan: false
       }
     },
     computed: {
@@ -274,6 +290,7 @@
           this.isRightShow = false
           this.buttonDis = false
           this.popupShow = true
+          this.placeholderSpan = true
         } else {
           this.resetShow = false
           this.isRightShow = false
@@ -338,6 +355,7 @@
         } else {
           this.popupVisible = true
         }
+        this.placeholderSpan = false
       },
       pikerCancel() {
         this.popupVisible = false

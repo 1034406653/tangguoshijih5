@@ -31,6 +31,34 @@
     top: 43px;
     right: 0;
   }
+
+  .noMoreData {
+    margin-top: 150px;
+    height: 100px;
+    width: 100%;
+  }
+
+  .noMoreData-span {
+    display: block;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+  .noMoreData-span img {
+    display: inline-block;
+    margin-top: 4px;
+    width: 75px;
+    height: 24px;
+    background-size: 100% 100%;
+  }
+
+  .noMoreData-span span {
+    font-size:23px;
+    height: inherit;
+    font-weight:500;
+    color:rgba(153,153,153,1);
+  }
 </style>
 
 <template>
@@ -46,6 +74,13 @@
         </div>
       </li>
     </ul>
+
+    <div class="noMoreData" v-show="allLoaded">
+        <span class="noMoreData-span">
+          <img src="../../assets/img/base/icon_nomore@2x.png" alt="">
+          <span> 暂无内容 </span>
+        </span>
+    </div>
   </div>
 </template>
 
@@ -76,7 +111,8 @@
             index: 0
           }
         ],
-        coinList: []
+        coinList: [],
+        allLoaded: false
       }
     },
     components: {
@@ -109,6 +145,9 @@
                 this_.currencyList[i].index = j;
               }
             }
+          }
+          if(result.data.data.length === 0) {
+            this_.allLoaded = true
           }
         })
       },
