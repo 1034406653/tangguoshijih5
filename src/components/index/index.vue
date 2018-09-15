@@ -1,9 +1,9 @@
 <template>
 	<div class="content1" onclick="return false">
-		<img :src="head_pic" class="user"/>
+		<img :src="head_pic" class="user" />
 		<img src="../../assets/img/index/home_icon_question@3x.png" class="introduce" @touchend="goFeedback" />
 		<div class="dio">
-			<div  @touchend="goDio">
+			<div @touchend="goDio">
 				<img src="../../assets/img/index/home_icon_dio.png" class="dioIcon" />
 				<span class="dioText">DIO {{dioNum}}</span>
 			</div>
@@ -21,9 +21,9 @@
 			<span>邀请好友</span>
 		</div>
 
-    <div class="plant" onclick="return false">
+		<div class="plant" onclick="return false">
 
-    </div>
+		</div>
 
 		<ul class="candyList">
 			<li :class="item.className" v-for="(item,index) in candyList" @touchend="delCanday(index,item.id,item.candy_count)">
@@ -49,31 +49,30 @@
 				</div>
 			</li>
 		</ul>
-    <audio ref="audioMp3">
-      <source src="../../assets/audio.mp3" type="audio/mpeg">
-    </audio>
+		<audio ref="audioMp3">
+			<source src="../../assets/audio.mp3" type="audio/mpeg">
+		</audio>
 		<FooterNav :footerNav="footerNav"></FooterNav>
 	</div>
 </template>
 
 <script>
-	import {Prevent} from '../../../static/js/pervent.js'
+	import { Prevent } from '../../../static/js/pervent.js'
 	import '../../assets/css/index.css'
 	import FooterNav from '../base/footerNav'
 	let arr = new Set([]);
 
-
 	export default {
 		data() {
 			return {
-				head_pic:require('../../assets/img/index/home_pic_avatar.png'),
+				head_pic: require('../../assets/img/index/home_pic_avatar.png'),
 				footerNav: ["active", "", ""],
 				dioNum: 0,
 				energyNum: 0,
 				candyList: [],
 				candyList2: [],
 				candyListDom: [],
-        audioSrc: '../../assets/audio.mp3'
+				audioSrc: '../../assets/audio.mp3'
 			}
 		},
 		components: {
@@ -81,8 +80,8 @@
 		},
 		created() {
 			this.init();
-			if(window.localStorage.getItem('head_pic')){
-				this.head_pic=window.localStorage.getItem('head_pic');
+			if(window.localStorage.getItem('head_pic')) {
+				this.head_pic = window.localStorage.getItem('head_pic');
 			}
 		},
 		methods: {
@@ -95,7 +94,7 @@
 				arr = Array.from(arr);
 				this.$http.post('/candy/get_coin_list').then(res => {
 					that.dioNum = res.data.data.DIO;
-				    that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
+					that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
 					res.data.data.list.forEach((x, i) => {
 						if(i < 13) {
 							that.candyList[i] = {};
@@ -120,36 +119,36 @@
 			delCanday(index, candyId, candy_count) {
 				let that = this;
 				//MP3 音频控制
-        /*let audioMp3 = new Audio()
-        audioMp3.src = this.audioSrc
-        audioMp3.load()*/
-        this.$refs.audioMp3.load()
+				/*let audioMp3 = new Audio()
+				audioMp3.src = this.audioSrc
+				audioMp3.load()*/
+				this.$refs.audioMp3.load()
 				this.candyList.splice(index, 1);
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
-            /*audioMp3.play()*/
-            that.$refs.audioMp3.play()
-						that.dioNum = (parseFloat(candy_count)+parseFloat(that.dioNum)).toFixed(6);
+						/*audioMp3.play()*/
+						that.$refs.audioMp3.play()
+						that.dioNum = (parseFloat(candy_count) + parseFloat(that.dioNum)).toFixed(6);
 					}
 				});
 			},
 			delCanday2(index, candyId, candy_count) {
 				let that = this;
-        //MP3 音频控制
-        /*let audioMp3 = new Audio()
-        audioMp3.src = this.audioSrc
-        audioMp3.load()*/
-        this.$refs.audioMp3.load()
+				//MP3 音频控制
+				/*let audioMp3 = new Audio()
+				audioMp3.src = this.audioSrc
+				audioMp3.load()*/
+				this.$refs.audioMp3.load()
 				this.candyList2.splice(index, 1);
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
-            /*audioMp3.play()*/
-            that.$refs.audioMp3.play()
-						that.dioNum = (parseFloat(candy_count)+parseFloat(that.dioNum)).toFixed(6);
+						/*audioMp3.play()*/
+						that.$refs.audioMp3.play()
+						that.dioNum = (parseFloat(candy_count) + parseFloat(that.dioNum)).toFixed(6);
 					}
 				});
 			},
@@ -166,7 +165,9 @@
 			goDio() {
 				this.$router.push({
 					path: "/index/dio",
-					query:{id:1},
+					query: {
+						id: 1
+					},
 				})
 			},
 			goEnergy() {
@@ -179,7 +180,7 @@
 					path: "/index/share"
 				})
 			},
-			goLab(){
+			goLab() {
 				this.$router.push({
 					path: "/lab/lab"
 				})
