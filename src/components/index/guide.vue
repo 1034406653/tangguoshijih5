@@ -89,7 +89,7 @@
 			},
 			goLogin() {
 				this.$router.push({
-					path: "/index/index"
+					path: "/acount/login"
 				})
 			},
 			goFeedback() {
