@@ -55,7 +55,6 @@
 		<FooterNav :footerNav="footerNav"></FooterNav>
 	</div>
 </template>
-
 <script>
 	import { Prevent } from '../../../static/js/pervent.js'
 	import '../../assets/css/index.css'
