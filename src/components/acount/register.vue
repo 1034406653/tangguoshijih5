@@ -42,15 +42,17 @@
 		<div class="agreement">
 			注册即表示您同意<span @touchend="goAgreement">《用户注册协议》</span>
 		</div>
+		<div id="toastlxl" class="toastlxl"></div>
 	</div>
 </template>
 
 <script>
 	import "../../assets/css/acount.css"
 	import HeaderNav from '../base/headerNav'
-	import { Toast } from 'mint-ui'
+	import { Toastlxl } from "../../../static/js/toastlxl.js"
 	import ColorBtn from '../base/colorBtn'
 	let base_url = ""
+	var showModal = '';
 	export default {
 		data() {
 			return {
@@ -82,6 +84,9 @@
 		},
 		created() {
 			base_url = this.$store.state.base_url;
+		},
+		mounted(){
+			showModal = new Toastlxl('toastlxl');
 		},
 		methods: {
 			mobileBlur() {
@@ -149,19 +154,10 @@
 					this.$http.post('/user/register', that.registerData)
 						.then((result) => {
 							if(result.data.code === 1) {
-								Toast({
-									message: result.data.info,
-									position: 'top',
-									duration: 1500,
-									className: "toastName"
-								});
+								showModal.show(result.data.info);
+								
 							} else if(result.data.code === 0) {
-								Toast({
-									message: result.data.info,
-									position: 'top',
-									duration: 1500,
-									className: "toastName"
-								});
+								showModal.show(`<div class='toastlxl_icon'></div><p>注册成功</p>`);
 								setTimeout(() => {
 									that.$router.push({
 										path: "/acount/login"
@@ -170,7 +166,6 @@
 							}
 						});
 				}
-
 			},
 			goAgreement() {
 				this.$router.push({
