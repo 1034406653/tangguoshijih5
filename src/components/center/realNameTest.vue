@@ -1,5 +1,5 @@
 <style>
-  input::-webkit-input-placeholder {
+  .realname input::-webkit-input-placeholder {
     font-size: 24px;
     font-family: PingFang-SC-Medium;
     font-weight: 500;
@@ -7,7 +7,7 @@
     line-height: 96px;
   }
 
-  input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  .realname input::-moz-placeholder { /* Mozilla Firefox 19+ */
     font-size: 24px;
     font-family: PingFang-SC-Medium;
     font-weight: 500;
@@ -15,7 +15,7 @@
     line-height: 96px;
   }
 
-  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  .realname input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     font-size: 24px;
     font-family: PingFang-SC-Medium;
     font-weight: 500;
@@ -23,7 +23,7 @@
     line-height: 96px;
   }
 
-  input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  .realname input:-ms-input-placeholder { /* Internet Explorer 10-11 */
     font-size: 24px;
     font-family: PingFang-SC-Medium;
     font-weight: 500;
@@ -31,7 +31,7 @@
     line-height: 96px;
   }
 
-  input:disabled {
+  .realname input:disabled {
     border: none;
     background-color: rgba(255, 255, 255, 0) !important;
   }
@@ -71,13 +71,13 @@
     width: 70%;
   }
 
-  .confirm {
+  .realname .confirm {
     width: 100%;
     position: relative;
     height: 100px;
   }
 
-  .confirmFir {
+  .realname .confirmFir {
     text-align: left;
     display: block;
     width: 20%;
@@ -91,7 +91,7 @@
     line-height: 32px;
   }
 
-  .confirmSec {
+  .realname .confirmSec {
     display: block;
     position: absolute;
     top: 30px;
@@ -127,7 +127,7 @@
     background-size: 100% 100%;
   }
 
-  .contact {
+  .realname .contact {
     width: 38%;
     margin-top: 60px;
     margin-left: 31%;
@@ -140,7 +140,7 @@
 </style>
 
 <template>
-  <div class="content2">
+  <div class="content2 realname">
     <headerNav :pageTitle="title" :goBackShow="goBackShow"></headerNav>
 
     <div class="realname-data-wrapper">

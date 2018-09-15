@@ -1,6 +1,6 @@
 <template>
 	<div class="content2">
-		<img src="../../assets/img/acount/logo.png" class="logLogo" onclick="return false"/>
+		<img src="../../assets/img/acount/logo.png" class="logLogo" onclick="return false" />
 		<div class="inputBox">
 			<div>
 				<img src="../../assets/img/acount/reg_reg_phone@2x.png" class="icon" />
@@ -105,8 +105,8 @@
 							})
 							setTimeout(() => {
 								that.$router.push({
-										path: "/"
-									})
+									path: "/"
+								})
 							}, 1000)
 						}
 					});
@@ -136,6 +136,8 @@
 	}
 </script>
 
-<style>
-
+<style scoped>
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0 1000px rgba(239, 239, 239, 1) inset !important;
+	}
 </style>
