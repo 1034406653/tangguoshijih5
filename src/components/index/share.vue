@@ -171,9 +171,8 @@
             that.inv_candy = res.data.data.inv_candy;
             that.invitation_coin_count = res.data.data.invitation_coin_count;
             that.invitation_power = res.data.data.invitation_power;
-
             let canvas = document.getElementById('canvas');
-            let QRCode_BaseURL = 'http://www.baidu.com'
+            let QRCode_BaseURL = 'http://web.hzjiazhuo.com/app_h5/invite.html'
             let QRCode_URL = QRCode_BaseURL + '?invitation_code=' + this.card_code;
             QRCode.toCanvas(canvas, QRCode_URL, function (error) {
               if (error) console.error(error)
