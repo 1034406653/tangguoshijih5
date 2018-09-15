@@ -169,10 +169,10 @@
 					if(curVal.verify_code.length == "4") {
 						this.tipList.verify_code = false;
 					}
-					if(this.resetPassword.password == this.resetPassword.repassword) {
+					if(curVal.password == curVal.repassword) {
 						this.tipList.repassword = false;
 					}
-					if(this.resetPassword.mobile==11 && curVal.password.length >= 6 && curVal.verify_code.length == "4" && this.resetPassword.password === this.resetPassword.repassword) {
+					if(curVal.mobile.length==11 && curVal.password.length >= 6 && curVal.verify_code.length == "4" && curVal.password === curVal.repassword) {
 						this.isLogBtnActive = true;
 					} else {
 						this.isLogBtnActive = false;

@@ -164,10 +164,10 @@
 					if(curVal.verify_code.length == "4") {
 						this.tipList.verify_code = false;
 					}
-					if(this.resetPassword.repassword == this.resetPassword.password) {
+					if(curVal.repassword == curVal.password) {
 						this.tipList.repassword = false;
 					}
-					if(curVal.password.length >= 6 && curVal.password.length <= 20 && curVal.old_password.length >= 6 && curVal.old_password.length <= 20 && curVal.verify_code.length == "4" && this.resetPassword.repassword.length >= 6 && this.resetPassword.repassword == this.resetPassword.password) {
+					if(curVal.password.length >= 6 && curVal.password.length <= 20 && curVal.old_password.length >= 6 && curVal.old_password.length <= 20 && curVal.verify_code.length == "4" && curVal.repassword.length >= 6 && curVal.repassword == curVal.password) {
 						this.isLogBtnActive = true;
 					} else {
 						this.isLogBtnActive = false;
