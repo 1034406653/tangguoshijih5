@@ -35,6 +35,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /vux.src.*?js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        },
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig

@@ -9,6 +9,11 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import qs from 'qs'
+
+import Es6Promise from 'es6-promise'
+Es6Promise.polyfill()
+import 'babel-polyfill'
+
 import QRCode from 'qrcode'
 Vue.prototype.$http = axios
 Vue.prototype.$qs = qs
