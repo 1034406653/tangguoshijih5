@@ -36,7 +36,7 @@
 				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
 				<input type="text" placeholder="请再次确认新密码" v-model="resetPassword.repassword" @blur="password2Blur" />
 			</div>
-			<p v-show="tipList.repassword">两次输入密码不同</p>
+			<p v-show="tipList.repassword">两次密码不一样</p>
 		</div>
 		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goChangePassword"></colorBtn>
 		<div id="toastlxl" class="toastlxl"></div>
@@ -109,19 +109,19 @@
 					this.tipList.verify_code = true;
 				}
 			},
+			oldPasswordBlur() {
+				if(this.resetPassword.old_password.length < 6 || this.resetPassword.old_password.length > 20) {
+					this.tipList.old_password = true;
+				}
+			},
 			passwordBlur() {
 				if(this.resetPassword.password.length < 6 || this.resetPassword.password.length > 20) {
 					this.tipList.password = true;
 				}
 			},
 			password2Blur() {
-				if(this.resetPassword.password !== this.resetPassword.repassword) {
+				if(this.resetPassword.repassword!=this.resetPassword.password) {
 					this.tipList.repassword = true;
-				}
-			},
-			oldPasswordBlur() {
-				if(this.resetPassword.old_password.length < 6 || this.resetPassword.old_password.length > 20) {
-					this.tipList.old_password = true;
 				}
 			},
 			getVerify() {
@@ -183,12 +183,11 @@
 					if(curVal.verify_code.length == "4") {
 						this.tipList.verify_code = false;
 					}
-					if(this.resetPassword.password == this.resetPassword.repassword) {
+					if(this.resetPassword.repassword==this.resetPassword.password) {
 						this.tipList.repassword = false;
 					}
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6 && curVal.password.length <= 20 && curVal.verify_code.length == "4" && this.resetPassword.password === this.resetPassword.repassword && curVal.old_password.length >= 6 && curVal.old_password.length <= 20) {
+					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile)&&curVal.password.length >= 6 && curVal.password.length <= 20 && curVal.old_password.length >= 6 && curVal.old_password.length <= 20 &&curVal.verify_code.length == "4" && this.resetPassword.repassword.length >= 6 && this.resetPassword.repassword==this.resetPassword.password) {
 						this.isLogBtnActive = true;
-
 					} else {
 						this.isLogBtnActive = false;
 					}
@@ -200,5 +199,8 @@
 </script>
 
 <style scoped>
-
+	.content2 .toastlxl {
+		width: 40%;
+		margin-left: -20%;
+	}
 </style>
