@@ -41,7 +41,6 @@ const webpackConfig = merge(baseWebpackConfig, {
           safari10: true
         },
       },
-
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
