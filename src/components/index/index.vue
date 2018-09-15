@@ -32,7 +32,7 @@
 					<p>{{item.candy_count}}</p>
 				</div>
 			</li>
-		</ul>		
+		</ul>
 		<ul class="candyList" v-if="candyList.length<1">
 			<li :class="item.className" v-for="(item,index) in candyList2" @touchend="delCanday2(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
@@ -49,6 +49,9 @@
 				</div>
 			</li>
 		</ul>
+    <audio ref="audioMp3">
+      <source src="../../assets/audio.mp3" type="audio/mpeg">
+    </audio>
 		<FooterNav :footerNav="footerNav"></FooterNav>
 	</div>
 </template>
@@ -70,6 +73,7 @@
 				candyList: [],
 				candyList2: [],
 				candyListDom: [],
+        audioSrc: '../../assets/audio.mp3'
 			}
 		},
 		components: {
@@ -115,22 +119,36 @@
 			},
 			delCanday(index, candyId, candy_count) {
 				let that = this;
+				//MP3 音频控制
+        /*let audioMp3 = new Audio()
+        audioMp3.src = this.audioSrc
+        audioMp3.load()*/
+        this.$refs.audioMp3.load()
 				this.candyList.splice(index, 1);
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
+            /*audioMp3.play()*/
+            that.$refs.audioMp3.play()
 						that.dioNum = (parseFloat(candy_count)+parseFloat(that.dioNum)).toFixed(6);
 					}
 				});
 			},
 			delCanday2(index, candyId, candy_count) {
 				let that = this;
+        //MP3 音频控制
+        /*let audioMp3 = new Audio()
+        audioMp3.src = this.audioSrc
+        audioMp3.load()*/
+        this.$refs.audioMp3.load()
 				this.candyList2.splice(index, 1);
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
+            /*audioMp3.play()*/
+            that.$refs.audioMp3.play()
 						that.dioNum = (parseFloat(candy_count)+parseFloat(that.dioNum)).toFixed(6);
 					}
 				});
@@ -170,5 +188,5 @@
 	}
 </script>
 <style scoped>
-	
+
 </style>
