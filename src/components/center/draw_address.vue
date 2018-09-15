@@ -52,7 +52,21 @@
     left: 0;
   }
 
-  .draw-data-wrapper .draw-data-block #drwa-data-placeholder {
+  .draw-data-wrapper .draw-data-block #drwa-data-placeholder_1 {
+    position: absolute;
+    display: block;
+    width: 60%;
+    text-align: center;
+    font-weight: 500;
+    color: rgba(153, 153, 153, 1);
+    font-size: 24px;
+    top: 34px;
+    left: 20%;
+    z-index: 999;
+    background-color: white;
+  }
+
+  .draw-data-wrapper .draw-data-block #drwa-data-placeholder_2 {
     position: absolute;
     display: block;
     width: 60%;
@@ -173,13 +187,14 @@
     <div class="draw-data-wrapper">
       <div class="draw-data-block" @click="selectListShow">
         <span class="draw-data-span">币种</span>
-        <span id="drwa-data-placeholder" v-show="placeholderSpan">请选择币种</span>
+        <span id="drwa-data-placeholder_1" v-show="placeholderSpan_1">请选择币种</span>
         <div class="draw-coin">{{ queryData.name }}</div>
         <div class="draw-coin selectCoin" v-if="selectCoin">请选择币种</div>
       </div>
-      <div class="draw-data-block">
+      <div class="draw-data-block" @click="placeholderHide">
         <span class="draw-data-span">地址</span>
-        <input type="text" class="draw-address" v-model="queryData.value" placeholder="请输入或黏贴地址">
+        <input type="text" class="draw-address" v-model="queryData.value" ref="drawAddressPlace">
+        <span id="drwa-data-placeholder_2" v-show="placeholderSpan_2">请输入或黏贴地址</span>
         <span id='draw-data-reset' class="draw-data-reset" @click="reset" v-if="resetShow">
         </span>
       </div>
@@ -238,7 +253,8 @@
             defaultIndex: 0,
           }
         ],
-        placeholderSpan: false
+        placeholderSpan_1: false,
+        placeholderSpan_2: false
       }
     },
     computed: {
@@ -264,6 +280,10 @@
       showModal = new Toastlxl('toastlxl');
     },
     methods: {
+      placeholderHide() {
+        this.placeholderSpan_2 = false
+        this.$refs.drawAddressPlace.focus()
+      },
       getQueryData() {
         let this_ = this
         if (this.$route.query.coinList[0] === "[object Object]") {
@@ -290,7 +310,7 @@
           this.isRightShow = false
           this.buttonDis = false
           this.popupShow = true
-          this.placeholderSpan = true
+          this.placeholderSpan_1 = true
         } else {
           this.resetShow = false
           this.isRightShow = false
@@ -355,7 +375,7 @@
         } else {
           this.popupVisible = true
         }
-        this.placeholderSpan = false
+        this.placeholderSpan_1 = false
       },
       pikerCancel() {
         this.popupVisible = false
@@ -369,6 +389,12 @@
         handler(curVal, oldVal) {
           if (curVal.name === '') {
             this.selectCoin = true
+          }
+
+          if (curVal.value !== '') {
+            this.placeholderSpan_2 = false
+          } else {
+            this.placeholderSpan_2 = true
           }
 
           if ((curVal.name !== '' && curVal.value !== '') && !(/.*[\u4e00-\u9fa5]+.*$/.test(curVal.value))) {
