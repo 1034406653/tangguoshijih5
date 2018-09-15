@@ -147,7 +147,7 @@
 								window.localStorage.setItem('nickname', value);
 								showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
 							} else {
-								showModal.show(res.data.info);
+								showModal.show('昵称格式错误');
 							}
 						})
 					}
