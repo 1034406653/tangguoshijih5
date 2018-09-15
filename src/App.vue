@@ -64,11 +64,25 @@
 		border-radius: 10px;
 		overflow: hidden;
 	}
+
+  .mint-msgbox-message .confirm .confirmFir {
+    margin-left: 30px;
+  }
+
+  .mint-msgbox-message .confirm .confirmSec {
+    display: block;
+    float: right;
+    width: 68%;
+    text-align: center;
+  }
+
+  .mint-msgbox-content .mint-msgbox-message .confirm {
+    line-height: 120px;
+  }
 	
 	body .mint-msgbox-message {
 		height: auto;
-		line-height: 200px;
-		text-align: center;
+		text-align: left;
 		color: rgba(51, 51, 51, 1);
 		font-size: 30px;
 	}

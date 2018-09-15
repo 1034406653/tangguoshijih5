@@ -165,7 +165,7 @@
       <div class="draw-data-block" @click="placeholderHide">
         <span class="draw-data-span">地址</span>
         <input type="text" class="draw-address" v-model="queryData.value" ref="drawAddressPlace">
-        <span id="drwa-data-placeholder_2" v-show="placeholderSpan_2">请输入或黏贴地址</span>
+        <span id="drwa-data-placeholder_2" v-show="placeholderSpan_2">请输入或粘贴地址</span>
         <span id='draw-data-reset' class="draw-data-reset" @click="reset" v-if="resetShow">
         </span>
       </div>
@@ -302,10 +302,8 @@
         let this_ = this
         if (this_.buttonDis === false) {
           if(this.placeholderSpan_1){
-            console.log(1)
             showModal.show(`<p>请选择币种</p>`)
           }else if(this.placeholderSpan_2){
-            console.log(2)
             showModal.show(`<p>请输入正确的地址</p>`)
           }
         }else {
