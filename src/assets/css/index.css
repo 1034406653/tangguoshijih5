@@ -15,6 +15,7 @@ body .content1 {
 }
 
 .introduce {
+  border-radius: 50%;
 	display: block;
 	width: 40px;
 	height: 40px;

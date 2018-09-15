@@ -250,7 +250,7 @@
 	.gameList li img {
 		width: 100%;
 		height: 100%;
-		border-radius: 20px 20px 20px 30px;
+		border-radius: 20px;
 		display: block;
 	}
 	
