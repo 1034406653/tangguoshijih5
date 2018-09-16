@@ -57,16 +57,11 @@
 	}
 </script>
 
-<style>
-	html,
-	body {
-		overflow: auto;
-		background-color: white;
-	}
+<style scoped>
 	
-	#app {
-		width: 100%;
-		height: auto;
+	html,body {
+		overflow: auto;
+		background-color: white !important;
 	}
 	
 	.content-wxshare {
