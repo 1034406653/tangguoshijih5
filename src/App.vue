@@ -168,4 +168,23 @@
 		height: 40px;
 		margin: 0 auto;
 	}
+	/*wxshare*/
+	#shareimgbox{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		position: relative;
+	}
+	#shareimgbox>canvas{
+		position: absolute;
+		width: 100%;
+		left: 0;
+		top: 88px;
+		display: none;
+	}
+	#shareimgbox>img{
+		margin-top: 88px;
+		width: 100%;
+		display: block;
+	}
 </style>

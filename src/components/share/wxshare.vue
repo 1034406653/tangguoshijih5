@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <headerNav :pageTitle="pageTitle"></headerNav>
-		<div class="content-wxshare" id="picbox" onclick="return false">
+	<div id="shareimgbox">
+		<headerNav :pageTitle="pageTitle"></headerNav>
+		<div class="content-wxshare" id="picbox" onclick="return false" v-show='ispicboxshow'>
 			<div class="QRcode"><span>{{card_code}}</span></div>
 			<canvas id="QRcanvas" class="card_img"></canvas>
 		</div>
@@ -11,26 +11,20 @@
 
 <script>
 	import QRCode from 'qrcode'
-  import HeaderNav from '../base/headerNav'
-
-  var saveFile = function(data, filename) {
-		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
-		save_link.href = data;
-		save_link.download = filename;
-		var event = document.createEvent('MouseEvents');
-		event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-		save_link.dispatchEvent(event);
-	};
+	import HeaderNav from '../base/headerNav'
+	import html2canvas from '../../assets/js/html2canvas.min.js'
 	export default {
 		data() {
 			return {
-        pageTitle: '糖果世纪-分享',
+				pageTitle: '糖果世纪-分享',
 				card_code: "",
+				picData: "",
+				ispicboxshow: true,
 			}
 		},
 		components: {
 			QRCode,
-      HeaderNav
+			HeaderNav
 		},
 		mounted() {
 			let that = this;
@@ -46,6 +40,16 @@
 					let QRCode_URL = QRCode_BaseURL + '?invitation_code=' + this.card_code;
 					QRCode.toCanvas(QRcanvas, QRCode_URL, function(error) {
 						if(error) console.error(error)
+						let imgbox = document.getElementById('picbox');
+						html2canvas(imgbox).then(function(canvas) {
+							that.ispicboxshow = false;
+							document.getElementById('shareimgbox').appendChild(canvas);
+							let dataUrl = canvas.toDataURL('image/jpeg');
+							let newImg = document.createElement('img');
+							newImg.src = dataUrl;
+							document.getElementById('shareimgbox').appendChild(newImg);
+							
+						});
 					})
 				}
 			})
@@ -60,9 +64,14 @@
 		background-color: white;
 	}
 	
+	#app {
+		width: 100%;
+		height: auto;
+	}
+	
 	.content-wxshare {
-    margin-top: 88px;
-    position: relative;
+		margin-top: 88px;
+		position: relative;
 		width: 100%;
 		height: 1200px;
 		background: url("../../assets/img/share/wxshare.png");
