@@ -49,7 +49,12 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('static'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [
+          resolve('src'), resolve('static'), resolve('test'),
+          resolve('node_modules/webpack-dev-server/client'),
+          resolve('/node_modules/_swiper@4.4.1@swiper'),
+          resolve('/node_modules/_dom7@2.1.2@dom7')
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
