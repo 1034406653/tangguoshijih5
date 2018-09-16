@@ -58,11 +58,11 @@
 </template>
 <script>
 	import FooterNav from '../base/footerNav'
-	import { Prevent } from '../../../static/js/pervent.js'
+	import { Prevent } from '../../assets/js/pervent.js'
 	import Swiper from 'swiper';
 	import 'swiper/dist/css/swiper.min.css';
 	import Vue from 'vue'
-	import { Toastlxl } from "../../../static/js/toastlxl.js"
+	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	let gameURL = "";
 	let localStorage = window.localStorage;
 	export default {

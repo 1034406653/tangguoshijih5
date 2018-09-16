@@ -39,7 +39,7 @@
 <script>
 	import "../../assets/css/acount.css"
 	import HeaderNav from '../base/headerNav'
-	import { Toastlxl } from "../../../static/js/toastlxl.js"
+	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	import ColorBtn from '../base/colorBtn'
 	let base_url = ""
 	var showModal =''

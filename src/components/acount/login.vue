@@ -27,7 +27,7 @@
 </template>
 <script>
 	import "../../assets/css/acount.css"
-	import { Toastlxl } from "../../../static/js/toastlxl.js"
+	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	import HeaderNav from '../base/headerNav'
 	import ColorBtn from '../base/colorBtn'
 	var showModal = '';

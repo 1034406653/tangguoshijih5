@@ -56,7 +56,7 @@
 	</div>
 </template>
 <script>
-	import { Prevent } from '../../../static/js/pervent.js'
+	import { Prevent } from '../../assets/js/pervent.js'
 	import '../../assets/css/index.css'
 	import FooterNav from '../base/footerNav'
 	let arr = new Set([]);

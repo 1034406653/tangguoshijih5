@@ -177,7 +177,7 @@
   import HeaderNav from '../base/headerNav'
   import ColorBtn from '../base/colorBtn'
   import {MessageBox} from 'mint-ui'
-  import { Toastlxl } from "../../../static/js/toastlxl.js"
+  import { Toastlxl } from "../../assets/js/toastlxl.js"
 
   var showModal = '';
   export default {

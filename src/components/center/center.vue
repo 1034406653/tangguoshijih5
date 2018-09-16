@@ -48,10 +48,10 @@
 </template>
 
 <script>
-	import { Prevent } from '../../../static/js/pervent.js'
+	import { Prevent } from '../../assets/js/pervent.js'
 	import FooterNav from '../base/footerNav'
 	import { MessageBox } from 'mint-ui';
-	import { Toastlxl } from "../../../static/js/toastlxl.js"
+	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	var showModal = '';
 	export default {
 		data() {

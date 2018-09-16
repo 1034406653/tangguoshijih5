@@ -46,7 +46,7 @@
 	import "../../assets/css/acount.css"
 	import HeaderNav from '../base/headerNav'
 	import ColorBtn from '../base/colorBtn'
-	import { Toastlxl } from "../../../static/js/toastlxl.js"
+	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	var showModal = '';
 	let base_url = ""
 	export default {
