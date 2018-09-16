@@ -17,7 +17,7 @@
 			<div class="gameBox">
 				<div class="content-title">
 					游戏
-					<span @clic="moreGame" v-if="gameList.length>3" class="moreGame">更多</span>
+					<span @click="moreGame" v-if="gameList.length>3" class="moreGame">更多</span>
 				</div>
 				<ul class="gameList">
 					<li v-for="(item,index) in gameList" @click="goGame(item.game_url,item.id)">
