@@ -80,6 +80,7 @@
 		created() {
 			base_url = this.$store.state.base_url;
 		},
+		
 		mounted() {
 			showModal = new Toastlxl('toastlxl');
 			this.resetPassword.mobile = window.localStorage.getItem('mobile') || '';

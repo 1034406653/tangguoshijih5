@@ -112,7 +112,8 @@
 						}
 					}
 					// 添加请求头
-					this.$http.post('https://a.hzjiazhuo.com/api//upload/upload_img', param, config)
+					let postimgUrl=this.$baseURL+'//upload/upload_img'
+					this.$http.post(postimgUrl, param, config)
 						.then(res => {
 							if(res.data.code == '0') {
 								that.$http.post('/user/updateUserinfo', {

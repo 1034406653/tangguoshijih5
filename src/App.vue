@@ -82,7 +82,8 @@
 	
 	body .mint-msgbox-message {
 		height: auto;
-		text-align: left;
+		line-height: 200px;
+		text-align: center;
 		color: rgba(51, 51, 51, 1);
 		font-size: 30px;
 	}

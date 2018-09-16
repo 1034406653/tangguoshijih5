@@ -9,18 +9,25 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import qs from 'qs'
-
+import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
 Es6Promise.polyfill()
-import 'babel-polyfill'
 
 import QRCode from 'qrcode'
+
+/*基础地址替换*/
+var allbaseURL = 'https://a.hzjiazhuo.com/api';
+var allshare = 'https://web.hzjiazhuo.com/h5/invite.html';
+
+Vue.prototype.$baseURL = allbaseURL
+Vue.prototype.$share = allshare
 Vue.prototype.$http = axios
 Vue.prototype.$qs = qs
 Vue.use(MintUI)
 Vue.config.productionTip = false
 let userInfo = '';
 let guideActive = '';
+
 router.beforeEach((to, from, next) => {
 	guideActive = window.localStorage.getItem("guideActive")
 	if(guideActive == 'completed' || to.path == '/index/guide') {
@@ -46,13 +53,13 @@ router.beforeEach((to, from, next) => {
 })
 promise.polyfill();
 // 全局配置
-axios.defaults.baseURL = 'https://a.hzjiazhuo.com/api';
+axios.defaults.baseURL = allbaseURL;
 // 请求前
 axios.interceptors.request.use(config => {
 	userInfo = window.localStorage.getItem("jiazhuoToken");
 	config.timeout = '10000';
 	if(config.method === 'post') {
-		if(config.url != 'https://a.hzjiazhuo.com/api//upload/upload_img') {
+		if(config.url != (allbaseURL+'//upload/upload_img')) {
 			let params = config.data || {}
 			if(userInfo) {
 				params['token'] = userInfo;
