@@ -44,7 +44,7 @@ export default new Router({
     {
     	path: '/index/dio',
       name: 'Dio',
-      component: Dio,
+      component: resolve => require(['../components/index/dio'], resolve),
       meta: { keepAlive: false }
     },
     {
@@ -122,19 +122,19 @@ export default new Router({
     {
       path: '/center/set_future',
       name: 'Set_future',
-      component: Set_future,
+      component: resolve => require(['../components/center/set_future'], resolve),
       meta: { keepAlive: false }
     },
     {
       path: '/center/realNameTest',
       name: 'RealNameTest',
-      component: RealNameTest,
+      component: resolve => require(['../components/center/realNameTest'], resolve),
       meta: { keepAlive: false }
     },
     {
       path: '/center/set_question',
       name: 'Set_question',
-      component: Set_question,
+      component: resolve => require(['../components/center/set_question'], resolve),
       meta: { keepAlive: false }
     },
     {
@@ -176,7 +176,7 @@ export default new Router({
     {
       path: '/index/guide',
       name: 'Guide',
-      component: resolve => require(['../components/index/guide'], resolve),
+      component: resolve => require(['../components/index/guide'], guide),
       meta: { keepAlive: false }
     },
     {

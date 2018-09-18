@@ -28,11 +28,8 @@
 				</div>
 			</div>
 		</div>
-
     <div class="plant" onclick="return false">
-
     </div>
-
 		<FooterNav :footerNav="footerNav"></FooterNav>
 		<div class="coverBg" v-if="step3BOX || step2BOX || step1BOX"></div>
 		<div class="guide1" v-if="step1BOX" @touchend="onStep1">
@@ -78,7 +75,11 @@
 		components: {
 			FooterNav,
 		},
-
+		created(){
+			if(window.localStorage.getItem('guideActive')=='completed'){
+				this.step1BOX=false;
+			}
+		},
 		methods: {
 			onStep1() {
 				this.step1BOX = false;

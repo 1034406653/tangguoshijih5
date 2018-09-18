@@ -13,6 +13,7 @@
 	import QRCode from 'qrcode'
 	import HeaderNav from '../base/headerNav'
 	import html2canvas from '../../assets/js/html2canvas.min.js'
+	import  {Canvas2Image} from '../../assets/js/canvas2image.js'
 	export default {
 		data() {
 			return {
@@ -44,11 +45,7 @@
 						html2canvas(imgbox).then(function(canvas) {
 							that.ispicboxshow = false;
 							document.getElementById('shareimgbox').appendChild(canvas);
-							let dataUrl = canvas.toDataURL('image/jpeg');
-							let newImg = document.createElement('img');
-							newImg.src = dataUrl;
-							document.getElementById('shareimgbox').appendChild(newImg);
-							
+							document.getElementById('shareimgbox').appendChild(Canvas2Image.convertToImage(canvas, 750, 1200, 'png'))
 						});
 					})
 				}
@@ -63,7 +60,6 @@
 		overflow: auto;
 		background-color: white !important;
 	}
-	
 	.content-wxshare {
 		margin-top: 88px;
 		position: relative;
@@ -72,7 +68,6 @@
 		background: url("../../assets/img/share/wxshare.png");
 		background-size: 100% 100%;
 	}
-	
 	.QRcode {
 		position: absolute;
 		width: 100%;
@@ -86,7 +81,6 @@
 		color: rgba(226, 104, 220, 1);
 		line-height: 46px;
 	}
-	
 	#QRcanvas {
 		position: absolute;
 		width: 184px !important;

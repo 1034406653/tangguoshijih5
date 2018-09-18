@@ -176,15 +176,16 @@
 		position: relative;
 	}
 	#shareimgbox>canvas{
-		position: absolute;
-		width: 100%;
-		left: 0;
-		top: 88px;
+		
+		width: 100% !important;
+		height: 1200px !important;
+		margin-top: 88px;
 		display: none;
 	}
 	#shareimgbox>img{
 		margin-top: 88px;
-		width: 100%;
+		width: 100% !important;
+		height: auto !important;
 		display: block;
 	}
 </style>

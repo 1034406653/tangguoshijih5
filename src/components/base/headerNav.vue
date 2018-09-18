@@ -61,11 +61,12 @@
 	}
 	
 	#header .back {
-		width: 42px;
+		width: 62px;
 		height: 42px;
 		position: absolute;
-		left: 40px;
+		left: 20px;
 		top: 23px;
+		padding-left: 20px;
 	}
 	
 	#header .title {
