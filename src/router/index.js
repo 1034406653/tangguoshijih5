@@ -27,8 +27,6 @@ import Guide from '@/components/index/guide'
 import Wxshare from '@/components/share/wxshare'
 Vue.use(Router)
 
-
-
 export default new Router({
   routes: [
     { //重定向
@@ -176,7 +174,7 @@ export default new Router({
     {
       path: '/index/guide',
       name: 'Guide',
-      component: resolve => require(['../components/index/guide'], guide),
+      component: resolve => require(['../components/index/guide'], resolve),
       meta: { keepAlive: false }
     },
     {
