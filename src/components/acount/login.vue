@@ -16,14 +16,14 @@
 				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
 				<input type="password" style="display: none;" />
 				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" />
-				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @touchend="changePasswordType" v-if="passwordType!='password'" />
-				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @touchend="changePasswordType" v-if="passwordType=='password'" />
+				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @touchend="changePasswordType" v-if=" passwordType !='password'&&loginData.password.length>0" />
+				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @touchend="changePasswordType" v-if="passwordType=='password'&&loginData.password.length>0" />
 			</div>
 			<p v-show="tipList.password">密码格式错误</p>
 		</div>
 		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goLogin" :cBtnValue="btnValue"></colorBtn>
 		<div class="restAcount">
-			<span @touchend="goPasswordBack">忘记密码</span>
+			<span @touchend="goPasswordBack">忘记密码?</span>
 			<span @touchend="goRegister">手机号快速注册</span>
 		</div>
 		<div id="toastlxl" class="toastlxl"></div>
