@@ -176,7 +176,7 @@ export default new Router({
     {
       path: '/index/guide',
       name: 'Guide',
-      component: resolve => require(['../components/index/guide'], guide),
+      component: resolve => require(['../components/index/guide'], resolve),
       meta: { keepAlive: false }
     },
     {
