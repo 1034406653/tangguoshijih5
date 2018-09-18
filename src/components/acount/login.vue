@@ -91,7 +91,6 @@
 				if(this.isLogBtnActive) {
 					this.$http.post('/user/login', that.loginData).then((result) => {
 						if(result.data.code == "1") {
-							that.loginData.password = "";
 							showModal.show(result.data.info);
 						} else if(result.data.code == "0") {
 							window.localStorage.setItem("jiazhuoToken", result.data.data.token);
