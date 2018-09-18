@@ -1,5 +1,8 @@
 <template>
 	<div class="content2">
+		<div class="loginHeader">
+			<img src="../../assets/img/base/navigation_nav_back@2x.png" class="back" @touchend="goBack" />
+		</div>
 		<img src="../../assets/img/acount/logo.png" class="logLogo" onclick="return false" />
 		<div class="inputBox">
 			<div>
@@ -11,6 +14,7 @@
 		<div class="inputBox lastInputBox">
 			<div>
 				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
+				<input type="password" style="display: none;" />
 				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" />
 				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @touchend="changePasswordType" v-if="passwordType!='password'" />
 				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @touchend="changePasswordType" v-if="passwordType=='password'" />
@@ -110,7 +114,12 @@
 						}
 					});
 				}
-			}
+			},
+			goBack(){
+				this.$router.push({
+					'path':'/index/guide'
+				})
+			},
 		},
 		watch: {
 			loginData: {
@@ -123,12 +132,13 @@
 					}
 					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6) {
 						this.isLogBtnActive = true;
-
+						
 					} else {
 						this.isLogBtnActive = false;
 					}
 				},
 				deep: true,
+				immediate: true
 			},
 		},
 
@@ -138,5 +148,26 @@
 <style scoped>
 	input:-webkit-autofill {
 		-webkit-box-shadow: 0 0 0 1000px rgba(239, 239, 239, 1) inset !important;
+	}
+	.loginHeader {
+		width: 100%;
+		height: 88px;
+		line-height: 88px;
+		position: fixed;
+		text-align: center;
+		overflow: hidden;
+		top: 0;
+		left: 0;
+		background: #F7F7F7;
+		z-index: 999;
+	}
+	
+	.loginHeader .back {
+		width: 62px;
+		height: 42px;
+		position: absolute;
+		left: 20px;
+		top: 23px;
+		padding-left: 20px;
 	}
 </style>
