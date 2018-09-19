@@ -306,9 +306,9 @@
           } else if (this.placeholderSpan_2) {
             showModal.show(`<p>请输入正确的地址</p>`)
           } else if (/.*[\u4e00-\u9fa5]+.*$/.test(this_.queryData.value)) {
-            showModal.show(`<p>地址不能包含中文</p>`)
+            showModal.show(`<p>地址不包含中文</p>`)
           } else if (/.*\s+.*$/.test(this_.queryData.value)) {
-            showModal.show(`<p>地址不能包含空格</p>`)
+            showModal.show(`<p>地址不包含空格</p>`)
           } else if (this_.queryData.value.length >= 200) {
             showModal.show(`<p>地址长度不正确</p>`)
           }
