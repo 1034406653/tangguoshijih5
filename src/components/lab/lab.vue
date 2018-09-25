@@ -35,7 +35,7 @@
 						<img src="../../assets/img/lab/laboratory_icon_signin.png" />
 						<b>每日签到</b>
 						<span v-if="!signed">算力+{{ login_power }}</span>
-						<span v-if="signed">已完成</span>
+						<span v-if="signed">已签到</span>
 					</li>
 				</ul>
 			</div>
@@ -92,21 +92,21 @@
 				this.$http.post('/web/get_banner').then(res => {
 					if(res.data.code == "0") {
 						that.bannerList = res.data.data;
-						setTimeout(() => {
-							let mySwiper = new Swiper('.swiper-container', {
-								autoplay: {
-									delay: 3000,
-									stopOnLastSlide: false,
-									disableOnInteraction: true,
-								},
-								loop: true,
-								// 如果需要分页器
-								pagination: {
-									el: '.swiper-pagination',
-								},
-							})
-						}, 200)
+
 					}
+				}).then(() => {
+					var mySwiper = new Swiper('.swiper-container', {
+						autoplay: {
+							delay: 3000,
+							stopOnLastSlide: false,
+							disableOnInteraction: true,
+						},
+						loop: true,
+						// 如果需要分页器
+						pagination: {
+							el: '.swiper-pagination',
+						},
+					})
 				})
 				this.$http.post('/power/get_power').then(res => {
 					if(res.data.code == "0") {
@@ -141,6 +141,7 @@
 					this.$http.post('/power/receive_power').then(res => {
 						if(res.data.code == "0") {
 							that.signed = true;
+							showModal.show(`<div class='toastlxl_icon'></div><p>签到成功</p>`);
 						}
 					})
 				}

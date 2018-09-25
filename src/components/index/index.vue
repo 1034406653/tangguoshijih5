@@ -123,12 +123,12 @@
 				audioMp3.load()*/
 				this.$refs.audioMp3.load()
 				this.candyList.splice(index, 1);
+				that.$refs.audioMp3.play()
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
-						that.$refs.audioMp3.play()
 						that.dioNum = res.data.data.DIO;
 					}
 				});
@@ -141,12 +141,13 @@
 				audioMp3.load()*/
 				this.$refs.audioMp3.load()
 				this.candyList2.splice(index, 1);
+				that.$refs.audioMp3.play()
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
-						that.$refs.audioMp3.play()
+						
 						that.dioNum = res.data.data.DIO;
 					}
 				});
