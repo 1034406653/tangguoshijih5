@@ -86,13 +86,11 @@
     created() {
       this.init();
       Prevent.init();
-      Prevent.flag = false
     },
     deactivated() {
       Prevent.flag = true
     },
     activated() {
-      Prevent.init();
       Prevent.flag = false
       toastlxllab = new Toastlxl('toastlxllab');
     },

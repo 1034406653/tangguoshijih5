@@ -71,14 +71,12 @@
 		},
 		mounted() {
 			toastlxlcenter = new Toastlxl('toastlxlcenter');
-      Prevent.init()
-      Prevent.flag = false
+      Prevent.init();
 		},
     deactivated() {
       Prevent.flag = true
     },
 		activated() {
-      Prevent.init()
       Prevent.flag = false
       let that=this;
 		},

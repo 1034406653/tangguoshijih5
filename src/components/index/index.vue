@@ -79,14 +79,11 @@
 		created() {
 			this.init();
       Prevent.init();
-      Prevent.flag = false
 		},
     deactivated() {
       Prevent.flag = true
     },
 		activated() {
-		  console.log(1)
-      Prevent.init();
       Prevent.flag = false
 			let that=this;
 			if(window.localStorage.getItem('head_pic')) {

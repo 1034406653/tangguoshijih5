@@ -19,6 +19,7 @@ let Prevent = {
     ev.stopPropagation();
   },
   init() {
+    Prevent.flag = false;
     if (Prevent.flag === false) {
       window.addEventListener('touchmove', Prevent.touchListen, false);
     } else if (Prevent.flag === true) {
