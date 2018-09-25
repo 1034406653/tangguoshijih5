@@ -212,7 +212,7 @@
       this.get_realauth()
     },
     mounted() {
-      toastlxlrealname = new Toastlxl('toastlxl');
+      toastlxlrealname = new Toastlxl('toastlxlrealname');
     },
     computed: {
       retrunValue() {

@@ -78,8 +78,16 @@
 		},
 		created() {
 			this.init();
+      Prevent.init();
+      Prevent.flag = false
 		},
+    deactivated() {
+      Prevent.flag = true
+    },
 		activated() {
+		  console.log(1)
+      Prevent.init();
+      Prevent.flag = false
 			let that=this;
 			if(window.localStorage.getItem('head_pic')) {
 				this.head_pic = window.localStorage.getItem('head_pic');
@@ -91,7 +99,6 @@
 		},
 		methods: {
 			init() {
-				Prevent.init();
 				var that = this;
 				for(let i = 0; arr.size < 13; i++) {
 					arr.add(Math.floor(Math.random() * 13));

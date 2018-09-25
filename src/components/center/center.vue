@@ -71,17 +71,16 @@
 		},
 		mounted() {
 			toastlxlcenter = new Toastlxl('toastlxlcenter');
-			Prevent.flag = false
-			Prevent.init()
+      Prevent.init()
+      Prevent.flag = false
 		},
-		beforeDestroy() {
-			Prevent.flag = true
-			
-		},
+    deactivated() {
+      Prevent.flag = true
+    },
 		activated() {
-			Prevent.init()
-			let that=this;
-			this.init();
+      Prevent.init()
+      Prevent.flag = false
+      let that=this;
 		},
 		methods: {
 			init() {
@@ -91,8 +90,8 @@
 				}
 				this.nickname = window.localStorage.getItem('nickname') || "";
 				this.mobile = window.localStorage.getItem('mobile') || "";
-				this.$http.post('user/get_realauth').then((res) => {		
-				if(res.data.code == 0) {		
+				this.$http.post('user/get_realauth').then((res) => {
+				if(res.data.code == 0) {
 					that.authenticated = true;
 				}
 			})
@@ -197,7 +196,7 @@
 	.mint-msgbox-header {
 		padding-top: 40px;
 	}
-	
+
 	.mint-msgbox-title {
 		width: 100%;
 		height: 34px;
@@ -206,7 +205,7 @@
 		color: rgba(51, 51, 51, 1);
 		line-height: 32px;
 	}
-	
+
 	.mint-msgbox-input {
 		width: 480px;
 		height: auto;
@@ -214,7 +213,7 @@
 		overflow: hidden;
 		padding: 29px 0 30px 0;
 	}
-	
+
 	.mint-msgbox-input input {
 		width: 100%;
 		height: 60px;
@@ -228,12 +227,12 @@
 		line-height: 60px;
 		text-align: center;
 	}
-	
+
 	.content1 {
 		background: url(../../assets/img/index/me_pic_background.png);
 		background-size: 100% 100%;
 	}
-	
+
 	.user-name {
 		width: 670px;
 		height: 150px;
@@ -242,7 +241,7 @@
 		margin-bottom: 50px;
 		position: relative;
 	}
-	
+
 	.user-name img {
 		float: left;
 		width: 150px;
@@ -250,7 +249,7 @@
 		margin-right: 52px;
 		border-radius: 50%;
 	}
-	
+
 	.headInput {
 		position: absolute;
 		width: 150px;
@@ -264,7 +263,7 @@
 		overflow: hidden;
 		opacity: 0;
 	}
-	
+
 	.user-name div {
 		float: left;
 		width: auto;
@@ -276,7 +275,7 @@
 		font-weight: bold;
 		color: rgba(255, 255, 255, 1);
 	}
-	
+
 	.nav-box {
 		width: 670px;
 		height: 180px;
@@ -284,12 +283,12 @@
 		margin-bottom: 40px;
 		position: relative;
 	}
-	
+
 	.nav-box>img {
 		width: 100%;
 		height: 100%;
 	}
-	
+
 	.account-box {
 		width: 670px;
 		height: auto;
@@ -300,7 +299,7 @@
 		text-align: left;
 		padding: 0 40px;
 	}
-	
+
 	.account-box .title {
 		width: 100%;
 		height: auto;
@@ -310,13 +309,13 @@
 		line-height: 40px;
 		padding: 30px 0 20px 0;
 	}
-	
+
 	.account-box .account-li {
 		width: 100%;
 		height: 90px;
 		overflow: hidden;
 	}
-	
+
 	.account-box .account-li img {
 		width: 36px;
 		height: 36px;
@@ -324,7 +323,7 @@
 		margin-right: 16px;
 		margin-top: 27px;
 	}
-	
+
 	.account-box .account-li span {
 		float: left;
 		width: auto;
@@ -334,7 +333,7 @@
 		font-family: PingFang-SC-Medium;
 		color: rgba(51, 51, 51, 1);
 	}
-	
+
 	.account-box .account-li span {
 		float: left;
 		width: auto;
@@ -344,7 +343,7 @@
 		font-family: PingFang-SC-Medium;
 		color: rgba(51, 51, 51, 1);
 	}
-	
+
 	.account-box .account-li b {
 		float: right;
 		width: auto;
@@ -355,7 +354,7 @@
 		color: rgba(51, 51, 51, 1);
 		font-weight: normal;
 	}
-	
+
 	.account-box .account-li .nextGo {
 		float: right;
 		width: 10px;
