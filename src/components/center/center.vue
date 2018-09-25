@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<FooterNav :footerNav="footerNav"></FooterNav>
-		<div id="toastlxl" class="toastlxl"></div>
+		<div id="toastlxlcenter" class="toastlxl"></div>
 	</div>
 </template>
 
@@ -52,7 +52,7 @@
 	import FooterNav from '../base/footerNav'
 	import { MessageBox } from 'mint-ui';
 	import { Toastlxl } from "../../assets/js/toastlxl.js"
-	var showModal = '';
+	var toastlxlcenter = '';
 	export default {
 		data() {
 			return {
@@ -60,7 +60,7 @@
 				head_pic: require("../../assets/img/index/home_pic_avatar.png"),
 				nickname: "",
 				mobile: "",
-				authenticated:false,
+				authenticated: false,
 			}
 		},
 		components: {
@@ -70,27 +70,32 @@
 			this.init();
 		},
 		mounted() {
-			showModal = new Toastlxl('toastlxl');
+			toastlxlcenter = new Toastlxl('toastlxlcenter');
 			Prevent.flag = false
 			Prevent.init()
 		},
 		beforeDestroy() {
 			Prevent.flag = true
+			
+		},
+		activated() {
 			Prevent.init()
+			let that=this;
+			this.init();
 		},
 		methods: {
 			init() {
-				let that=this;
+				let that = this;
 				if(window.localStorage.getItem('head_pic')) {
 					this.head_pic = window.localStorage.getItem('head_pic');
 				}
 				this.nickname = window.localStorage.getItem('nickname') || "";
 				this.mobile = window.localStorage.getItem('mobile') || "";
-				this.$http.post('user/get_realauth').then((res)=>{
-					if(res.data.code==0){
-						that.authenticated=true;
-					}
-				})
+				this.$http.post('user/get_realauth').then((res) => {		
+				if(res.data.code == 0) {		
+					that.authenticated = true;
+				}
+			})
 			},
 			handleFileChange(event) {
 				let that = this;
@@ -112,7 +117,7 @@
 						}
 					}
 					// 添加请求头
-					let postimgUrl=this.$baseURL+'//upload/upload_img'
+					let postimgUrl = this.$baseURL + '//upload/upload_img'
 					this.$http.post(postimgUrl, param, config)
 						.then(res => {
 							if(res.data.code == '0') {
@@ -121,14 +126,14 @@
 								}).then(result => {
 									if(result.data.code == '0') {
 										window.localStorage.setItem('head_pic', res.data.data);
-										showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
+										toastlxlcenter.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
 									} else {
-										showModal.show(result.data.info);
+										toastlxlcenter.show(result.data.info);
 									}
 								})
 								window.localStorage.setItem('head_pic', res.data.data);
 							}
-					})
+						})
 				}
 			},
 			changeNickname() {
@@ -146,14 +151,13 @@
 							if(res.data.code == '0') {
 								that.nickname = value;
 								window.localStorage.setItem('nickname', value);
-								showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
+								toastlxlcenter.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
 							} else {
-								showModal.show(res.data.info);
+								toastlxlcenter.show(res.data.info);
 							}
 						})
 					}
-				}).catch(err => {
-				});
+				}).catch(err => {});
 			},
 			goSet() {
 				this.$router.push({

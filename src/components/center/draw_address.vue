@@ -185,7 +185,7 @@
                    :itemHeight="itemHeight" class="slot1" :valueKey="valueKey"></mt-picker>
       </div>
     </mt-popup>
-    <div id="toastlxl" class="toastlxl"></div>
+    <div id="toastlxldrawaddress" class="toastlxl"></div>
   </div>
 </template>
 
@@ -195,7 +195,7 @@
   import {MessageBox, Popup, Picker} from 'mint-ui'
   import {Toastlxl} from "../../assets/js/toastlxl.js"
 
-  var showModal = '';
+  var toastlxldrawaddress = '';
   export default {
     data() {
       return {
@@ -248,7 +248,7 @@
       this.getQueryData()
     },
     mounted() {
-      showModal = new Toastlxl('toastlxl');
+      toastlxldrawaddress = new Toastlxl('toastlxldrawaddress');
     },
     methods: {
       placeholderHide() {
@@ -302,15 +302,15 @@
         let this_ = this
         if (this_.buttonDis === false) {
           if (this.placeholderSpan_1) {
-            showModal.show(`<p>请选择币种</p>`)
+            toastlxldrawaddress.show(`<p>请选择币种</p>`)
           } else if (this.placeholderSpan_2) {
-            showModal.show(`<p>请输入正确的地址</p>`)
+            toastlxldrawaddress.show(`<p>请输入正确的地址</p>`)
           } else if (/.*[\u4e00-\u9fa5]+.*$/.test(this_.queryData.value)) {
-            showModal.show(`<p>地址不包含中文</p>`)
+            toastlxldrawaddress.show(`<p>地址不包含中文</p>`)
           } else if (/.*\s+.*$/.test(this_.queryData.value)) {
-            showModal.show(`<p>地址不包含空格</p>`)
+            toastlxldrawaddress.show(`<p>地址不包含空格</p>`)
           } else if (this_.queryData.value.length >= 200) {
-            showModal.show(`<p>地址长度不正确</p>`)
+            toastlxldrawaddress.show(`<p>地址长度不正确</p>`)
           }
         } else {
           this.$http.post('/currency/add_currency', {
@@ -319,7 +319,7 @@
             id: this.queryData.id
           }).then((result) => {
             if (result.data.code === 0) {
-              showModal.show(`<div class='toastlxl_icon'></div><p>添加成功</p>`);
+              toastlxldrawaddress.show(`<div class='toastlxl_icon'></div><p>添加成功</p>`);
               setTimeout(() => {
                 this.$router.back(-1)
               }, 1500);
@@ -336,7 +336,7 @@
             id: this.queryData.id
           }).then((result) => {
             if (result.data.code === 0) {
-              showModal.show(`<div class='toastlxl_icon'></div><p>删除成功</p>`);
+              toastlxldrawaddress.show(`<div class='toastlxl_icon'></div><p>删除成功</p>`);
               setTimeout(() => {
                 this.$router.back(-1)
               }, 1500);

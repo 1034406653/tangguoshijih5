@@ -32,7 +32,7 @@
 			<p v-show="tipList.repassword">两次输入密码不同</p>
 		</div>
 		<colorBtn :cBtnActive="isLogBtnActive" @cBtnTuch="goPasswordBack"></colorBtn>
-		<div id="toastlxl" class="toastlxl"></div>
+		<div id="toastlxlpasswordback" class="toastlxl"></div>
 	</div>
 </template>
 
@@ -42,7 +42,7 @@
 	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	import ColorBtn from '../base/colorBtn'
 	let base_url = ""
-	var showModal =''
+	var toastlxlpasswordback =''
 	export default {
 		data() {
 			return {
@@ -73,7 +73,7 @@
 			base_url = this.$store.state.base_url;
 		},
 		mounted(){
-			showModal = new Toastlxl('toastlxl');				
+			toastlxlpasswordback = new Toastlxl('toastlxlpasswordback');				
 		},
 		methods: {
 			mobileBlur() {
@@ -129,7 +129,7 @@
 									}
 								}, 1000)
 							}else{
-								showModal.show('今日验证码请求已上限');
+								toastlxlpasswordback.show('今日验证码请求已上限');
 							}
 
 						})
@@ -144,9 +144,9 @@
 					this.$http.post('/user/reSetPassword', that.resetPassword)
 						.then((result) => {
 							if(result.data.code === 1) {
-								showModal.show(result.data.info);
+								toastlxlpasswordback.show(result.data.info);
 							} else if(result.data.code === 0) {
-								showModal.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
+								toastlxlpasswordback.show(`<div class='toastlxl_icon'></div><p>修改成功</p>`);
 								setTimeout(() => {
 									that.$router.push({
 										path: "/acount/login"

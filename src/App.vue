@@ -171,9 +171,9 @@
 	/*wxshare*/
 	#shareimgbox{
 		width: 100%;
-		height: auto;
-		overflow: hidden;
+		height: 100%;
 		position: relative;
+		overflow: auto;
 	}
 	#shareimgbox>canvas{
 		

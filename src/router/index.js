@@ -22,7 +22,7 @@ import Register from '@/components/acount/register'
 import Agreement from '@/components/acount/agreement'
 import PasswordBack from '@/components/acount/passwordBack'
 import ChangePassword from '@/components/acount/changePassword'
-import Turntable from '@/components/game/turntable'
+
 import Guide from '@/components/index/guide'
 import Wxshare from '@/components/share/wxshare'
 Vue.use(Router)
@@ -37,7 +37,7 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: resolve => require(['../components/index/index'], resolve),
-      meta: { keepAlive: false }
+      meta: { keepAlive: true }
     },
     {
     	path: '/index/dio',
@@ -61,13 +61,13 @@ export default new Router({
     	path: '/index/share',
       name: 'Share',
       component: resolve => require(['../components/index/share'], resolve),
-      meta: { keepAlive: false }
+      meta: { keepAlive: true }
     },
     {
     	path: '/lab/lab',
       name: 'Lab',
       component: resolve => require(['../components/lab/lab'], resolve),
-      meta: { keepAlive: false }
+      meta: { keepAlive: true }
     },
     {
       path: '/lab/gameList',
@@ -79,7 +79,7 @@ export default new Router({
     	path: '/center/center',
       name: 'Center',
       component: resolve => require(['../components/center/center'], resolve),
-      meta: { keepAlive: false }
+      meta: { keepAlive: true }
     },
     {
     	path: '/center/set',
@@ -166,12 +166,6 @@ export default new Router({
       meta: { keepAlive: false }
     },
     {
-      path: '/game/turntable',
-      name: 'Turntable',
-      component: resolve => require(['../components/game/turntable'], resolve),
-      meta: { keepAlive: false }
-    },
-    {
       path: '/index/guide',
       name: 'Guide',
       component: resolve => require(['../components/index/guide'], resolve),
@@ -181,7 +175,7 @@ export default new Router({
       path: '/share/wxshare',
       name: 'Wxshare',
       component: resolve => require(['../components/share/wxshare'], resolve),
-      meta: { keepAlive: false }
+      meta: { keepAlive: true }
     }
   ]
 })

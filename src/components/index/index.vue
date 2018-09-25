@@ -60,7 +60,6 @@
 	import '../../assets/css/index.css'
 	import FooterNav from '../base/footerNav'
 	let arr = new Set([]);
-
 	export default {
 		data() {
 			return {
@@ -79,9 +78,16 @@
 		},
 		created() {
 			this.init();
+		},
+		activated() {
+			let that=this;
 			if(window.localStorage.getItem('head_pic')) {
 				this.head_pic = window.localStorage.getItem('head_pic');
 			}
+			this.$http.post('/candy/get_coin_list').then(res => {
+				that.dioNum = res.data.data.DIO;
+				that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
+			});
 		},
 		methods: {
 			init() {
@@ -147,7 +153,7 @@
 				}).then(res => {
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
-						
+
 						that.dioNum = res.data.data.DIO;
 					}
 				});
