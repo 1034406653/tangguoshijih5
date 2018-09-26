@@ -4,7 +4,7 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(item,index) in bannerList">
           <!--<p>{{index}}</p>-->
-          <img :src="item.img_url"/>
+          <img :src="item.img_url" @touchend='goactivity(item.ad_link)'/>
         </div>
       </div>
       <!-- 如果需要分页器 -->
@@ -99,6 +99,7 @@
         let that = this;
         /*banner图*/
         this.$http.post('/web/get_banner').then(res => {
+        	console.log(res)
           if (res.data.code == "0") {
             that.bannerList = res.data.data;
 
@@ -137,6 +138,12 @@
             }
           }
         })
+      },
+      goactivity(ad_link){
+      	console.log(ad_link);
+      	if(ad_link){
+      		window.location.href=ad_link;
+      	}
       },
       goGame(game_url, game_id) {
         window.open(`${game_url}?token=${localStorage.jiazhuoToken}&nickname=${encodeURI(encodeURI(localStorage.nickname))}&head_pic=${localStorage.head_pic === 'null' ? '' : localStorage.head_pic}&game_id=${game_id}`);
