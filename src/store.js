@@ -4,9 +4,10 @@ Vue.use(Vuex)
 /*状态对象*/
 const state ={
   base_url: 'https://a.hzjiazhuo.com/api',
-	token:"",
-	head_pic:"../../assets/img/index/home_pic_avatar.png",
-	nickname:"",
+	token: "",
+	head_pic: "../../assets/img/index/home_pic_avatar.png",
+	nickname: "",
+  dio: ''
 }
 /*触发状态*/
 const mutations={
