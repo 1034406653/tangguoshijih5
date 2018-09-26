@@ -20,11 +20,7 @@
 			<img src="../../assets/img/index/home_iocn_invitation.png" />
 			<span>邀请好友</span>
 		</div>
-
-		<div class="plant" onclick="return false">
-
-		</div>
-
+		<div class="plant" onclick="return false"></div>
 		<ul class="candyList">
 			<li :class="item.className" v-for="(item,index) in candyList" @touchend="delCanday(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
@@ -52,6 +48,13 @@
 		<audio ref="audioMp3">
 			<source src="../../assets/audio.mp3" type="audio/mpeg">
 		</audio>
+
+		<div class="activity" :class="item.className" v-for="item in activeList" @touchend='goActivity(item.url)'>
+			<img :src="item.icon" />
+			<p>{{item.name}}</p>
+		</div>
+		
+
 		<FooterNav :footerNav="footerNav"></FooterNav>
 	</div>
 </template>
@@ -70,7 +73,8 @@
 				candyList: [],
 				candyList2: [],
 				candyListDom: [],
-				audioSrc: '../../assets/audio.mp3'
+				audioSrc: '../../assets/audio.mp3',
+				activeList:[],
 			}
 		},
 		components: {
@@ -78,14 +82,14 @@
 		},
 		created() {
 			this.init();
-      Prevent.init();
+			Prevent.init();
 		},
-    deactivated() {
-      Prevent.flag = true
-    },
+		deactivated() {
+			Prevent.flag = true
+		},
 		activated() {
-      Prevent.flag = false
-			let that=this;
+			Prevent.flag = false
+			let that = this;
 			if(window.localStorage.getItem('head_pic')) {
 				this.head_pic = window.localStorage.getItem('head_pic');
 			}
@@ -102,6 +106,10 @@
 				}
 				arr = Array.from(arr);
 				this.$http.post('/candy/get_coin_list').then(res => {
+					res.data.data.active.forEach((x,i)=>{
+						that.activeList[i]=x;
+						that.activeList[i].className='activityPortal'+x.id;
+					})
 					that.dioNum = res.data.data.DIO;
 					that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
 					res.data.data.list.forEach((x, i) => {
@@ -195,9 +203,37 @@
 					path: "/lab/lab"
 				})
 			},
+			goActivity(activityUrl){
+				console.log(activityUrl);
+			}
 		}
 	}
 </script>
 <style scoped>
-
+	.activity {
+		width: 130px;
+		height: 160px;
+		background: #00A8FF;
+		position: absolute;
+	}
+	
+	.activityPortal1 {
+		left: 50%;
+		margin-left: -340px;
+		top: 170px;
+	}
+	
+	.activityPortal2 {
+		left: 50%;
+		margin-left: -340px;
+		top: 930px;
+		height: 248px;
+	}
+	
+	.activityPortal3 {
+		left: 50%;
+		margin-left: 210px;
+		top: 930px;
+		height: 248px;
+	}
 </style>
