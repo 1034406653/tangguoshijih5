@@ -109,11 +109,8 @@
 							setTimeout(() => {
 								if(window.localStorage.getItem('fromUrl')) {
 									/*活动页跳转来的*/
-<<<<<<< HEAD
-									let fromUrl=window.localStorage.getItem('fromUrl');
-=======
+
 									let fromUrl = window.localStorage.getItem('fromUrl');
->>>>>>> e47fc594c07aa2c1c650b5d8305162456233c2b2
 									window.localStorage.removeItem('fromUrl')
 									window.location.href = fromUrl;
 								} else {
@@ -128,9 +125,8 @@
 				}
 			},
 			goBack() {
-<<<<<<< HEAD
 				if(window.localStorage.getItem('fromUrl')) {
-					let fromUrl=window.localStorage.getItem('fromUrl');
+					let fromUrl = window.localStorage.getItem('fromUrl');
 					window.localStorage.removeItem('fromUrl');
 					window.location.href = fromUrl;
 				} else {
@@ -138,12 +134,6 @@
 						'path': '/index/guide'
 					})
 				}
-
-=======
-				this.$router.push({
-					'path': '/index/guide'
-				})
->>>>>>> e47fc594c07aa2c1c650b5d8305162456233c2b2
 			},
 		},
 		watch: {
