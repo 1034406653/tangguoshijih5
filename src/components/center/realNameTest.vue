@@ -169,7 +169,7 @@
     <div class="realname-button" v-if="seeButton">
       <colorBtn :cBtnActive="buttonDis" @cBtnTuch="cofirmshow" :cBtnValue="cBtnValue"></colorBtn>
     </div>
-    <div id="toastlxl" class="toastlxl"></div>
+    <div id="toastlxlrealname" class="toastlxl"></div>
   </div>
 </template>
 
@@ -179,7 +179,7 @@
   import {MessageBox} from 'mint-ui'
   import { Toastlxl } from "../../assets/js/toastlxl.js"
 
-  var showModal = '';
+  var toastlxlrealname = '';
   export default {
     data() {
       return {
@@ -212,7 +212,7 @@
       this.get_realauth()
     },
     mounted() {
-      showModal = new Toastlxl('toastlxl');
+      toastlxlrealname = new Toastlxl('toastlxlrealname');
     },
     computed: {
       retrunValue() {
@@ -248,7 +248,7 @@
       cofirmshow() {
         let this_ = this
         if (this.wrongTipContrl === true) {
-        	showModal.show(this_.wrongTip);
+        	toastlxlrealname.show(this_.wrongTip);
         } else if (this.wrongTipContrl === false) {
           MessageBox.confirm('', {
             message: `<div class="confirm">
@@ -277,7 +277,7 @@
         }).then((result) => {
           if (result.data.code === 0) {
             console.log(result)
-            showModal.show(`<div class='toastlxl_icon'></div><p>保存成功</p>`);
+            toastlxlrealname.show(`<div class='toastlxl_icon'></div><p>保存成功</p>`);
             this_.buttonDis = true
             this_.seeButton = false
             this_.contact = true
