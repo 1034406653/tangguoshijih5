@@ -156,8 +156,8 @@
         if (!this.signed) {
           this.$http.post('/power/receive_power').then(res => {
             if (res.data.code == "0") {
-            	toastlxllab.show(`<div class='toastlxl_icon'></div><p>签到成功</p>`);
               that.signed = true;
+              toastlxllab.show(`<div class='toastlxl_icon'></div><p>签到成功</p>`);
             }
           })
         }

@@ -163,7 +163,7 @@
     color: #ffffff;
     font-size: 24px;
     text-align: center;
-    z-index: 1;
+    z-index: 1000;
   }
 
   .toastlxl > span {
