@@ -20,11 +20,7 @@
 			<img src="../../assets/img/index/home_iocn_invitation.png" />
 			<span>邀请好友</span>
 		</div>
-
-		<div class="plant" onclick="return false">
-
-		</div>
-
+		<div class="plant" onclick="return false"></div>
 		<ul class="candyList">
 			<li :class="item.className" v-for="(item,index) in candyList" @touchend="delCanday(index,item.id,item.candy_count)">
 				<div class="candyBox" :style="item.transform">
@@ -52,6 +48,10 @@
 		<audio ref="audioMp3">
 			<source src="../../assets/audio.mp3" type="audio/mpeg">
 		</audio>
+		<div class="activity" :class="item.className" v-for="item in activeList" @touchend='goActivity(item.url)' >
+			<img :src="item.icon" />
+			<p>{{item.name}}</p>
+		</div>
 		<FooterNav :footerNav="footerNav"></FooterNav>
 	</div>
 </template>
@@ -59,8 +59,9 @@
 	import { Prevent } from '../../assets/js/pervent.js'
 	import '../../assets/css/index.css'
 	import FooterNav from '../base/footerNav'
+	import Vue from 'vue'
 	let arr = new Set([]);
-
+	
 	export default {
 		data() {
 			return {
@@ -71,27 +72,50 @@
 				candyList: [],
 				candyList2: [],
 				candyListDom: [],
-				audioSrc: '../../assets/audio.mp3'
+				audioSrc: '../../assets/audio.mp3',
+				activeList: [],
 			}
 		},
 		components: {
 			FooterNav,
 		},
 		created() {
+			Prevent.init();
+		},
+		mounted() {
 			this.init();
+		},
+		deactivated() {
+			Prevent.flag = true
+		},
+		activated() {
+			Prevent.flag = false
+			let that = this;
 			if(window.localStorage.getItem('head_pic')) {
 				this.head_pic = window.localStorage.getItem('head_pic');
 			}
+			this.$http.post('/candy/get_coin_list').then(res => {
+				that.dioNum = res.data.data.DIO;
+				that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
+			});
 		},
 		methods: {
 			init() {
-				Prevent.init();
 				var that = this;
 				for(let i = 0; arr.size < 13; i++) {
 					arr.add(Math.floor(Math.random() * 13));
 				}
 				arr = Array.from(arr);
 				this.$http.post('/candy/get_coin_list').then(res => {
+					console.log(res);
+					if(res.data.code == 0) {
+						console.log(res.data.data.active)
+						res.data.data.active.forEach((x, i) => {
+							let activeLi=x;
+							activeLi.className='activityPortal'+x.id;
+							Vue.set(that.activeList,i,x)
+						})
+					}
 					that.dioNum = res.data.data.DIO;
 					that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
 					res.data.data.list.forEach((x, i) => {
@@ -123,12 +147,12 @@
 				audioMp3.load()*/
 				this.$refs.audioMp3.load()
 				this.candyList.splice(index, 1);
+				that.$refs.audioMp3.play()
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
-						that.$refs.audioMp3.play()
 						that.dioNum = res.data.data.DIO;
 					}
 				});
@@ -141,12 +165,12 @@
 				audioMp3.load()*/
 				this.$refs.audioMp3.load()
 				this.candyList2.splice(index, 1);
+				that.$refs.audioMp3.play()
 				this.$http.post('/candy/receive_candy', {
 					'id': candyId
 				}).then(res => {
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
-						that.$refs.audioMp3.play()
 						that.dioNum = res.data.data.DIO;
 					}
 				});
@@ -184,9 +208,52 @@
 					path: "/lab/lab"
 				})
 			},
+			goActivity(activityUrl) {
+				window.location.href = activityUrl + '?token=' + window.localStorage.getItem('jiazhuoToken');
+			}
 		}
 	}
 </script>
 <style scoped>
-
+	.activity {
+		width: 130px;
+		height: 140px;
+		position: absolute;
+		overflow: hidden;
+	}
+	
+	.activity>img {
+		width: 80px;
+		height: 80px;
+		margin: 8px auto;
+	}
+	
+	.activity>p {
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		font-size: 24px;
+		text-align: center;
+		color: rgba(255, 255, 255, 1);
+	}
+	
+	.activityPortal1 {
+		left: 50%;
+		margin-left: -340px;
+		top: 190px;
+	}
+	
+	.activityPortal2 {
+		left: 50%;
+		margin-left: -340px;
+		top: 850px;
+		height: 240px;
+	}
+	
+	.activityPortal3 {
+		left: 50%;
+		margin-left: 210px;
+		top: 850px;
+		height: 240px;
+	}
 </style>
