@@ -42,7 +42,7 @@
 		<div class="agreement">
 			注册即表示您同意<span @touchend="goAgreement">《用户注册协议》</span>
 		</div>
-		<div id="toastlxl" class="toastlxl"></div>
+		<div id="toastlxlregister" class="toastlxl"></div>
 	</div>
 </template>
 
@@ -52,7 +52,7 @@
 	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	import ColorBtn from '../base/colorBtn'
 	let base_url = ""
-	var showModal = '';
+	var toastlxlregister = '';
 	export default {
 		data() {
 			return {
@@ -86,7 +86,7 @@
 			base_url = this.$store.state.base_url;
 		},
 		mounted(){
-			showModal = new Toastlxl('toastlxl');
+			toastlxlregister = new Toastlxl('toastlxlregister');
 		},
 		methods: {
 			mobileBlur() {
@@ -142,7 +142,7 @@
 								}
 							}, 1000)
 						}else{
-								showModal.show('今日验证码请求已上限');
+								toastlxlregister.show('今日验证码请求已上限');
 							}
 
 					})
@@ -157,9 +157,9 @@
 					this.$http.post('/user/register', that.registerData)
 						.then((result) => {
 							if(result.data.code === 1) {
-								showModal.show(result.data.info);
+								toastlxlregister.show(result.data.info);
 							} else if(result.data.code === 0) {
-								showModal.show(`<div class='toastlxl_icon'></div><p>注册成功</p>`);
+								toastlxlregister.show(`<div class='toastlxl_icon'></div><p>注册成功</p>`);
 								setTimeout(() => {
 									that.$router.push({
 										path: "/acount/login"

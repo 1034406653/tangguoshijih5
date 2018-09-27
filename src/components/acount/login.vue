@@ -15,7 +15,7 @@
 			<div>
 				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
 				<input type="password" style="display: none;" />
-				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" />
+				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" id='passwordVal' />
 				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @touchend="changePasswordType" v-if=" passwordType !='password'&&loginData.password.length>0" />
 				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @touchend="changePasswordType" v-if="passwordType=='password'&&loginData.password.length>0" />
 			</div>
@@ -26,7 +26,7 @@
 			<span @touchend="goPasswordBack">忘记密码?</span>
 			<span @touchend="goRegister">手机号快速注册</span>
 		</div>
-		<div id="toastlxl" class="toastlxl"></div>
+		<div id="toastlxllogin" class="toastlxl"></div>
 	</div>
 </template>
 <script>
@@ -34,7 +34,7 @@
 	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	import HeaderNav from '../base/headerNav'
 	import ColorBtn from '../base/colorBtn'
-	var showModal = '';
+	var toastlxllogin = '';
 	let base_url = '';
 	export default {
 		data() {
@@ -60,7 +60,7 @@
 			base_url = this.$store.state.base_url;
 		},
 		mounted() {
-			showModal = new Toastlxl('toastlxl');
+			toastlxllogin = new Toastlxl('toastlxllogin');
 		},
 		methods: {
 			changePasswordType() {
@@ -95,13 +95,13 @@
 				if(this.isLogBtnActive) {
 					this.$http.post('/user/login', that.loginData).then((result) => {
 						if(result.data.code == "1") {
-							showModal.show(result.data.info);
+							toastlxllogin.show(result.data.info);
 						} else if(result.data.code == "0") {
 							window.localStorage.setItem("jiazhuoToken", result.data.data.token);
 							window.localStorage.setItem("nickname", result.data.data.user_info.nickname);
 							window.localStorage.setItem("head_pic", result.data.data.user_info.head_pic);
 							window.localStorage.setItem("mobile", result.data.data.user_info.mobile);
-							showModal.show(`<div class='toastlxl_icon'></div><p>登陆成功</p>`);
+							toastlxllogin.show(`<div class='toastlxl_icon'></div><p>登陆成功</p>`);
 							that.$store.commit({
 								type: 'addToken',
 								tokenCode: result.data.data.token
@@ -109,7 +109,11 @@
 							setTimeout(() => {
 								if(window.localStorage.getItem('fromUrl')) {
 									/*活动页跳转来的*/
+<<<<<<< HEAD
 									let fromUrl=window.localStorage.getItem('fromUrl');
+=======
+									let fromUrl = window.localStorage.getItem('fromUrl');
+>>>>>>> e47fc594c07aa2c1c650b5d8305162456233c2b2
 									window.localStorage.removeItem('fromUrl')
 									window.location.href = fromUrl;
 								} else {
@@ -124,6 +128,7 @@
 				}
 			},
 			goBack() {
+<<<<<<< HEAD
 				if(window.localStorage.getItem('fromUrl')) {
 					let fromUrl=window.localStorage.getItem('fromUrl');
 					window.localStorage.removeItem('fromUrl');
@@ -134,6 +139,11 @@
 					})
 				}
 
+=======
+				this.$router.push({
+					'path': '/index/guide'
+				})
+>>>>>>> e47fc594c07aa2c1c650b5d8305162456233c2b2
 			},
 		},
 		watch: {

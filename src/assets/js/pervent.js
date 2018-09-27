@@ -3,6 +3,7 @@ let Prevent = {
   stopTouchendPropagation: function (ev) {
     ev.stopPropagation();
     setTimeout(function () {
+      console.log('stopTouchend');
       window.removeEventListener('touchend', Prevent.stopTouchendPropagation, true);
       Prevent.flag = false;
     }, 50);
@@ -18,6 +19,7 @@ let Prevent = {
     ev.stopPropagation();
   },
   init() {
+    Prevent.flag = false;
     if (Prevent.flag === false) {
       window.addEventListener('touchmove', Prevent.touchListen, false);
     } else if (Prevent.flag === true) {
