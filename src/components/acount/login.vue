@@ -15,7 +15,7 @@
 			<div>
 				<img src="../../assets/img/acount/reg_reg_password@2x.png" class="icon" />
 				<input type="password" style="display: none;" />
-				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" id='passwordVal'/>
+				<input :type="passwordType" placeholder="请输入您的密码" v-model="loginData.password" @blur="passwordBlur" id='passwordVal' />
 				<img src="../../assets/img/acount/reg_reg_hide@2x.png" class="seeIcon" @touchend="changePasswordType" v-if=" passwordType !='password'&&loginData.password.length>0" />
 				<img src="../../assets/img/acount/reg_reg_show@2x.png" class="seeIcon" @touchend="changePasswordType" v-if="passwordType=='password'&&loginData.password.length>0" />
 			</div>
@@ -107,9 +107,16 @@
 								tokenCode: result.data.data.token
 							})
 							setTimeout(() => {
-								that.$router.push({
-									path: "/"
-								})
+								if(window.localStorage.getItem('fromUrl')) {
+									/*活动页跳转来的*/
+									let fromUrl = window.localStorage.getItem('fromUrl');
+									window.localStorage.removeItem('fromUrl')
+									window.location.href = fromUrl;
+								} else {
+									that.$router.push({
+										path: "/"
+									})
+								}
 							}, 1000)
 						}
 					});

@@ -61,7 +61,7 @@
 	import FooterNav from '../base/footerNav'
 	import Vue from 'vue'
 	let arr = new Set([]);
-	var jiazhuoToken = window.localStorage.getItem('jiazhuoToken');
+	
 	export default {
 		data() {
 			return {
@@ -114,7 +114,6 @@
 							let activeLi=x;
 							activeLi.className='activityPortal'+x.id;
 							Vue.set(that.activeList,i,x)
-							console.log(that.activeList)
 						})
 					}
 					that.dioNum = res.data.data.DIO;
@@ -172,7 +171,6 @@
 				}).then(res => {
 					if(res.data.code == "0") {
 						/*audioMp3.play()*/
-
 						that.dioNum = res.data.data.DIO;
 					}
 				});
@@ -211,8 +209,7 @@
 				})
 			},
 			goActivity(activityUrl) {
-				console.log(activityUrl);
-				window.location.href = activityUrl + '?token=' + jiazhuoToken;
+				window.location.href = activityUrl + '?token=' + window.localStorage.getItem('jiazhuoToken');
 			}
 		}
 	}

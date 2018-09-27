@@ -167,6 +167,7 @@ body .content1 {
 	top: 0;
 	width: 100%;
 	height: auto;
+	z-index: 10;
 }
 
 .candyList>li,
