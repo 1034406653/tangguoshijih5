@@ -107,18 +107,33 @@
 								tokenCode: result.data.data.token
 							})
 							setTimeout(() => {
-								that.$router.push({
-									path: "/"
-								})
+								if(window.localStorage.getItem('fromUrl')) {
+									/*活动页跳转来的*/
+									let fromUrl=window.localStorage.getItem('fromUrl');
+									window.localStorage.removeItem('fromUrl')
+									window.location.href = fromUrl;
+								} else {
+									that.$router.push({
+										path: "/"
+									})
+								}
 							}, 1000)
+
 						}
 					});
 				}
 			},
-			goBack(){
-				this.$router.push({
-					'path':'/index/guide'
-				})
+			goBack() {
+				if(window.localStorage.getItem('fromUrl')) {
+					let fromUrl=window.localStorage.getItem('fromUrl');
+					window.localStorage.removeItem('fromUrl');
+					window.location.href = fromUrl;
+				} else {
+					this.$router.push({
+						'path': '/index/guide'
+					})
+				}
+
 			},
 		},
 		watch: {
@@ -132,7 +147,7 @@
 					}
 					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6) {
 						this.isLogBtnActive = true;
-						
+
 					} else {
 						this.isLogBtnActive = false;
 					}
@@ -149,6 +164,7 @@
 	input:-webkit-autofill {
 		-webkit-box-shadow: 0 0 0 1000px rgba(239, 239, 239, 1) inset !important;
 	}
+	
 	.loginHeader {
 		width: 100%;
 		height: 88px;

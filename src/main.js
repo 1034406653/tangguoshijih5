@@ -28,10 +28,12 @@ Vue.use(MintUI)
 Vue.config.productionTip = false
 let userInfo = '';
 let guideActive = '';
-
+let fromUrl='';
 router.beforeEach((to, from, next) => {
-	guideActive = window.localStorage.getItem("guideActive")
-	if(guideActive == 'completed' || to.path == '/index/guide') {
+	fromUrl = window.localStorage.getItem('fromUrl');;
+	/*活动页跳转来的*/
+	guideActive = window.localStorage.getItem("guideActive");
+	if(guideActive == 'completed' || to.path == '/index/guide' || to.path == '/index/guide'||fromUrl) {
 		userInfo = window.localStorage.getItem("jiazhuoToken");
 		if(userInfo || to.path == '/index/guide') {
 			next();

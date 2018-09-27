@@ -7,6 +7,7 @@ const state ={
 	token:"",
 	head_pic:"../../assets/img/index/home_pic_avatar.png",
 	nickname:"",
+	fromUrl:"",
 }
 /*触发状态*/
 const mutations={
