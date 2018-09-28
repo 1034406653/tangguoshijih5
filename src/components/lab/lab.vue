@@ -109,6 +109,7 @@
 					}
 				})
 				this.$http.post('/power/get_power').then(res => {
+					console.log(res)
 					if(res.data.code == "0") {
 						res.data.data.game.forEach((x, i) => {
 							if(i < 3) {
