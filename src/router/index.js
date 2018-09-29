@@ -37,7 +37,7 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: resolve => require(['../components/index/index'], resolve),
-      meta: { keepAlive: true }
+      meta: { keepAlive: false }
     },
     {
     	path: '/index/dio',

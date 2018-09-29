@@ -17,8 +17,8 @@ Es6Promise.polyfill()
 import QRCode from 'qrcode'
 
 /*基础地址替换*/
-var allbaseURL = 'https://a.hzjiazhuo.com/api';
-var allshare = 'https://web.hzjiazhuo.com/app_h5/invite.html';
+var allbaseURL = 'https://api.hzjiazhuo.com/api';
+var allshare = 'https://m.hzjiazhuo.com/app_h5/invite.html';
 
 Vue.prototype.$baseURL = allbaseURL
 Vue.prototype.$share = allshare

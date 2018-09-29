@@ -70,8 +70,8 @@
         nickname: "",
         mobile: "",
         authenticated: false,
-        invitation_coin_count: '',
-        invitation_power: ''
+        invitation_coin_count: 55,
+        invitation_power: 5
       }
     },
     components: {
@@ -79,12 +79,19 @@
     },
     created() {
       this.init();
-      this.invitation_coin_count = this.$store.state.dio.invitation_coin_count;
-      this.invitation_power = this.$store.state.dio.invitation_power
+      console.log(this.$store.state.dio.invitation_coin_count)
+      console.log(this.$store.state.dio.invitation_power)
     },
     mounted() {
       toastlxlcenter = new Toastlxl('toastlxlcenter');
       Prevent.init();
+      if(this.$store.state.dio.invitation_power) {
+        this.invitation_coin_count = this.$store.state.dio.invitation_coin_count
+        this.invitation_power = this.$store.state.dio.invitation_power
+      } else {
+        this.invitation_coin_count = 55
+        this.invitation_power = 5
+      }
     },
     deactivated() {
       Prevent.flag = true
@@ -105,6 +112,12 @@
           if (res.data.code == 0) {
             that.authenticated = true;
           }
+        })
+        this.$http.post('/user/invitationInfo', {}).then(res => {
+          this.$store.state.dio = res.data.data
+        })
+        this.$http.post('/user/invitationInfo', {}).then(res => {
+          this.$store.state.dio = res.data.data
         })
       },
       handleFileChange(event) {
