@@ -138,6 +138,9 @@
 						}
 					})
 				});
+        if(window.localStorage.getItem('head_pic')) {
+          this.head_pic = window.localStorage.getItem('head_pic');
+        }
 			},
 			delCanday(index, candyId, candy_count) {
 				let that = this;
