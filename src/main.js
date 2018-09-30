@@ -13,7 +13,6 @@ import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
 require('es6-promise/auto');
 Es6Promise.polyfill()
-
 import QRCode from 'qrcode'
 
 /*基础地址替换*/

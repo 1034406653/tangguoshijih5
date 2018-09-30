@@ -183,26 +183,23 @@
 		height: 40px;
 		margin: 0 auto;
 	}
-	/*wxshare*/
-	
-	#shareimgbox {
+	/*分享页*/
+	#shareimgbox{
 		width: 100%;
 		height: 100%;
-		position: relative;
 		overflow: auto;
 	}
 	
 	#shareimgbox>canvas {
 		width: 100% !important;
 		height: 1200px !important;
-		margin-top: 88px;
 		display: none;
+		
 	}
-	
 	#shareimgbox>img {
-		margin-top: 88px;
 		width: 100% !important;
-		height: auto !important;
+		height: 1200px !important;
 		display: block;
+		
 	}
 </style>

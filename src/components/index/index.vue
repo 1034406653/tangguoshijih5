@@ -285,14 +285,14 @@
 	.activityPortal2 {
 		left: 50%;
 		margin-left: -340px;
-		top: 850px;
+		top: 930px;
 		height: 240px;
 	}
 	
 	.activityPortal3 {
 		left: 50%;
 		margin-left: 210px;
-		top: 850px;
+		top: 930px;
 		height: 240px;
 	}
 </style>

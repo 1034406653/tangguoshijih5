@@ -1,6 +1,7 @@
 <template>
 	<div id="shareimgbox">
-		<headerNav :pageTitle="pageTitle"></headerNav>
+		<div class="imgbottom"></div>
+		<div class="bgwhite" v-show='ispicboxshow'></div>
 		<div class="content-wxshare" id="picbox" onclick="return false" v-show='ispicboxshow'>
 			<div class="QRcode"><span>{{card_code}}</span></div>
 			<canvas id="QRcanvas" class="card_img"></canvas>
@@ -13,7 +14,7 @@
 	import QRCode from 'qrcode'
 	import HeaderNav from '../base/headerNav'
 	import html2canvas from '../../assets/js/html2canvas.min.js'
-	import  {Canvas2Image} from '../../assets/js/canvas2image.js'
+	import { Canvas2Image } from '../../assets/js/canvas2image.js'
 	export default {
 		data() {
 			return {
@@ -55,38 +56,58 @@
 </script>
 
 <style scoped>
-	
-	html,body {
-		overflow: auto;
-		background-color: white !important;
-	}
-	.content-wxshare {
-		margin-top: 88px;
-		position: relative;
-		width: 100%;
-		height: 1200px;
-		background: url("../../assets/img/share/wxshare.png");
-		background-size: 100% 100%;
-	}
-	.QRcode {
+	.bgwhite {
 		position: absolute;
 		width: 100%;
-		top: 678px;
+		/*height: calc( 100% - 88px );
+		top: 88px;*/
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: white;
+		z-index: 100;
+	}
+	.content-wxshare {
+		width: 50%;
+		height: 600px;
+		background: url("../../assets/img/share/wxshare.png");
+		background-size: 100% 100%;
+		overflow: auto;
+	}
+	
+	.QRcode {
+		position: absolute;
+		width: 50%;
+		top: 339px;
 		left: 0;
 		text-align: center;
-		height: 60px;
-		font-size: 80px;
+		height: 40px;
+		font-size: 40px;
 		font-family: PingFangSC-Semibold;
 		font-weight: 600;
 		color: rgba(226, 104, 220, 1);
-		line-height: 46px;
+		line-height: 40px;
 	}
+	
 	#QRcanvas {
 		position: absolute;
-		width: 184px !important;
-		height: 184px !important;
-		left: 8.53%;
-		top: 939px;
+		width: 92px !important;
+		height: 92px !important;
+		left: 4.26%;
+		top: 469px;
 		display: block;
+		border: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	.imgbottom {
+		position: absolute;
+		width: 100%;
+		height: 20px;
+		left: 0;
+		top: 1190px;
+		z-index: 1000;
+		background: #fff;
 	}
 </style>
