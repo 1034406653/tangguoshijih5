@@ -8,6 +8,7 @@ const state ={
 	head_pic:"../../assets/img/index/home_pic_avatar.png",
 	nickname:"",
 	fromUrl:"",
+	dio:{},
 }
 /*触发状态*/
 const mutations={

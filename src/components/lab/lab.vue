@@ -53,7 +53,7 @@
 			</div>
 		</div>
 		<FooterNav :footerNav="footerNav"></FooterNav>
-		<div id="toastlxl" class="toastlxl"></div>
+		<div id="toastlxllab" class="toastlxl"></div>
 	</div>
 </template>
 <script>
@@ -65,6 +65,7 @@
 	import { Toastlxl } from "../../assets/js/toastlxl.js"
 	let gameURL = "";
 	let localStorage = window.localStorage;
+	var toastlxllab='';
 	export default {
 		data() {
 			return {
@@ -82,6 +83,10 @@
 			Swiper
 		},
 		created() {
+			
+		},
+		mounted(){
+			toastlxllab= new Toastlxl('toastlxllab');
 			this.init();
 		},
 		methods: {
@@ -141,10 +146,10 @@
 				let that = this;
 				if(!this.signed) {
 					this.$http.post('/power/receive_power').then(res => {
-						if(res.data.code == "0") {
-							that.signed = true;
-						}
+						if(res.data.code == "0") {}
 					})
+					that.signed = true;
+					toastlxllab.show(`<div class='toastlxl_icon'></div><p>签到完成</p>`);
 				}
 			},
 			goShare() {
