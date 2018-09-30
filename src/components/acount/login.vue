@@ -71,7 +71,7 @@
 				}
 			},
 			mobileBlur() {
-				if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.loginData.mobile)) {
+				if(this.loginData.mobile.length!=11) {
 					this.tipList.mobile = true;
 				}
 			},
@@ -139,13 +139,13 @@
 		watch: {
 			loginData: {
 				handler(curVal, oldVal) {
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile)) {
+					if(curVal.mobile.length==11) {
 						this.tipList.mobile = false;
 					}
 					if(curVal.password.length >= 6) {
 						this.tipList.password = false;
 					}
-					if(/^[1][3,4,5,7,8][0-9]{9}$/.test(curVal.mobile) && curVal.password.length >= 6) {
+					if(curVal.mobile.length==11 && curVal.password.length >= 6) {
 						this.isLogBtnActive = true;
 
 					} else {
