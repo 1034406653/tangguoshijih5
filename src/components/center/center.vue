@@ -77,20 +77,19 @@
     components: {
       FooterNav,
     },
-    created() {
-      this.init();
-      console.log(this.$store.state.dio.invitation_coin_count)
-      console.log(this.$store.state.dio.invitation_power)
-    },
     mounted() {
       toastlxlcenter = new Toastlxl('toastlxlcenter');
       Prevent.init();
-      if(this.$store.state.dio.invitation_power) {
+      this.init();
+      if(this.$store.state.dio.invitation_coin_count) {
         this.invitation_coin_count = this.$store.state.dio.invitation_coin_count
         this.invitation_power = this.$store.state.dio.invitation_power
       } else {
-        this.invitation_coin_count = 55
-        this.invitation_power = 5
+        this.$http.post('/user/invitationInfo', {}).then(res => {
+          this.$store.state.dio = res.data.data
+          this.invitation_coin_count = this.$store.state.dio.invitation_coin_count
+        	this.invitation_power = this.$store.state.dio.invitation_power
+        })
       }
     },
     deactivated() {
@@ -98,7 +97,12 @@
     },
     activated() {
       Prevent.flag = false
-      let that = this;
+      let that=this;
+      this.$http.post('user/get_realauth').then((res) => {
+          if (res.data.code == 0) {
+            that.authenticated = true;
+          }
+      })
     },
     methods: {
       init() {
@@ -112,12 +116,6 @@
           if (res.data.code == 0) {
             that.authenticated = true;
           }
-        })
-        this.$http.post('/user/invitationInfo', {}).then(res => {
-          this.$store.state.dio = res.data.data
-        })
-        this.$http.post('/user/invitationInfo', {}).then(res => {
-          this.$store.state.dio = res.data.data
         })
       },
       handleFileChange(event) {

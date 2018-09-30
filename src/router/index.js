@@ -37,7 +37,7 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: resolve => require(['../components/index/index'], resolve),
-      meta: { keepAlive: false }
+      meta: { keepAlive: true }
     },
     {
     	path: '/index/dio',
@@ -91,7 +91,7 @@ export default new Router({
     	path: '/center/candyBox',
       name: 'CandyBox',
       component: resolve => require(['../components/center/candyBox'], resolve),
-      meta: { keepAlive: false }
+      meta: { keepAlive: true }
     },
     {
     	path: '/center/contact',
