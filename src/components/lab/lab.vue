@@ -112,7 +112,7 @@
 					console.log(res)
 					if(res.data.code == "0") {
 						res.data.data.game.forEach((x, i) => {
-							if(i < 3) {
+							if(i < res.data.data.game.length) {
 								that.gameList[i] = x;
 								Vue.set(that.gameList, i, x);
 							}
@@ -128,6 +128,7 @@
 							that.invitation_coin_count = res.data.data.conf.invitation_coin_count
 						}
 					}
+					console.log(that.gameList)
 				})
 			},
 			goGame(game_url, game_id) {
@@ -159,23 +160,23 @@
 	body .labContent {
 		background: rgba(255, 255, 255, 1);
 	}
-	
+
 	.labContent .banner {
 		width: 100%;
 		height: 450px;
 		overflow: hidden;
 	}
-	
+
 	.labContent .banner img {
 		display: block;
 		width: 100%;
 		height: 100%;
 	}
-	
+
 	#app .labContent .swiper-container .swiper-pagination {
 		bottom: 50px;
 	}
-	
+
 	.banner .swiper-pagination-bullet {
 		width: 10px;
 		height: 4px;
@@ -183,12 +184,12 @@
 		border-radius: 0;
 		opacity: 0.6;
 	}
-	
+
 	.banner .swiper-pagination-bullet-active {
 		width: 30px;
 		background: #E975F1;
 	}
-	
+
 	.labContent .content-main {
 		text-align: left;
 		position: relative;
@@ -197,7 +198,7 @@
 		z-index: 10;
 		background: rgba(255, 255, 255, 1);
 	}
-	
+
 	.borderDIv {
 		width: 100%;
 		height: 40px;
@@ -207,7 +208,7 @@
 		top: -20px;
 		left: 0;
 	}
-	
+
 	.gameBox,
 	.taskMustBox,
 	.taskDayBox {
@@ -216,7 +217,7 @@
 		overflow: hidden;
 		padding-bottom: 30px;
 	}
-	
+
 	.content-title {
 		width: 100%;
 		height: 80px;
@@ -227,19 +228,19 @@
 		color: rgba(51, 51, 51, 1);
 		padding: 0 40px;
 	}
-	
+
 	.moreGame {
 		float: right;
 		font-size: 30px;
 		padding: 0 20px;
 	}
-	
+
 	.gameList {
 		width: 100%;
-		height: auto;
+		height: 200px;
 		overflow: hidden;
 	}
-	
+
 	.gameList li {
 		float: left;
 		width: 160px;
@@ -247,7 +248,7 @@
 		border-radius: 20px 20px 20px 30px;
 		margin: 20px 42px;
 	}
-	
+
 	.gameList li img {
 		width: 100%;
 		height: 100%;

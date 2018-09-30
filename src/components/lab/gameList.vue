@@ -30,7 +30,7 @@
     <headerNav :pageTitle="title" :goBackShow="goBack"></headerNav>
 
     <div class="gameBox">
-      <ul class="gameList">
+      <ul class="gameList" style="height: auto">
         <li v-for="item in gameList" @touchend="goGame(item.game_url,item.id)">
           <img :src="item.game_icon"/>
         </li>
