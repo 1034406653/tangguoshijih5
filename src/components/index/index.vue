@@ -82,32 +82,31 @@
 		created() {
 			Prevent.init();
 		},
-		mounted() {
-			this.init();
-		},
 		deactivated() {
 			Prevent.flag = true
 		},
 		activated() {
 			Prevent.flag = false
 			let that = this;
+			for(let i = 0; arr.size < 13; i++) {
+				arr.add(Math.floor(Math.random() * 13));
+			}
+			arr = Array.from(arr);
 			if(window.localStorage.getItem('head_pic')) {
 				this.head_pic = window.localStorage.getItem('head_pic');
 			}
 			this.$http.post('/candy/get_coin_list').then(res => {
-				that.dioNum = res.data.data.DIO;
-				that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
-			});
-			if(this.candyList.length < 1 && this.candyList.length < 1) {
-				this.$http.post('/candy/get_coin_list').then(res => {
-					if(res.data.code == 0) {
-						console.log(res.data.data.active)
-						/*活动*/
-						res.data.data.active.forEach((x, i) => {
-							let activeLi = x;
-							activeLi.className = 'activityPortal' + x.id;
-							Vue.set(that.activeList, i, x)
-						})
+				console.log(res);
+				if(res.data.code == 0) {
+					/*活动*/
+					res.data.data.active.forEach((x, i) => {
+						let activeLi = x;
+						activeLi.className = 'activityPortal' + x.id;
+						Vue.set(that.activeList, i, x)
+					})
+					that.dioNum = res.data.data.DIO;
+					that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
+					if(this.candyList.length < 1 && this.candyList.length < 1) {
 						/*dio球*/
 						res.data.data.list.forEach((x, i) => {
 							if(i < 13) {
@@ -129,55 +128,12 @@
 							}
 						})
 					}
-				});
-			}
+				}
+
+			});
+
 		},
 		methods: {
-			init() {
-				var that = this;
-				for(let i = 0; arr.size < 13; i++) {
-					arr.add(Math.floor(Math.random() * 13));
-				}
-				arr = Array.from(arr);
-				this.$http.post('/candy/get_coin_list').then(res => {
-					console.log(res);
-					if(res.data.code == 0) {
-						console.log(res.data.data.active)
-						/*活动*/
-						res.data.data.active.forEach((x, i) => {
-							let activeLi = x;
-							activeLi.className = 'activityPortal' + x.id;
-							Vue.set(that.activeList, i, x)
-						})
-						/*dio数量*/
-						that.dioNum = res.data.data.DIO;
-						that.energyNum = res.data.data.permanent_power + "+" + res.data.data.temporary_power;
-						/*dio球*/
-						res.data.data.list.forEach((x, i) => {
-							if(i < 13) {
-								that.candyList[i] = {};
-								that.candyList[i].candy_count = x.candy_count;
-								that.candyList[i].id = x.id;
-								that.candyList[i].className = "candy" + arr[i];
-								let cx = Math.random() * 130 - 65 + "px"
-								let cy = Math.random() * 110 - 55 + "px"
-								that.candyList[i].transform = "transform:translateY(" + cy + ") translateX(" + cx + ")";
-							} else {
-								that.candyList2[i - 13] = {};
-								that.candyList2[i - 13].candy_count = x.candy_count;
-								that.candyList2[i - 13].id = x.id;
-								that.candyList2[i - 13].className = "candy" + arr[i - 13];
-								let cx = Math.random() * 130 - 65 + "px"
-								let cy = Math.random() * 110 - 55 + "px"
-								that.candyList2[i - 13].transform = "transform:translateY(" + cy + ") translateX(" + cx + ")";
-							}
-						})
-					}
-				});
-				if(window.localStorage.getItem('head_pic')) {
-					this.head_pic = window.localStorage.getItem('head_pic');
-				}
-			},
 			delCanday(index, candyId, candy_count) {
 				let that = this;
 				//MP3 音频控制
