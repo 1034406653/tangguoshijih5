@@ -11,20 +11,13 @@
 	export default {
 		name: 'App',
 		created() {
-			this.init()
+
 		},
 		mounted() {
-			this.$http.post('/user/invitationInfo', {}).then(res => {
-				this.$store.state.dio = res.data.data
-			})
+
 		},
 		methods: {
-			init() {
-				this.$http.post('/user/invitationInfo', {}).then(res => {
-					this.$store.state.dio = res.data.data
-					console.log(this.$store.state.dio)
-				})
-			}
+
 		}
 	}
 </script>
@@ -184,7 +177,8 @@
 		margin: 0 auto;
 	}
 	/*分享页*/
-	#shareimgbox{
+	
+	#shareimgbox {
 		width: 100%;
 		height: 100%;
 		overflow: auto;
@@ -194,12 +188,11 @@
 		width: 100% !important;
 		height: 1200px !important;
 		display: none;
-		
 	}
+	
 	#shareimgbox>img {
 		width: 100% !important;
 		height: 1200px !important;
 		display: block;
-		
 	}
 </style>
