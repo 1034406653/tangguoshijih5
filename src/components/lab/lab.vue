@@ -4,7 +4,7 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide" v-for="(item,index) in bannerList">
 					<!--<p>{{index}}</p>-->
-					<img :src="item.img_url" />
+					<img :src="item.img_url" @click="goBanner(item.ad_link)"/>
 				</div>
 			</div>
 			<!-- 如果需要分页器 -->
@@ -95,6 +95,7 @@
 				let that = this;
 				/*banner图*/
 				this.$http.post('/web/get_banner').then(res => {
+					console.log(res)
 					if(res.data.code == "0") {
 						that.bannerList = res.data.data;
 						setTimeout(() => {
@@ -114,7 +115,6 @@
 					}
 				})
 				this.$http.post('/power/get_power').then(res => {
-					console.log(res)
 					if(res.data.code == "0") {
 						res.data.data.game.forEach((x, i) => {
 							if(i < res.data.data.game.length) {
@@ -133,7 +133,6 @@
 							that.invitation_coin_count = res.data.data.conf.invitation_coin_count
 						}
 					}
-					console.log(that.gameList)
 				})
 			},
 			goGame(game_url, game_id) {
@@ -156,6 +155,12 @@
 				this.$router.push({
 					path: "/index/share"
 				})
+			},
+			goBanner(ad_link){
+				if(ad_link){
+					let bannerUrl=ad_link+'?token='+window.localStorage.getItem('jiazhuoToken');
+					window.location.href=bannerUrl;
+				}
 			}
 		}
 	}
