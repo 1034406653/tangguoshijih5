@@ -1,5 +1,5 @@
 <template>
-	<div class="logBtn" :class="[cBtnActiveStart, { cBtnActive: cBtnActive}]" @touchstart="cBtnStart" @click="cBtnClick">{{cBtnValue}}</div>
+	<div class="logBtn" :class="[cBtnActiveStart, { cBtnActive: cBtnActive }]" @touchstart="cBtnStart" @click="cBtnClick">{{cBtnValue}}</div>
 </template>
 
 <script>
