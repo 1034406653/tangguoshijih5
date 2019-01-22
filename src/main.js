@@ -75,6 +75,7 @@ axios.interceptors.request.use(config => {
 });
 // 响应拦截器
 axios.interceptors.response.use(data => {
+	console.log(data);
 	if(data.data.code === 1002) {
 		console.log("请求出问题了")
 		window.localStorage.removeItem('jiazhuoToken')

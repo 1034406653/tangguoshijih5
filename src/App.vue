@@ -6,19 +6,9 @@
 		<router-view v-if="!$route.meta.keepAlive"></router-view>
 	</div>
 </template>
-
 <script>
 	export default {
 		name: 'App',
-		created() {
-
-		},
-		mounted() {
-
-		},
-		methods: {
-
-		}
 	}
 </script>
 
