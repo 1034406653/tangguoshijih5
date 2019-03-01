@@ -12,7 +12,6 @@ import qs from 'qs'
 import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
 Es6Promise.polyfill()
-import QRCode from 'qrcode'
 
 /*基础地址替换*/
 var allbaseURL = 'https://a.hzjiazhuo.com/api';
